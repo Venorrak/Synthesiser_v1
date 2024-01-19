@@ -22,14 +22,16 @@ Définition du type de projet (Conception ou vulgarisation)
 # Démarche préliminaire
 **Voici les étapes afin de mener le projet à terme.**
 
-|Étape|Temps|
+|Étapes|Temps|
 |----------------------------------------------------------------|:----:|
 |Trouver microcontroleur pouvant gérer des signaux audio et simuler un oscillateur et trouver une librairie compatible.| 5h |
-|Définir les fonctionnalités attendues.| ?h |
+|Définir les fonctionnalités attendues.| 3h |
 |Implémenter les fonctionnalités sur un bread board prototype.| 10h |
 |Rechercher de la documentations afin d'impléter les fonctionnalités.| 10h |
-|Programmation du logiciel ambarqué du synthétiseur.| 40h |
-
+|Programmation du synthétiseur.| 40h |
+|Recherches et implémentation d'un oscilloscope sur le synthétiseur | 20h |
+|Conceptualisation d'un PBB pour remplacer le breadboard| 20h |
+|Conception d'un case 3D + impression|4h|
 <!-- Chaque étape doit inclure une évaluation de temps approximatif avec justification. -->
 
 
