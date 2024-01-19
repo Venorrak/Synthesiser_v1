@@ -23,12 +23,12 @@ Définition du type de projet (Conception ou vulgarisation)
 **Voici les étapes afin de mener le projet à terme.**
 
 |Étape|Temps|
-|----------------------------------------------------------------|----|
-|Trouver microcontroleur pouvant gérer des signaux audio et simuler un oscillateur et trouver une librairie compatible.| 
-1. Trouver microcontroleur pouvant gérer des signaux audio et simuler un oscillateur et trouver une librairie compatible.
-2. Définir les fonctionnalités attendues.
-3. Rchercher de la documentations afin d'impléter les fonctionnalités.
-4. O
+|----------------------------------------------------------------|:----:|
+|Trouver microcontroleur pouvant gérer des signaux audio et simuler un oscillateur et trouver une librairie compatible.| 5h |
+|Définir les fonctionnalités attendues.| ?h |
+|Implémenter les fonctionnalités sur un bread board prototype.| 10h |
+|Rechercher de la documentations afin d'impléter les fonctionnalités.| 10h |
+|Programmation du logiciel ambarqué du synthétiseur.| 40h |
 
 <!-- Chaque étape doit inclure une évaluation de temps approximatif avec justification. -->
 
@@ -36,8 +36,8 @@ Définition du type de projet (Conception ou vulgarisation)
 # Matériel
 Matériel dont nous aurons besoin pour mener le projet à terme.
 
-| Item | Justification | Coût($) avec livraison| 
-|------|---------------|------|
+| Item | Justification | Coût avec livraison| 
+|------|---------------|:------:|
 | Daisy seed (Oscillateur) | Module Principal | 50.00$ |
 | Oscilloscope (écran)| Afficher les donnés | 10.00$ |
 | Divers | Potentiomètre, fils, résistance, etc | 20.00$ |
