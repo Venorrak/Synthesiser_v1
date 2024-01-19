@@ -6,4 +6,3 @@ Synthetiseur made with the daisy seed
 - Oscilloscope
 - PCB
 - Case
-- Miguel
