@@ -1,2 +1,8 @@
 # Synthesiser_v1
-synthesiser made with the daisy seed
+Synthesiser made with the daisy seed
+## Modules
+- Oscillateur
+- Effects
+- Oscilloscope
+- PCB
+- Case
