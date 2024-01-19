@@ -1,17 +1,10 @@
-# Synthetiseur_v1
-Synthetiseur made with the daisy seed
-## Modules
-- Oscillateur
-- Effects
-- Oscilloscope
-- PCB
-- Case
-
 # Énoncé – Travail ÉQUIPE
-Équipe no : Noms :
+Équipe no : 
+Noms : Justin, Miguel et Vincent
 
 # Choix du sujet
-Titre
+Synthétiseur à l'aide d'un daisy seed
+
 Définition du type de projet (Conception ou vulgarisation)
 
 # Justification
@@ -27,3 +20,9 @@ Les grandes étapes que vous allez devoir réaliser pour mener votre projet a�
 
 # Matériel
 Identifiez le matériel dont vous aurez besoin pour mener votre projet à terme.
+
+- Oscillateur
+- Effects
+- Oscilloscope
+- PCB
+- Case
