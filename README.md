@@ -1,5 +1,5 @@
-# Synthesiser_v1
-Synthesiseur made with the daisy seed
+# Synthetiseur_v1
+Synthetiseur made with the daisy seed
 ## Modules
 - Oscillateur
 - Effects
