@@ -22,18 +22,19 @@ Quelles questions vous suscite-t-il?
 
 # Démarche préliminaire
 Étapes afin de mener le projet à terme.
+
 <!-- Chaque étape doit inclure une évaluation de temps approximatif avec justification. -->
 
 
 # Matériel
 Matériel dont nous aurons besoin pour mener le projet à terme.
 
-| Item | justification | coût($) | 
+| Item | Justification | Coût($) avec livraison| 
 |------|---------------|------|
-| Daisy seed (Oscillateur) | Module Principal | 0.00 |
-| Oscilloscope (écran)| Afficher les donnés | |
-| Divers fils | Transport de donnés et courant| 0.00 |
-| PCB | Finitions final | ? |
+| Daisy seed (Oscillateur) | Module Principal | 50.00 |
+| Oscilloscope (écran)| Afficher les donnés | 10.00 |
+| Divers | Potentiomètre, fils, résistance, etc | 20.00 |
+| PCB | Finition finale | 20$ - 35$ |
 | Case imprimé 3D | Protection du produit | 2.00 |
 
 - Effects
