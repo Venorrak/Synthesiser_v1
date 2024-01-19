@@ -1,9 +1,10 @@
 # Énoncé – Travail ÉQUIPE
-Équipe no : 
+Équipe no : E  
+
 Noms : Justin, Miguel et Vincent
 
 # Choix du sujet
-Synthétiseur à l'aide d'un daisy seed
+Synthétiseur à l'aide d'un module *Daisy Seed*
 
 Définition du type de projet (Conception ou vulgarisation)
 
