@@ -28,14 +28,14 @@ Aucun Synthétiseur à coût réduit sur le marché.
 
 |Étapes|Temps|Justification|
 |----------------------------------------------------------------|:----:|---------------------------------|
-|Trouver microcontroleur pouvant gérer des signaux audio et simuler un oscillateur et trouver une librairie compatible.| 5h | Nombre d'heures résonable pour trouver un microcontrolleur adapté à nos besoins|
-|Définir les fonctionnalités attendues.| 3h | Prendre le temps de définir à l'avance nos objectifs|
-|Implémenter les fonctionnalités sur un bread board prototype.| 10h | nécessaire pour tester le code |
-|Rechercher de la documentations afin d'impléter les fonctionnalités.| 10h |  
-|Programmation du synthétiseur.| 40h | oui |
-|Recherches et implémentation d'un oscilloscope sur le synthétiseur | 20h | Pouvoir constater les changement que les effets ont sur le son de manière visuelle |
-|Conceptualisation d'un PBB pour remplacer le breadboard| 20h | Donne un fini plus professionnel et propre au projet |
-|Conception d'un case 3D + impression|4h| Pour s'assurer de ne pas casser le synthé.
+|Trouver microcontroleur pouvant gérer des signaux audio et simuler un oscillateur et trouver une librairie compatible.| 5h | Plusieurs choix avec des avantages différents pour chacun |
+|Définir les fonctionnalités attendues.| 3h | Prendre le temps de définir à l'avance nos objectifs pour ne pas travailler dans le vide |
+|Implémenter les fonctionnalités sur un bread board prototype.| 5h | nécessaire pour tester le code et pour avoir un plan général de ce qu'on aura besoin pour le produit final |
+|Consulter la documentations afin d'impléter les fonctionnalités efficacement.| 10h | Les librairies utilisées avec le daisy seed sont très complètes il faudra donc du temps pour comprendre comment elle marche. |  
+|Programmation du synthétiseur.| 30h | oui |
+|Recherches et implémentation d'un oscilloscope sur le synthétiseur | 20h | L'oscioscope utilise une autre librairie complètement et nous allons probablement utiliser un autre arduino pour le faire fonctionner. |
+|Conceptualisation d'un PBB pour remplacer le breadboard| 20h | Malgré le fait que je ne pense pas que cela soit compliqué, je n'ai jamais fait de PCB et je sais que c'est un long processus donc je donne une grande fenêtre de temps. -*justin* |
+|Conception d'un case 3D + impression|4h| Le temps de faire une boite en 3D adapté aux dimensions du synthé |
 <!-- Chaque étape doit inclure une évaluation de temps approximatif avec justification. -->
 
 
