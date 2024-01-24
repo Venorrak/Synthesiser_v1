@@ -32,7 +32,7 @@ Aucun Synthétiseur à coût réduit sur le marché.
 |Définir les fonctionnalités attendues.| 3h | Prendre le temps de définir à l'avance nos objectifs pour ne pas travailler dans le vide |
 |Implémenter les fonctionnalités sur un bread board prototype.| 5h | nécessaire pour tester le code et pour avoir un plan général de ce qu'on aura besoin pour le produit final |
 |Consulter la documentations afin d'impléter les fonctionnalités efficacement.| 10h | Les librairies utilisées avec le daisy seed sont très complètes il faudra donc du temps pour comprendre comment elle marche. |  
-|Programmation du synthétiseur.| 30h | oui |
+|Programmation du synthétiseur.| 30h | Difficultées probables causés par des éléments spécifiques du synthétiseur lors de la programmation (oscilloscope, communication MIDI) |
 |Recherches et implémentation d'un oscilloscope sur le synthétiseur | 20h | L'oscioscope utilise une autre librairie complètement et nous allons probablement utiliser un autre arduino pour le faire fonctionner. |
 |Conceptualisation d'un PBB pour remplacer le breadboard| 20h | Malgré le fait que je ne pense pas que cela soit compliqué, je n'ai jamais fait de PCB et je sais que c'est un long processus donc je donne une grande fenêtre de temps. -*justin* |
 |Conception d'un case 3D + impression|4h| Le temps de faire une boite en 3D adapté aux dimensions du synthé |
