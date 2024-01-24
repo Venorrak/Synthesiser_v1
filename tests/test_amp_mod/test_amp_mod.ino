@@ -28,7 +28,7 @@ void MyCallback(float **in, float **out, size_t size) {
     float out1, out2;
     float sig = osc.Process();
     float sig2 = osc2.Process();
-    out[0][i] = sig1;
+    out[0][i] = sig;
     out[1][i] = sig2;
   }
 }
@@ -88,6 +88,6 @@ void loop() {
   }
   pitchknob = 24.0 + ((analogRead(A0) / 1023.0) * 60.0);
   pitchknob2 = 24.0 + ((analogRead(A1) / 1023.0) * 60.0);
-  pitchknob3 = (analogRead(A2) / 1023.0) * 0.5;
-  pitchknob4 = (analogRead(A3) / 1023.0) * 0.5;
+  pitchknob3 = 0.5 + (analogRead(A2) / 1023.0) * 5;
+  pitchknob4 = 0.5 + (analogRead(A3) / 1023.0) * 5;
 }
