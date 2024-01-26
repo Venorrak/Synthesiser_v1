@@ -54,7 +54,7 @@ Matériel dont nous aurons besoin pour mener le projet à terme.
 | Case imprimé 3D | Protection du produit | 2.00$ |
 
 # Ressource disponible
-Les ressources disponibles pour la réalisation du projet incluent le module Daisy Seed, un oscilloscope, divers composants électroniques (potentiomètres, fils, résistances, etc.), ainsi que des ressources en ligne pour la programmation du microcontrôleur.
+Les ressources disponibles pour la réalisation du projet incluent le module Daisy Seed, un oscilloscope, divers composants électroniques (potentiomètres, fils, résistances, etc.), ainsi que des ressources en ligne pour la programmation du microcontrôleur tel que la documentation de la librairie du daisy seed, des chaines youtube spécialisées, un sever discord et des forums dédiés au daisy seed.
 
 # Apprentissages à Faire
 Le projet implique l'apprentissage de la programmation d'un microcontrôleur pour gérer des signaux audio, la compréhension des librairies associées au Daisy Seed, la mise en œuvre d'un oscilloscope, ainsi que la conception et l'impression 3D d'un boîtier et un PCB pour le synthétiseur.
