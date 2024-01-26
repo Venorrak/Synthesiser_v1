@@ -20,10 +20,10 @@ unsigned long prev_millis = 0;
 
 void MyCallback(float **in, float **out, size_t size) {
   // Convert Pitchknob MIDI Note Number to frequency
-  osc.SetFreq(mtof(pitchknob));
-  osc.SetAmp(mtof(pitchknob3));
-  osc2.SetFreq(mtof(pitchknob2));
-  osc2.SetAmp(mtof(pitchknob4));
+  osc.SetFreq(pitchknob);
+  osc.SetAmp(pitchknob3);
+  osc2.SetFreq(pitchknob2);
+  osc2.SetAmp(pitchknob4);
   for (size_t i = 0; i < size; i++) {
     float out1, out2;
     float sig = osc.Process();
