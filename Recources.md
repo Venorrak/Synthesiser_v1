@@ -12,6 +12,7 @@
 - https://github.com/gbevin/SendMIDI
 - https://learn.sparkfun.com/tutorials/midi-tutorial/all
 - https://www.norwegiancreations.com/2022/07/digital-audio-synthesis-part-2-midi/
+- https://github.com/donnerbono/bitsandbobs/blob/main/DuoPolySynth%20v1/duopolysynth.cpp
 
 ## Setup
 - https://www.youtube.com/watch?v=UyQWK8JFTps
