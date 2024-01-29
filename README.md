@@ -15,6 +15,34 @@ Aucun synthétiseur à coût réduit n'est actuellement disponible sur le march�
 ### Résultat Attendu (Produit Final Concret)
 Le résultat attendu est un synthétiseur fonctionnel avec la capacité de générer des effets sonores variés. Le produit final comprendra également un écran d'oscilloscope pour visualiser les variations de signal.
 
+### Existe-t-il quelque chose de semblable?
+
+Un projet de synthétiseur open source tel que le notre existe déjà et il s'appelle "LMN-3". C'est un synthétiseur basé sur un board teensy 4.1 et un raspberry pi 4 qui est entièrement controllé à l'aide de son interface composé de boutons et d'encodeurs.
+
+### En quoi votre projet est-il pertinent ? 
+
+
+
+### Pourquoi ce projet et pas un autre? 
+
+
+
+### Objectif final?
+
+Produire un synthétiseur (open source) qui pourra interpréter des signaux midi envoyé par un clavier ou par des notes envoyés par un site web à l'aide de communication bluetooth. L'utilisateur pourra modifier les sons provenant du synthétiseur sur le moment et modifiant les effets à l'aide de potentiomètres et de boutons.
+
+### Par quelle démarche vous y prendrez-vous?
+
+Faire le projet un module à la fois du moins au plus prioritaire.
+
+Jalons (pas en ordre) :
+- Module de réception MIDI
+- Synthétiseur qui interprête les notes
+- Écran qui montre le son de façon visuel
+- Communication bluetooth des notes avec site web
+- Interfaçe web
+- PCB
+- Boitier imprimé 
 
 ### Quelles questions vous suscite-t-il?
 
