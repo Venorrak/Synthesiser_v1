@@ -183,12 +183,12 @@
 	</table>
 	<br/>
 	<div class="footer" align="center">
-		<a href="https://irshadpi.me/best-of-music-grid" target="_blank">Exemples de musiques</a>
+		<a href="https://irshadpi.me/best-of-music-grid" target="_blank">Best of Music Grid</a>
 		<!--<br/>
 		<a href="https://svelte.dev" target="_blank">Svelte</a> 
 		| <a href="https://github.com/irshadshalu/music-grid" target="_blank"><i class="fa fa-lg fa-github"></i></a> 
-		| <a href="https://irshadpi.me" target="_blank">irshad</a> -->
-	</div>
+		| <a href="https://irshadpi.me" target="_blank">irshad</a> 
+	</div>-->
 	<br/>
 	<br/>
 </div>

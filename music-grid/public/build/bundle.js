@@ -71,6 +71,9 @@ var app = (function () {
     function set_input_value(input, value) {
         input.value = value == null ? '' : value;
     }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
     function select_option(select, value) {
         for (let i = 0; i < select.options.length; i += 1) {
             const option = select.options[i];
@@ -2101,7 +2104,7 @@ var app = (function () {
     			t1 = space();
     			option.__value = option_value_value = /*scale*/ ctx[24];
     			option.value = option.__value;
-    			add_location(option, file$2, 130, 4, 2419);
+    			add_location(option, file$2, 130, 4, 2438);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -2133,7 +2136,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "fa fa-lg fa-inverse fa-play svelte-vnu4ae");
-    			add_location(i, file$2, 142, 4, 2690);
+    			add_location(i, file$2, 142, 4, 2709);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -2162,7 +2165,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "fa fa-lg fa-inverse fa-pause svelte-vnu4ae");
-    			add_location(i, file$2, 140, 4, 2633);
+    			add_location(i, file$2, 140, 4, 2652);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -2254,7 +2257,7 @@ var app = (function () {
     			div2 = element("div");
     			div0 = element("div");
     			label0 = element("label");
-    			t0 = text("Rows :\n\t\t\t");
+    			t0 = text("Nombre de ligne :\n\t\t\t");
     			input0 = element("input");
     			t1 = space();
     			t2 = text(t2_value);
@@ -2262,7 +2265,7 @@ var app = (function () {
     			br0 = element("br");
     			t4 = space();
     			label1 = element("label");
-    			t5 = text("Speed :\n\t\t\t");
+    			t5 = text("Vitesse :\n\t\t\t");
     			input1 = element("input");
     			t6 = space();
     			t7 = text(t7_value);
@@ -2270,7 +2273,7 @@ var app = (function () {
     			br1 = element("br");
     			t9 = space();
     			label2 = element("label");
-    			t10 = text("Scale :\n\t\t\t");
+    			t10 = text("Type de son :\n\t\t\t");
     			select = element("select");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -2297,42 +2300,42 @@ var app = (function () {
     			attr_dev(input0, "min", "8");
     			attr_dev(input0, "max", "100");
     			attr_dev(input0, "class", "slider");
-    			add_location(input0, file$2, 113, 3, 1969);
+    			add_location(input0, file$2, 113, 3, 1980);
     			add_location(label0, file$2, 111, 2, 1948);
-    			add_location(br0, file$2, 118, 2, 2125);
+    			add_location(br0, file$2, 118, 2, 2136);
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "60");
     			attr_dev(input1, "max", "500");
     			attr_dev(input1, "class", "slider");
-    			add_location(input1, file$2, 121, 3, 2155);
-    			add_location(label1, file$2, 119, 2, 2133);
-    			add_location(br1, file$2, 125, 2, 2272);
+    			add_location(input1, file$2, 121, 3, 2168);
+    			add_location(label1, file$2, 119, 2, 2144);
+    			add_location(br1, file$2, 125, 2, 2285);
     			attr_dev(select, "class", "svelte-vnu4ae");
     			if (/*config*/ ctx[0].scale_key === void 0) add_render_callback(() => /*select_change_handler*/ ctx[10].call(select));
-    			add_location(select, file$2, 128, 3, 2302);
-    			add_location(label2, file$2, 126, 2, 2280);
+    			add_location(select, file$2, 128, 3, 2321);
+    			add_location(label2, file$2, 126, 2, 2293);
     			attr_dev(div0, "class", "settings svelte-vnu4ae");
     			add_location(div0, file$2, 110, 1, 1923);
     			attr_dev(a0, "class", "svelte-vnu4ae");
-    			add_location(a0, file$2, 138, 2, 2562);
+    			add_location(a0, file$2, 138, 2, 2581);
     			attr_dev(i0, "class", "fa fa-inverse fa-lg fa-stop svelte-vnu4ae");
-    			add_location(i0, file$2, 145, 39, 2786);
+    			add_location(i0, file$2, 145, 39, 2805);
     			attr_dev(a1, "class", "svelte-vnu4ae");
-    			add_location(a1, file$2, 145, 2, 2749);
+    			add_location(a1, file$2, 145, 2, 2768);
     			attr_dev(i1, "class", "fa fa-lg fa-trash svelte-vnu4ae");
-    			add_location(i1, file$2, 146, 40, 2871);
+    			add_location(i1, file$2, 146, 40, 2890);
     			attr_dev(a2, "class", "svelte-vnu4ae");
-    			add_location(a2, file$2, 146, 2, 2833);
+    			add_location(a2, file$2, 146, 2, 2852);
     			attr_dev(i2, "class", "fa fa-lg fa-share-alt svelte-vnu4ae");
-    			add_location(i2, file$2, 147, 89, 2995);
+    			add_location(i2, file$2, 147, 89, 3014);
     			attr_dev(a3, "class", "share svelte-vnu4ae");
-    			add_location(a3, file$2, 147, 2, 2908);
+    			add_location(a3, file$2, 147, 2, 2927);
     			attr_dev(i3, "class", "fa fa-lg fa-download svelte-vnu4ae");
-    			add_location(i3, file$2, 148, 43, 3077);
+    			add_location(i3, file$2, 148, 43, 3096);
     			attr_dev(a4, "class", "svelte-vnu4ae");
-    			add_location(a4, file$2, 148, 2, 3036);
+    			add_location(a4, file$2, 148, 2, 3055);
     			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty(/*primaryClass*/ ctx[3]) + " svelte-vnu4ae"));
-    			add_location(div1, file$2, 137, 1, 2514);
+    			add_location(div1, file$2, 137, 1, 2533);
     			attr_dev(div2, "class", "container");
     			add_location(div2, file$2, 109, 0, 1898);
     		},
@@ -2729,7 +2732,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (176:1) {#if recording}
+    // (175:1) {#if recording}
     function create_if_block$1(ctx) {
     	let span;
 
@@ -2738,7 +2741,7 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Please wait for the playback to finish";
     			attr_dev(span, "class", "message svelte-wvhii7");
-    			add_location(span, file$3, 176, 2, 3499);
+    			add_location(span, file$3, 175, 2, 3442);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2752,14 +2755,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(176:1) {#if recording}",
+    		source: "(175:1) {#if recording}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (181:2) {#each grid as row}
+    // (180:2) {#each grid as row}
     function create_each_block$2(ctx) {
     	let row;
     	let updating_row;
@@ -2833,7 +2836,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(181:2) {#each grid as row}",
+    		source: "(180:2) {#each grid as row}",
     		ctx
     	});
 
@@ -2841,7 +2844,7 @@ var app = (function () {
     }
 
     function create_fragment$3(ctx) {
-    	let div;
+    	let div1;
     	let h3;
     	let t1;
     	let controls;
@@ -2849,14 +2852,17 @@ var app = (function () {
     	let updating_config;
     	let t2;
     	let t3;
-    	let a;
+    	let a0;
     	let t5;
     	let table;
     	let t6;
     	let br0;
     	let t7;
+    	let div0;
+    	let a1;
+    	let t9;
     	let br1;
-    	let t8;
+    	let t10;
     	let br2;
     	let current;
     	let mounted;
@@ -2904,16 +2910,16 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
     			h3 = element("h3");
-    			h3.textContent = "Syth by Vincent, Miguel et Justin";
+    			h3.textContent = "Synthétiseur fait par Vincent, Miguel et Justin";
     			t1 = space();
     			create_component(controls.$$.fragment);
     			t2 = space();
     			if (if_block) if_block.c();
     			t3 = space();
-    			a = element("a");
-    			a.textContent = "Download";
+    			a0 = element("a");
+    			a0.textContent = "Download";
     			t5 = space();
     			table = element("table");
 
@@ -2924,48 +2930,63 @@ var app = (function () {
     			t6 = space();
     			br0 = element("br");
     			t7 = space();
+    			div0 = element("div");
+    			a1 = element("a");
+    			a1.textContent = "Exemples de musiques";
+    			t9 = space();
     			br1 = element("br");
-    			t8 = space();
+    			t10 = space();
     			br2 = element("br");
+    			set_style(h3, "text-decoration", "underline");
     			add_location(h3, file$3, 163, 1, 3047);
-    			attr_dev(a, "download", "music-grid.wav");
-    			a.hidden = "true";
-    			add_location(a, file$3, 178, 1, 3575);
+    			attr_dev(a0, "download", "music-grid.wav");
+    			a0.hidden = "true";
+    			add_location(a0, file$3, 177, 1, 3518);
     			attr_dev(table, "class", "svelte-wvhii7");
-    			add_location(table, file$3, 179, 1, 3657);
-    			add_location(br0, file$3, 184, 1, 3816);
-    			add_location(br1, file$3, 192, 1, 4206);
-    			add_location(br2, file$3, 193, 1, 4213);
-    			attr_dev(div, "class", "container svelte-wvhii7");
-    			attr_dev(div, "align", "center");
-    			add_location(div, file$3, 162, 0, 3007);
+    			add_location(table, file$3, 178, 1, 3600);
+    			add_location(br0, file$3, 183, 1, 3759);
+    			attr_dev(a1, "href", "https://irshadpi.me/best-of-music-grid");
+    			attr_dev(a1, "target", "_blank");
+    			attr_dev(a1, "class", "svelte-wvhii7");
+    			add_location(a1, file$3, 185, 2, 3804);
+    			attr_dev(div0, "class", "footer svelte-wvhii7");
+    			attr_dev(div0, "align", "center");
+    			add_location(div0, file$3, 184, 1, 3766);
+    			add_location(br1, file$3, 191, 1, 4151);
+    			add_location(br2, file$3, 192, 1, 4158);
+    			attr_dev(div1, "class", "container svelte-wvhii7");
+    			attr_dev(div1, "align", "center");
+    			add_location(div1, file$3, 162, 0, 3007);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, h3);
-    			append_dev(div, t1);
-    			mount_component(controls, div, null);
-    			append_dev(div, t2);
-    			if (if_block) if_block.m(div, null);
-    			append_dev(div, t3);
-    			append_dev(div, a);
-    			/*a_binding*/ ctx[15](a);
-    			append_dev(div, t5);
-    			append_dev(div, table);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, h3);
+    			append_dev(div1, t1);
+    			mount_component(controls, div1, null);
+    			append_dev(div1, t2);
+    			if (if_block) if_block.m(div1, null);
+    			append_dev(div1, t3);
+    			append_dev(div1, a0);
+    			/*a0_binding*/ ctx[15](a0);
+    			append_dev(div1, t5);
+    			append_dev(div1, table);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(table, null);
     			}
 
-    			append_dev(div, t6);
-    			append_dev(div, br0);
-    			append_dev(div, t7);
-    			append_dev(div, br1);
-    			append_dev(div, t8);
-    			append_dev(div, br2);
+    			append_dev(div1, t6);
+    			append_dev(div1, br0);
+    			append_dev(div1, t7);
+    			append_dev(div1, div0);
+    			append_dev(div0, a1);
+    			append_dev(div1, t9);
+    			append_dev(div1, br1);
+    			append_dev(div1, t10);
+    			append_dev(div1, br2);
     			current = true;
 
     			if (!mounted) {
@@ -2994,7 +3015,7 @@ var app = (function () {
     				if (if_block) ; else {
     					if_block = create_if_block$1(ctx);
     					if_block.c();
-    					if_block.m(div, t3);
+    					if_block.m(div1, t3);
     				}
     			} else if (if_block) {
     				if_block.d(1);
@@ -3050,10 +3071,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div1);
     			destroy_component(controls);
     			if (if_block) if_block.d();
-    			/*a_binding*/ ctx[15](null);
+    			/*a0_binding*/ ctx[15](null);
     			destroy_each(each_blocks, detaching);
     			mounted = false;
     			dispose();
@@ -3074,8 +3095,8 @@ var app = (function () {
     function instance$3($$self, $$props, $$invalidate) {
     	let config = {
     		playing: false,
-    		speed: 200,
-    		rows: 16,
+    		speed: 175,
+    		rows: 10,
     		scale_key: "classic"
     	};
 
@@ -3239,7 +3260,7 @@ var app = (function () {
     	const rowchange_handler = () => resizeGrid(config.rows);
     	const scalechange_handler = () => setScale(config.scale_key);
 
-    	function a_binding($$value) {
+    	function a0_binding($$value) {
     		binding_callbacks[$$value ? "unshift" : "push"](() => {
     			downloadLink = $$value;
     			$$invalidate(2, downloadLink);
@@ -3321,7 +3342,7 @@ var app = (function () {
     		clear_handler,
     		rowchange_handler,
     		scalechange_handler,
-    		a_binding,
+    		a0_binding,
     		row_row_binding,
     		row_playing_binding
     	];

@@ -4,8 +4,8 @@
 	import {initAudio, playRow, startRecording, stopRecording, setScale} from './Music.svelte';
 	let config = {
 		playing: false,
-		speed: 175,
-		rows: 10,
+		speed: 200,
+		rows: 16,
 		scale_key: 'classic',
 	}
 
@@ -161,7 +161,8 @@
 
 
 <div class="container" align="center">
-	<h3 style="text-decoration: underline;">Synthétiseur fait par Vincent, Miguel et Justin</h3>
+	<h3>Syth by Vincent, Miguel et Justin</h3>
+	<!--<span class="tagline">Turn on sound. Tap on the grid.<br/>Hit Play. You'll figure it out ;)</span>-->
 	<Controls
 		bind:grid={grid}
 		bind:config={config}
@@ -182,13 +183,13 @@
 		{/each}
 	</table>
 	<br/>
-	<div class="footer" align="center">
-		<a href="https://irshadpi.me/best-of-music-grid" target="_blank">Exemples de musiques</a>
-		<!--<br/>
+	<!--<div class="footer" align="center">
+		<a href="https://irshadpi.me/best-of-music-grid" target="_blank">Best of Music Grid</a>
+		<br/>
 		<a href="https://svelte.dev" target="_blank">Svelte</a> 
 		| <a href="https://github.com/irshadshalu/music-grid" target="_blank"><i class="fa fa-lg fa-github"></i></a> 
-		| <a href="https://irshadpi.me" target="_blank">irshad</a> -->
-	</div>
+		| <a href="https://irshadpi.me" target="_blank">irshad</a> 
+	</div>-->
 	<br/>
 	<br/>
 </div>
