@@ -611,10 +611,10 @@ var app = (function () {
     	for (var i = row.length - 1; i >= 0; i--) {
     		if (row[i]) {
     			notesToPlay.push(currentScale[i]);
-    			console.log(currentScale[i]);
     		}
     	}
 
+    	console.log(notesToPlay);
     	synth.triggerAttackRelease(notesToPlay, "16n");
     };
 
