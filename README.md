@@ -1,35 +1,74 @@
+**Table of content:**
+ - [Énoncé](#item-1)
+ - [But Général du Projet](#item-2)
+ - [Lien avec un Produit Existant et Explication des Différences](#item-3)
+ - [Justification](#item-4)
+    - [Résultat attendu](#item-5)
+    - [Existe-t-il quelque chose de semblable?](#item-6)
+    - [En quoi votre projet est-il pertinent ? ](#item-7)
+    - [Pourquoi ce projet et pas un autre ?](#item-8)
+    - [Objectif final ?](#item-9)
+    - [Par quelle démarche vous y prendrez-vous ?](#item-10)
+    - [Quelles questions vous suscite-t-il ?](#item-11)
+- [Audience visée](#item-12)
+- [Démarche préliminaire](#item-13)
+- [Matériel](#item-14)
+- [Ressources disponible](#item-15)
+- [Apprentissages à Faire](#item-16)
+- [Exigences Particulières](#item-17)
+
+<a id="item-1"></a>
+
 # Énoncé – Travail ÉQUIPE
 Équipe no : E  
 
 Noms : Justin, Miguel et Vincent
 
+<a id="item-2"></a>
+
 # But Général du Projet
 Le projet vise à concevoir et réaliser un synthétiseur à coût réduit en utilisant le module *Daisy Seed*. L'objectif est de démontrer les effets d'un synthétiseur sur le voltage traduit en son, à travers une communication série et l'utilisation d'un oscilloscope. Le produit final sera un synthétiseur open source, pouvant être reproduit avec des connaissances de base et à un prix abordable.
 Définition du type de projet (Conception ou vulgarisation)
 
+<a id="item-3"></a>
+
 # Lien avec un Produit Existant et Explication des Différences
 Aucun synthétiseur à coût réduit n'est actuellement disponible sur le marché. Le projet se distingue par son approche open source, offrant la possibilité de reproduire le synthétiseur chez soi.
 
+<a id="item-4"></a>
+
 # Justification
+
+<a id="item-5"></a>
 
 ### Résultat Attendu (Produit Final Concret)
 Le résultat attendu est un synthétiseur fonctionnel avec la capacité de générer des effets sonores variés. Le produit final comprendra également un écran d'oscilloscope pour visualiser les variations de signal.
+
+<a id="item-6"></a>
 
 ### Existe-t-il quelque chose de semblable?
 
 Un projet de synthétiseur open source tel que le notre existe déjà et il s'appelle "LMN-3". C'est un synthétiseur basé sur un board teensy 4.1 et un raspberry pi 4 qui est entièrement controllé à l'aide de son interface composé de boutons et d'encodeurs.
 
+<a id="item-7"></a>
+
 ### En quoi votre projet est-il pertinent ? 
 
 
+
+<a id="item-8"></a>
 
 ### Pourquoi ce projet et pas un autre? 
 
 
 
+<a id="item-9"></a>
+
 ### Objectif final?
 
 Produire un synthétiseur (open source) qui pourra interpréter des signaux midi envoyé par un clavier ou par des notes envoyés par un site web à l'aide de communication bluetooth. L'utilisateur pourra modifier les sons provenant du synthétiseur sur le moment et modifiant les effets à l'aide de potentiomètres et de boutons.
+
+<a id="item-10"></a>
 
 ### Par quelle démarche vous y prendrez-vous?
 
@@ -44,6 +83,8 @@ Jalons (pas en ordre) :
 - PCB
 - Boitier imprimé 
 
+<a id="item-11"></a>
+
 ### Quelles questions vous suscite-t-il?
 
 - Comment communiquer les notes au sytnétiseur ?
@@ -51,8 +92,12 @@ Jalons (pas en ordre) :
 - Quels effets seront disponibles sur le syntétiseur ?
 - Comment voir les repercutions du changement de l'audio par les effets?
 
+<a id="item-12"></a>
+
 # audience visée
 Le projet cible les passionnés de musique, les amateurs d'électronique et les personnes intéressées par la création de leurs propres instruments de musique.
+
+<a id="item-13"></a>
 
 # Démarche préliminaire
 **Voici les étapes afin de mener le projet à terme.**
@@ -69,6 +114,7 @@ Le projet cible les passionnés de musique, les amateurs d'électronique et les 
 |Conception d'un case 3D + impression|4h| Le temps de faire une boite en 3D adapté aux dimensions du synthé |
 <!-- Chaque étape doit inclure une évaluation de temps approximatif avec justification. -->
 
+<a id="item-14"></a>
 
 # Matériel
 Matériel dont nous aurons besoin pour mener le projet à terme.
@@ -81,11 +127,17 @@ Matériel dont nous aurons besoin pour mener le projet à terme.
 | PCB | Finition finale | 20$ - 35$ |
 | Case imprimé 3D | Protection du produit | 2.00$ |
 
+<a id="item-15"></a>
+
 # Ressource disponible
 Les ressources disponibles pour la réalisation du projet incluent le module Daisy Seed, un oscilloscope, divers composants électroniques (potentiomètres, fils, résistances, etc.), ainsi que des ressources en ligne pour la programmation du microcontrôleur tel que la documentation de la librairie du daisy seed, des chaines youtube spécialisées, un sever discord et des forums dédiés au daisy seed.
 
+<a id="item-16"></a>
+
 # Apprentissages à Faire
 Le projet implique l'apprentissage de la programmation d'un microcontrôleur pour gérer des signaux audio, la compréhension des librairies associées au Daisy Seed, la mise en œuvre d'un oscilloscope, ainsi que la conception et l'impression 3D d'un boîtier et un PCB pour le synthétiseur.
+
+<a id="item-17"></a>
 
 # Exigences Particulières
 
