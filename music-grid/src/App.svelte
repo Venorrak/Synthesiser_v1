@@ -161,7 +161,7 @@
 
 
 <div class="container" align="center">
-	<h3 style="text-decoration: underline;">Synthétiseur fait par Vincent, Miguel et Justin</h3>
+	<h3 style="text-decoration: underline;">Synthétiseur Music maker!</h3>
 	<Controls
 		bind:grid={grid}
 		bind:config={config}

@@ -64,14 +64,22 @@
 			await initAudio();
 		}
 
-		let notesToPlay = []
+		let notesToPlay = [];
 		for (var i = row.length - 1; i >= 0; i--) {
 			if(row[i]) {
 				notesToPlay.push(currentScale[i]);
-				console.log(currentScale[i]);
+				//console.log(currentScale[i]);
 			}
 		}
 		synth.triggerAttackRelease(notesToPlay, '16n');
+
+		// Scroll to the row
+		let rowElement = document.getElementsByClassName('svelte-noro3b playing');
+		console.log(rowElement);
+		if (rowElement) {
+			console.log(rowElement);
+			rowElement.scrollIntoView({ behavior: 'smooth' });
+		}
 	}
 
 	export const playCell = async (index) => {

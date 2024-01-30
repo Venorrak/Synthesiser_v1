@@ -2741,7 +2741,7 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Please wait for the playback to finish";
     			attr_dev(span, "class", "message svelte-wvhii7");
-    			add_location(span, file$3, 175, 2, 3442);
+    			add_location(span, file$3, 175, 2, 3420);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2912,7 +2912,7 @@ var app = (function () {
     		c: function create() {
     			div1 = element("div");
     			h3 = element("h3");
-    			h3.textContent = "Synthétiseur fait par Vincent, Miguel et Justin";
+    			h3.textContent = "Synthétiseur Music maker!";
     			t1 = space();
     			create_component(controls.$$.fragment);
     			t2 = space();
@@ -2941,19 +2941,19 @@ var app = (function () {
     			add_location(h3, file$3, 163, 1, 3047);
     			attr_dev(a0, "download", "music-grid.wav");
     			a0.hidden = "true";
-    			add_location(a0, file$3, 177, 1, 3518);
+    			add_location(a0, file$3, 177, 1, 3496);
     			attr_dev(table, "class", "svelte-wvhii7");
-    			add_location(table, file$3, 178, 1, 3600);
-    			add_location(br0, file$3, 183, 1, 3759);
+    			add_location(table, file$3, 178, 1, 3578);
+    			add_location(br0, file$3, 183, 1, 3737);
     			attr_dev(a1, "href", "https://irshadpi.me/best-of-music-grid");
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "class", "svelte-wvhii7");
-    			add_location(a1, file$3, 185, 2, 3804);
+    			add_location(a1, file$3, 185, 2, 3782);
     			attr_dev(div0, "class", "footer svelte-wvhii7");
     			attr_dev(div0, "align", "center");
-    			add_location(div0, file$3, 184, 1, 3766);
-    			add_location(br1, file$3, 191, 1, 4151);
-    			add_location(br2, file$3, 192, 1, 4158);
+    			add_location(div0, file$3, 184, 1, 3744);
+    			add_location(br1, file$3, 191, 1, 4129);
+    			add_location(br2, file$3, 192, 1, 4136);
     			attr_dev(div1, "class", "container svelte-wvhii7");
     			attr_dev(div1, "align", "center");
     			add_location(div1, file$3, 162, 0, 3007);
