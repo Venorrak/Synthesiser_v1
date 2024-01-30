@@ -1,4 +1,4 @@
-**Table of content:**
+**Index:**
  - [Énoncé](#item-1)
  - [But Général du Projet](#item-2)
  - [Lien avec un Produit Existant et Explication des Différences](#item-3)
