@@ -94,7 +94,7 @@ Jalons (pas en ordre) :
 
 <a id="item-12"></a>
 
-# audience visée
+# Audience visée
 Le projet cible les passionnés de musique, les amateurs d'électronique et les personnes intéressées par la création de leurs propres instruments de musique.
 
 <a id="item-13"></a>
