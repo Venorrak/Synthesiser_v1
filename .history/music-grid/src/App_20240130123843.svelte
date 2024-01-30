@@ -9,7 +9,7 @@
 		scale_key: 'classic',
 	}
 
-	let columns = 48;
+	let columns = 12;
 	let grid = [];
 	let gameInterval;
 	let curRow = 0;
@@ -127,6 +127,7 @@
 	if(window.location.hash !== '') {
 		initGrid(window.location.hash);
 	}
+
 </script>
 <style>
 	table {

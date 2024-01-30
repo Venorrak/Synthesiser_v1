@@ -1,7 +1,6 @@
 <script>
 	import Cell from './Cell.svelte'
 	import { playRow } from './Music.svelte'
-
 	export let row = [];
 	export let playing = false;
 	export let paused = false;
@@ -40,4 +39,5 @@
 	{#each row as cell, index}
 		<Cell bind:active={cell} column="{index}" paused={paused}></Cell>
 	{/each}
+	{row.scrollIntoView({ behavior: 'smooth', block: 'center' })}
 </tr>

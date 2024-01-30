@@ -9,7 +9,7 @@
 		scale_key: 'classic',
 	}
 
-	let columns = 48;
+	let columns = 12;
 	let grid = [];
 	let gameInterval;
 	let curRow = 0;
@@ -126,6 +126,12 @@
 
 	if(window.location.hash !== '') {
 		initGrid(window.location.hash);
+	}
+
+	let noteElement = document.getElementsByClassName('svelte-noro3b playing');
+	if (noteElement) { // Check if noteElement exists
+		console.log('scrolling');
+		noteElement[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); // Use noteElement[0] to access the first element
 	}
 </script>
 <style>

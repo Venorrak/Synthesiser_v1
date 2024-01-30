@@ -619,6 +619,13 @@ var app = (function () {
 
     	console.log(notesToPlay);
     	synth.triggerAttackRelease(notesToPlay, "16n");
+    	const playingRows = document.getElementsByClassName("playing");
+
+    	if (playingRows.length > 0) {
+    		const playingRow = playingRows[0];
+    		console.log(playingRow);
+    		playingRow.scrollIntoView({ behavior: "smooth", block: "center" });
+    	}
     };
 
     const playCell = async index => {
@@ -821,7 +828,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (39:1) {#each row as cell, index}
+    // (40:1) {#each row as cell, index}
     function create_each_block(ctx) {
     	let cell;
     	let updating_active;
@@ -882,7 +889,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(39:1) {#each row as cell, index}",
+    		source: "(40:1) {#each row as cell, index}",
     		ctx
     	});
 
@@ -919,10 +926,10 @@ var app = (function () {
     			}
 
     			attr_dev(i, "class", "row-play fa fa-sm fa-inverse fa-play svelte-noro3b");
-    			add_location(i, file$1, 37, 1, 591);
+    			add_location(i, file$1, 38, 1, 592);
     			attr_dev(tr, "class", "svelte-noro3b");
     			toggle_class(tr, "playing", /*playing*/ ctx[1]);
-    			add_location(tr, file$1, 36, 0, 561);
+    			add_location(tr, file$1, 37, 0, 562);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2732,7 +2739,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (175:1) {#if recording}
+    // (174:1) {#if recording}
     function create_if_block$1(ctx) {
     	let span;
 
@@ -2741,7 +2748,7 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Please wait for the playback to finish";
     			attr_dev(span, "class", "message svelte-wvhii7");
-    			add_location(span, file$3, 175, 2, 3420);
+    			add_location(span, file$3, 174, 2, 3419);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2755,14 +2762,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(175:1) {#if recording}",
+    		source: "(174:1) {#if recording}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (180:2) {#each grid as row}
+    // (179:2) {#each grid as row}
     function create_each_block$2(ctx) {
     	let row;
     	let updating_row;
@@ -2836,7 +2843,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(180:2) {#each grid as row}",
+    		source: "(179:2) {#each grid as row}",
     		ctx
     	});
 
@@ -2938,25 +2945,25 @@ var app = (function () {
     			t10 = space();
     			br2 = element("br");
     			set_style(h3, "text-decoration", "underline");
-    			add_location(h3, file$3, 163, 1, 3047);
+    			add_location(h3, file$3, 162, 1, 3046);
     			attr_dev(a0, "download", "music-grid.wav");
     			a0.hidden = "true";
-    			add_location(a0, file$3, 177, 1, 3496);
+    			add_location(a0, file$3, 176, 1, 3495);
     			attr_dev(table, "class", "svelte-wvhii7");
-    			add_location(table, file$3, 178, 1, 3578);
-    			add_location(br0, file$3, 183, 1, 3737);
+    			add_location(table, file$3, 177, 1, 3577);
+    			add_location(br0, file$3, 182, 1, 3736);
     			attr_dev(a1, "href", "https://irshadpi.me/best-of-music-grid");
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "class", "svelte-wvhii7");
-    			add_location(a1, file$3, 185, 2, 3782);
+    			add_location(a1, file$3, 184, 2, 3781);
     			attr_dev(div0, "class", "footer svelte-wvhii7");
     			attr_dev(div0, "align", "center");
-    			add_location(div0, file$3, 184, 1, 3744);
-    			add_location(br1, file$3, 191, 1, 4129);
-    			add_location(br2, file$3, 192, 1, 4136);
+    			add_location(div0, file$3, 183, 1, 3743);
+    			add_location(br1, file$3, 190, 1, 4128);
+    			add_location(br2, file$3, 191, 1, 4135);
     			attr_dev(div1, "class", "container svelte-wvhii7");
     			attr_dev(div1, "align", "center");
-    			add_location(div1, file$3, 162, 0, 3007);
+    			add_location(div1, file$3, 161, 0, 3006);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3096,11 +3103,11 @@ var app = (function () {
     	let config = {
     		playing: false,
     		speed: 175,
-    		rows: 10,
+    		rows: 12,
     		scale_key: "classic"
     	};
 
-    	let columns = 12;
+    	let columns = 48;
     	let grid = [];
     	let gameInterval;
     	let curRow = 0;

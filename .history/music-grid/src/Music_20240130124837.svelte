@@ -115,20 +115,9 @@
         notesToPlay.push(currentScale[i]);
       }
     }
-    console.log(notesToPlay);
+    //console.log(notesToPlay);
+
     synth.triggerAttackRelease(notesToPlay, "16n");
-
-	const playingRows = document.getElementsByClassName('playing');
-    
-    if (playingRows.length > 0) {
-        const playingRow = playingRows[0];
-        console.log(playingRow);
-
-        playingRow.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }
   };
 
   export const playCell = async (index) => {

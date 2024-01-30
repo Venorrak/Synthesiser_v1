@@ -116,7 +116,7 @@
       }
     }
     console.log(notesToPlay);
-    synth.triggerAttackRelease(notesToPlay, "16n");
+    //synth.triggerAttackRelease(notesToPlay, "16n");
 
 	const playingRows = document.getElementsByClassName('playing');
     

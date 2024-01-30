@@ -115,7 +115,7 @@
         notesToPlay.push(currentScale[i]);
       }
     }
-    console.log(notesToPlay);
+    //console.log(notesToPlay);
     synth.triggerAttackRelease(notesToPlay, "16n");
 
 	const playingRows = document.getElementsByClassName('playing');
@@ -126,7 +126,8 @@
 
         playingRow.scrollIntoView({
             behavior: "smooth",
-            block: "center"
+            block: "center",
+            inline: "nearest"
         });
     }
   };

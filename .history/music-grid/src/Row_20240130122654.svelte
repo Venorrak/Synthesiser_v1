@@ -1,7 +1,6 @@
 <script>
 	import Cell from './Cell.svelte'
 	import { playRow } from './Music.svelte'
-
 	export let row = [];
 	export let playing = false;
 	export let paused = false;
@@ -9,6 +8,7 @@
 	const playThisRow = () => {
 		row.isPlaying = true;
 		playRow(row);
+		console.log(row);
 		setTimeout(() => {
 			row.isPlaying = false;
 		}, 500);
