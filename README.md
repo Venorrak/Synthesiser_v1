@@ -64,12 +64,14 @@ Un projet de synthétiseur open source tel que le notre existe déjà et il s'ap
 
 ### En quoi votre projet est-il pertinent ? 
 
+Le projet est pertinent car il répond à un besoin de synthétiseurs abordables sur le marché, en particulier avec son approche open source. Cela permet à un public plus large d'accéder à la création d'instruments de musique personnalisés, favorisant ainsi l'innovation et la créativité.
 
 
 <a id="item-8"></a>
 
 ### Pourquoi ce projet et pas un autre? 
 
+Ce projet est motivé par le désir de combiner la passion pour la musique, l'intérêt pour l'électronique et l'apprentissage de nouvelles technologies. De plus, le caractère abordable du synthétiseur peut démocratiser l'accès à ce type d'instrument, le rendant attrayant pour un large public.
 
 
 <a id="item-9"></a>
