@@ -68,6 +68,7 @@
     
     if (playingRows.length > 0) {
         const playingRow = playingRows[0];
+        console.log(playingRow);
 
         playingRow.scrollIntoView({
             behavior: "smooth",

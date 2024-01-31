@@ -20,7 +20,63 @@
       "C#6",
       "F#6",
       "G#6",
-    ]
+    ],
+    pentatonic: [
+      "C4",
+      "D4",
+      "E4",
+      "G4",
+      "A4",
+      "C5",
+      "D5",
+      "E5",
+      "G5",
+      "A5",
+      "C6",
+      "D6",
+    ],
+    chromatic: [
+      "C5",
+      "C#5",
+      "D5",
+      "Eb5",
+      "E5",
+      "F5",
+      "F#5",
+      "G5",
+      "G#5",
+      "A5",
+      "Bb5",
+      "B5",
+    ],
+    major: [
+      "C4",
+      "D4",
+      "E4",
+      "F4",
+      "G4",
+      "A4",
+      "B4",
+      "C5",
+      "D5",
+      "E5",
+      "F5",
+      "G5",
+    ],
+    harmonic_minor: [
+      "A4",
+      "B4",
+      "C5",
+      "D5",
+      "E5",
+      "F5",
+      "G#5",
+      "A5",
+      "B5",
+      "C6",
+      "D6",
+      "E6",
+    ],
   };
 
   let currentScale = scales["classic"];
@@ -59,7 +115,7 @@
         notesToPlay.push(currentScale[i]);
       }
     }
-    console.log(notesToPlay); // log the notes to play
+    console.log(notesToPlay);
     //synth.triggerAttackRelease(notesToPlay, "16n");
 
 
@@ -68,6 +124,7 @@
     
     if (playingRows.length > 0) {
         const playingRow = playingRows[0];
+        console.log(playingRow);
 
         playingRow.scrollIntoView({
             behavior: "smooth",

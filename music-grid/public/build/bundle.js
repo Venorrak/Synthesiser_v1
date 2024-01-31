@@ -74,19 +74,6 @@ var app = (function () {
     function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
     }
-    function select_option(select, value) {
-        for (let i = 0; i < select.options.length; i += 1) {
-            const option = select.options[i];
-            if (option.__value === value) {
-                option.selected = true;
-                return;
-            }
-        }
-    }
-    function select_value(select) {
-        const selected_option = select.querySelector(':checked') || select.options[0];
-        return selected_option && selected_option.__value;
-    }
     function toggle_class(element, name, toggle) {
         element.classList[toggle ? 'add' : 'remove'](name);
     }
@@ -580,11 +567,7 @@ var app = (function () {
     		"C#6",
     		"F#6",
     		"G#6"
-    	],
-    	pentatonic: ["C4", "D4", "E4", "G4", "A4", "C5", "D5", "E5", "G5", "A5", "C6", "D6"],
-    	chromatic: ["C5", "C#5", "D5", "Eb5", "E5", "F5", "F#5", "G5", "G#5", "A5", "Bb5", "B5"],
-    	major: ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5"],
-    	harmonic_minor: ["A4", "B4", "C5", "D5", "E5", "F5", "G#5", "A5", "B5", "C6", "D6", "E6"]
+    	]
     };
 
     let currentScale = scales["classic"];
@@ -617,13 +600,14 @@ var app = (function () {
     		}
     	}
 
-    	console.log(notesToPlay);
-    	synth.triggerAttackRelease(notesToPlay, "16n");
+    	console.log(notesToPlay); // log the notes to play
+
+    	//synth.triggerAttackRelease(notesToPlay, "16n");
+    	// scroll to playing row
     	const playingRows = document.getElementsByClassName("playing");
 
     	if (playingRows.length > 0) {
     		const playingRow = playingRows[0];
-    		console.log(playingRow);
     		playingRow.scrollIntoView({ behavior: "smooth", block: "center" });
     	}
     };
@@ -2090,60 +2074,15 @@ var app = (function () {
     const { setTimeout: setTimeout_1, window: window_1 } = globals;
     const file$2 = "src/Controls.svelte";
 
-    function get_each_context$1(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
-    	return child_ctx;
-    }
-
-    // (130:4) {#each scale_keys as scale}
-    function create_each_block$1(ctx) {
-    	let option;
-    	let t0_value = /*scale*/ ctx[24] + "";
-    	let t0;
-    	let t1;
-    	let option_value_value;
-
-    	const block = {
-    		c: function create() {
-    			option = element("option");
-    			t0 = text(t0_value);
-    			t1 = space();
-    			option.__value = option_value_value = /*scale*/ ctx[24];
-    			option.value = option.__value;
-    			add_location(option, file$2, 130, 4, 2438);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, option, anchor);
-    			append_dev(option, t0);
-    			append_dev(option, t1);
-    		},
-    		p: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(option);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block$1.name,
-    		type: "each",
-    		source: "(130:4) {#each scale_keys as scale}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (142:3) {:else}
+    // (101:6) {:else}
     function create_else_block(ctx) {
     	let i;
 
     	const block = {
     		c: function create() {
     			i = element("i");
-    			attr_dev(i, "class", "fa fa-lg fa-inverse fa-play svelte-vnu4ae");
-    			add_location(i, file$2, 142, 4, 2709);
+    			attr_dev(i, "class", "fa fa-lg fa-inverse fa-play svelte-jgzd42");
+    			add_location(i, file$2, 101, 8, 2280);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -2157,22 +2096,22 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(142:3) {:else}",
+    		source: "(101:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (140:3) {#if config.playing}
+    // (99:6) {#if config.playing}
     function create_if_block(ctx) {
     	let i;
 
     	const block = {
     		c: function create() {
     			i = element("i");
-    			attr_dev(i, "class", "fa fa-lg fa-inverse fa-pause svelte-vnu4ae");
-    			add_location(i, file$2, 140, 4, 2652);
+    			attr_dev(i, "class", "fa fa-lg fa-inverse fa-pause svelte-jgzd42");
+    			add_location(i, file$2, 99, 8, 2215);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -2186,7 +2125,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(140:3) {#if config.playing}",
+    		source: "(99:6) {#if config.playing}",
     		ctx
     	});
 
@@ -2219,37 +2158,26 @@ var app = (function () {
     	let t7_value = /*config*/ ctx[0].speed + "";
     	let t7;
     	let t8;
-    	let br1;
-    	let t9;
-    	let label2;
-    	let t10;
-    	let select;
-    	let t11;
     	let div1;
     	let a0;
-    	let t12;
+    	let t9;
     	let a1;
     	let i0;
-    	let t13;
+    	let t10;
     	let a2;
     	let i1;
-    	let t14;
+    	let t11;
     	let a3;
     	let i2;
-    	let t15;
+    	let t12;
     	let a4;
     	let i3;
     	let div1_class_value;
+    	let t13;
+    	let br1;
     	let mounted;
     	let dispose;
     	add_render_callback(/*onwindowscroll*/ ctx[6]);
-    	let each_value = scale_keys;
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
-    	}
 
     	function select_block_type(ctx, dirty) {
     		if (/*config*/ ctx[0].playing) return create_if_block;
@@ -2264,7 +2192,7 @@ var app = (function () {
     			div2 = element("div");
     			div0 = element("div");
     			label0 = element("label");
-    			t0 = text("Nombre de ligne :\n\t\t\t");
+    			t0 = text("Nombre de ligne :\n      ");
     			input0 = element("input");
     			t1 = space();
     			t2 = text(t2_value);
@@ -2272,79 +2200,66 @@ var app = (function () {
     			br0 = element("br");
     			t4 = space();
     			label1 = element("label");
-    			t5 = text("Vitesse :\n\t\t\t");
+    			t5 = text("Vitesse :\n      ");
     			input1 = element("input");
     			t6 = space();
     			t7 = text(t7_value);
     			t8 = space();
-    			br1 = element("br");
-    			t9 = space();
-    			label2 = element("label");
-    			t10 = text("Type de son :\n\t\t\t");
-    			select = element("select");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			t11 = space();
     			div1 = element("div");
     			a0 = element("a");
     			if_block.c();
-    			t12 = space();
+    			t9 = space();
     			a1 = element("a");
     			i0 = element("i");
-    			t13 = space();
+    			t10 = space();
     			a2 = element("a");
     			i1 = element("i");
-    			t14 = space();
+    			t11 = space();
     			a3 = element("a");
     			i2 = element("i");
-    			t15 = space();
+    			t12 = space();
     			a4 = element("a");
     			i3 = element("i");
+    			t13 = space();
+    			br1 = element("br");
     			attr_dev(input0, "type", "range");
     			attr_dev(input0, "min", "8");
     			attr_dev(input0, "max", "100");
     			attr_dev(input0, "class", "slider");
-    			add_location(input0, file$2, 113, 3, 1980);
-    			add_location(label0, file$2, 111, 2, 1948);
-    			add_location(br0, file$2, 118, 2, 2136);
+    			add_location(input0, file$2, 73, 6, 1661);
+    			add_location(label0, file$2, 71, 4, 1623);
+    			add_location(br0, file$2, 83, 4, 1872);
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "60");
     			attr_dev(input1, "max", "500");
     			attr_dev(input1, "class", "slider");
-    			add_location(input1, file$2, 121, 3, 2168);
-    			add_location(label1, file$2, 119, 2, 2144);
-    			add_location(br1, file$2, 125, 2, 2285);
-    			attr_dev(select, "class", "svelte-vnu4ae");
-    			if (/*config*/ ctx[0].scale_key === void 0) add_render_callback(() => /*select_change_handler*/ ctx[10].call(select));
-    			add_location(select, file$2, 128, 3, 2321);
-    			add_location(label2, file$2, 126, 2, 2293);
-    			attr_dev(div0, "class", "settings svelte-vnu4ae");
-    			add_location(div0, file$2, 110, 1, 1923);
-    			attr_dev(a0, "class", "svelte-vnu4ae");
-    			add_location(a0, file$2, 138, 2, 2581);
-    			attr_dev(i0, "class", "fa fa-inverse fa-lg fa-stop svelte-vnu4ae");
-    			add_location(i0, file$2, 145, 39, 2805);
-    			attr_dev(a1, "class", "svelte-vnu4ae");
-    			add_location(a1, file$2, 145, 2, 2768);
-    			attr_dev(i1, "class", "fa fa-lg fa-trash svelte-vnu4ae");
-    			add_location(i1, file$2, 146, 40, 2890);
-    			attr_dev(a2, "class", "svelte-vnu4ae");
-    			add_location(a2, file$2, 146, 2, 2852);
-    			attr_dev(i2, "class", "fa fa-lg fa-share-alt svelte-vnu4ae");
-    			add_location(i2, file$2, 147, 89, 3014);
-    			attr_dev(a3, "class", "share svelte-vnu4ae");
-    			add_location(a3, file$2, 147, 2, 2927);
-    			attr_dev(i3, "class", "fa fa-lg fa-download svelte-vnu4ae");
-    			add_location(i3, file$2, 148, 43, 3096);
-    			attr_dev(a4, "class", "svelte-vnu4ae");
-    			add_location(a4, file$2, 148, 2, 3055);
-    			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty(/*primaryClass*/ ctx[3]) + " svelte-vnu4ae"));
-    			add_location(div1, file$2, 137, 1, 2533);
+    			add_location(input1, file$2, 86, 6, 1913);
+    			add_location(label1, file$2, 84, 4, 1883);
+    			attr_dev(div0, "class", "settings svelte-jgzd42");
+    			add_location(div0, file$2, 70, 2, 1596);
+    			attr_dev(a0, "class", "svelte-jgzd42");
+    			add_location(a0, file$2, 97, 4, 2137);
+    			attr_dev(i0, "class", "fa fa-inverse fa-lg fa-stop svelte-jgzd42");
+    			add_location(i0, file$2, 105, 7, 2391);
+    			attr_dev(a1, "class", "svelte-jgzd42");
+    			add_location(a1, file$2, 104, 4, 2347);
+    			attr_dev(i1, "class", "fa fa-lg fa-trash svelte-jgzd42");
+    			add_location(i1, file$2, 107, 42, 2484);
+    			attr_dev(a2, "class", "svelte-jgzd42");
+    			add_location(a2, file$2, 107, 4, 2446);
+    			attr_dev(i2, "class", "fa fa-lg fa-share-alt svelte-jgzd42");
+    			add_location(i2, file$2, 110, 20, 2623);
+    			attr_dev(a3, "class", "share svelte-jgzd42");
+    			add_location(a3, file$2, 108, 4, 2524);
+    			attr_dev(i3, "class", "fa fa-lg fa-download svelte-jgzd42");
+    			add_location(i3, file$2, 113, 7, 2720);
+    			attr_dev(a4, "class", "svelte-jgzd42");
+    			add_location(a4, file$2, 112, 4, 2672);
+    			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty(/*primaryClass*/ ctx[3]) + " svelte-jgzd42"));
+    			add_location(div1, file$2, 96, 2, 2087);
+    			add_location(br1, file$2, 116, 2, 2775);
     			attr_dev(div2, "class", "container");
-    			add_location(div2, file$2, 109, 0, 1898);
+    			add_location(div2, file$2, 69, 0, 1570);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2367,35 +2282,25 @@ var app = (function () {
     			set_input_value(input1, /*config*/ ctx[0].speed);
     			append_dev(label1, t6);
     			append_dev(label1, t7);
-    			append_dev(div0, t8);
-    			append_dev(div0, br1);
-    			append_dev(div0, t9);
-    			append_dev(div0, label2);
-    			append_dev(label2, t10);
-    			append_dev(label2, select);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(select, null);
-    			}
-
-    			select_option(select, /*config*/ ctx[0].scale_key);
-    			append_dev(div2, t11);
+    			append_dev(div2, t8);
     			append_dev(div2, div1);
     			append_dev(div1, a0);
     			if_block.m(a0, null);
-    			append_dev(div1, t12);
+    			append_dev(div1, t9);
     			append_dev(div1, a1);
     			append_dev(a1, i0);
-    			append_dev(div1, t13);
+    			append_dev(div1, t10);
     			append_dev(div1, a2);
     			append_dev(a2, i1);
-    			append_dev(div1, t14);
+    			append_dev(div1, t11);
     			append_dev(div1, a3);
     			append_dev(a3, i2);
-    			append_dev(div1, t15);
+    			append_dev(div1, t12);
     			append_dev(div1, a4);
     			append_dev(a4, i3);
-    			/*div1_binding*/ ctx[17](div1);
+    			/*div1_binding*/ ctx[15](div1);
+    			append_dev(div2, t13);
+    			append_dev(div2, br1);
 
     			if (!mounted) {
     				dispose = [
@@ -2410,13 +2315,11 @@ var app = (function () {
     					listen_dev(input0, "input", /*input_handler*/ ctx[8], false, false, false),
     					listen_dev(input1, "change", /*input1_change_input_handler*/ ctx[9]),
     					listen_dev(input1, "input", /*input1_change_input_handler*/ ctx[9]),
-    					listen_dev(select, "change", /*select_change_handler*/ ctx[10]),
-    					listen_dev(select, "change", /*change_handler*/ ctx[11], false, false, false),
-    					listen_dev(a0, "click", /*click_handler*/ ctx[12], false, false, false),
-    					listen_dev(a1, "click", /*click_handler_1*/ ctx[13], false, false, false),
-    					listen_dev(a2, "click", /*click_handler_2*/ ctx[14], false, false, false),
-    					listen_dev(a3, "click", /*click_handler_3*/ ctx[15], false, false, false),
-    					listen_dev(a4, "click", /*click_handler_4*/ ctx[16], false, false, false)
+    					listen_dev(a0, "click", /*click_handler*/ ctx[10], false, false, false),
+    					listen_dev(a1, "click", /*click_handler_1*/ ctx[11], false, false, false),
+    					listen_dev(a2, "click", /*click_handler_2*/ ctx[12], false, false, false),
+    					listen_dev(a3, "click", /*click_handler_3*/ ctx[13], false, false, false),
+    					listen_dev(a4, "click", /*click_handler_4*/ ctx[14], false, false, false)
     				];
 
     				mounted = true;
@@ -2430,45 +2333,17 @@ var app = (function () {
     				scrolling_timeout = setTimeout_1(clear_scrolling, 100);
     			}
 
-    			if (dirty & /*config, scale_keys*/ 1) {
+    			if (dirty & /*config*/ 1) {
     				set_input_value(input0, /*config*/ ctx[0].rows);
     			}
 
     			if (dirty & /*config*/ 1 && t2_value !== (t2_value = /*config*/ ctx[0].rows + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty & /*config, scale_keys*/ 1) {
+    			if (dirty & /*config*/ 1) {
     				set_input_value(input1, /*config*/ ctx[0].speed);
     			}
 
     			if (dirty & /*config*/ 1 && t7_value !== (t7_value = /*config*/ ctx[0].speed + "")) set_data_dev(t7, t7_value);
-
-    			if (dirty & /*scale_keys*/ 0) {
-    				each_value = scale_keys;
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$1(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block$1(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(select, null);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
-    			}
-
-    			if (dirty & /*config, scale_keys*/ 1) {
-    				select_option(select, /*config*/ ctx[0].scale_key);
-    			}
 
     			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
     				if_block.d(1);
@@ -2480,7 +2355,7 @@ var app = (function () {
     				}
     			}
 
-    			if (dirty & /*primaryClass*/ 8 && div1_class_value !== (div1_class_value = "" + (null_to_empty(/*primaryClass*/ ctx[3]) + " svelte-vnu4ae"))) {
+    			if (dirty & /*primaryClass*/ 8 && div1_class_value !== (div1_class_value = "" + (null_to_empty(/*primaryClass*/ ctx[3]) + " svelte-jgzd42"))) {
     				attr_dev(div1, "class", div1_class_value);
     			}
     		},
@@ -2488,9 +2363,8 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
-    			destroy_each(each_blocks, detaching);
     			if_block.d();
-    			/*div1_binding*/ ctx[17](null);
+    			/*div1_binding*/ ctx[15](null);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -2596,12 +2470,6 @@ var app = (function () {
     		$$invalidate(0, config);
     	}
 
-    	function select_change_handler() {
-    		config.scale_key = select_value(this);
-    		$$invalidate(0, config);
-    	}
-
-    	const change_handler = () => dispatch("scalechange");
     	const click_handler = () => dispatch("playpause");
     	const click_handler_1 = () => dispatch("stop");
     	const click_handler_2 = () => dispatch("clear");
@@ -2675,8 +2543,6 @@ var app = (function () {
     		input0_change_input_handler,
     		input_handler,
     		input1_change_input_handler,
-    		select_change_handler,
-    		change_handler,
     		click_handler,
     		click_handler_1,
     		click_handler_2,
@@ -2731,7 +2597,7 @@ var app = (function () {
 
     const file$3 = "src/App.svelte";
 
-    function get_each_context$2(ctx, list, i) {
+    function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[25] = list[i];
     	child_ctx[26] = list;
@@ -2770,7 +2636,7 @@ var app = (function () {
     }
 
     // (179:2) {#each grid as row}
-    function create_each_block$2(ctx) {
+    function create_each_block$1(ctx) {
     	let row;
     	let updating_row;
     	let updating_playing;
@@ -2841,7 +2707,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block$2.name,
+    		id: create_each_block$1.name,
     		type: "each",
     		source: "(179:2) {#each grid as row}",
     		ctx
@@ -2908,7 +2774,7 @@ var app = (function () {
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
     	}
 
     	const out = i => transition_out(each_blocks[i], 1, 1, () => {
@@ -3035,13 +2901,13 @@ var app = (function () {
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$2(ctx, each_value, i);
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     						transition_in(each_blocks[i], 1);
     					} else {
-    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
     						each_blocks[i].m(table, null);
