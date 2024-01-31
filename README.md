@@ -17,6 +17,7 @@
 - [Apprentissages à Faire](#item-16)
 - [Exigences Particulières](#item-17)
 - [Réseau des entécédents](#item-18)
+- [Conclusion *à venir*](#item-19)
 
 <a id="item-1"></a>
 
@@ -160,5 +161,10 @@ Les principales exigences comprennent la compatibilité des librairies avec le D
 # Réseau des entécédents
 
 ![Pert diagram](/pictures/PERT.drawio.png)
+![Pert diagram](/pictures/RoadMap.png)
+
+<a id="item-19"></a>
+
+# Conclusion *à venir*
 
 
