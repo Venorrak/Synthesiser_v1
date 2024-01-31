@@ -16,6 +16,7 @@
 - [Ressources disponible](#item-15)
 - [Apprentissages à Faire](#item-16)
 - [Exigences Particulières](#item-17)
+- [Réseau des entécédents](#item-18)
 
 <a id="item-1"></a>
 
@@ -23,6 +24,14 @@
 Équipe no : E  
 
 Noms : Justin, Miguel et Vincent
+
+Nom du projet : Synthétiseur ICUS-1
+
+Titre du cours : Gestion de projets informatiques
+
+Numéro de cours : 420-0SH-SW
+
+Date : 2024-01-31
 
 <a id="item-2"></a>
 
@@ -143,5 +152,10 @@ Le projet implique l'apprentissage de la programmation d'un microcontrôleur pou
 
 Les principales exigences comprennent la compatibilité des librairies avec le Daisy Seed, la gestion des signaux audio, la communication série, et la création d'un oscilloscope intégré.
 
+<a id="item-18"></a>
+
+# Réseau des entécédents
+
+![Pert diagram](/pictures/PERT.drawio.png)
 
 
