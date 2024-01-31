@@ -1,4 +1,3 @@
-@ -1,101 +1,20 @@
 **Index:**
  - [Énoncé](#item-1)
  - [But Général du Projet](#item-2)
