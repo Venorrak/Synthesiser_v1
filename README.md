@@ -37,12 +37,12 @@ Date : 2024-01-31
 <a id="item-2"></a>
 
 # But Général du Projet
-Le projet vise à concevoir et réaliser un synthétiseur à coût réduit en utilisant le module *Daisy Seed*. L'objectif est de démontrer les effets d'un synthétiseur sur le voltage traduit en son, à travers une communication série et l'utilisation d'un oscilloscope. Le produit final sera un synthétiseur open source, pouvant être reproduit avec des connaissances de base et à un prix abordable.
-Définition du type de projet (Conception ou vulgarisation)
+Le projet vise à concevoir et réaliser un synthétiseur à coût réduit en utilisant le module *Daisy Seed*. L'objectif est de démontrer les effets d'un synthétiseur sur la tension traduite en son, à travers une communication série et l'utilisation d'un oscilloscope. Le produit final sera un synthétiseur open source, pouvant être reproduit avec des connaissances de base et à un prix abordable. Définition du type de projet (conception ou vulgarisation).
 
 <a id="item-3"></a>
 
 # Lien avec un Produit Existant et Explication des Différences
+
 Aucun synthétiseur à coût réduit n'est actuellement disponible sur le marché. Le projet se distingue par son approche open source, offrant la possibilité de reproduire le synthétiseur chez soi.
 
 <a id="item-4"></a>
@@ -52,19 +52,19 @@ Aucun synthétiseur à coût réduit n'est actuellement disponible sur le march�
 <a id="item-5"></a>
 
 ### Résultat Attendu (Produit Final Concret)
-Le résultat attendu est un synthétiseur fonctionnel avec la capacité de générer des effets sonores variés. Le produit final comprendra également un écran d'oscilloscope pour visualiser les variations de signal.
+Le résultat attendu est un synthétiseur fonctionnel avec la capacité de générer des effets sonores variés. Le produit final comprendra en complément un écran d'oscilloscope pour visualiser les variations de signal et un site web qui pourra envoyer les notes à jouer au sythétiseur.
 
 <a id="item-6"></a>
 
 ### Existe-t-il quelque chose de semblable?
 
-Un projet de synthétiseur open source tel que le notre existe déjà et il s'appelle "LMN-3". C'est un synthétiseur basé sur un board teensy 4.1 et un raspberry pi 4 qui est entièrement controllé à l'aide de son interface composé de boutons et d'encodeurs.
+Un projet de synthétiseur open source tel que le nôtre existe déjà, et il s'appelle "LMN-3". C'est un synthétiseur basé sur une carte Teensy 4.1 et un Raspberry Pi 4, entièrement contrôlé à l'aide de son interface composée de boutons et d'encodeurs.
 
 <a id="item-7"></a>
 
 ### En quoi votre projet est-il pertinent ? 
 
-Le projet est pertinent car il répond à un besoin de synthétiseurs abordables sur le marché, en particulier avec son approche open source. Cela permet à un public plus large d'accéder à la création d'instruments de musique personnalisés, favorisant ainsi l'innovation et la créativité.
+Le projet est pertinent car il répond à un besoin de synthétiseurs abordables sur le marché, notamment avec son approche open source. Cela permet à un public plus large d'accéder à la création d'instruments de musique personnalisés, favorisant ainsi l'innovation et la créativité.
 
 
 <a id="item-8"></a>
@@ -78,7 +78,7 @@ Ce projet est motivé par le désir de combiner la passion pour la musique, l'in
 
 ### Objectif final?
 
-Produire un synthétiseur (open source) qui pourra interpréter des signaux midi envoyé par un clavier ou par des notes envoyés par un site web à l'aide de communication bluetooth. L'utilisateur pourra modifier les sons provenant du synthétiseur sur le moment et modifiant les effets à l'aide de potentiomètres et de boutons.
+Produire un synthétiseur (open source) capable d'interpréter des signaux MIDI envoyés par un clavier ou des notes envoyées par un site web à l'aide d'une communication Bluetooth. L'utilisateur pourra modifier les sons du synthétiseur en temps réel et ajuster les effets à l'aide de potentiomètres et de boutons.
 
 <a id="item-10"></a>
 
@@ -99,15 +99,16 @@ Jalons (pas en ordre) :
 
 ### Quelles questions vous suscite-t-il?
 
-@ -104,32 +23,24 @@ Jalons (pas en ordre) :
+- Comment communiquer les notes au sytnétiseur ?
+- Comment interpreter le signal externe ?
 - Quels effets seront disponibles sur le syntétiseur ?
 - Comment voir les repercutions du changement de l'audio par les effets?
 
 <a id="item-12"></a>
 
 # Audience visée
-# audience visée
-Le projet cible les passionnés de musique, les amateurs d'électronique et les personnes intéressées par la création de leurs propres instruments de musique.
+
+Le projet vise les passionnés de musique, les amateurs d'électronique et les personnes intéressées par la création de leurs propres instruments de musique.
 
 <a id="item-13"></a>
 
@@ -146,18 +147,19 @@ Matériel dont nous aurons besoin pour mener le projet à terme.
 <a id="item-15"></a>
 
 # Ressource disponible
-Les ressources disponibles pour la réalisation du projet incluent le module Daisy Seed, un oscilloscope, divers composants électroniques (potentiomètres, fils, résistances, etc.), ainsi que des ressources en ligne pour la programmation du microcontrôleur tel que la documentation de la librairie du daisy seed, des chaines youtube spécialisées, un sever discord et des forums dédiés au daisy seed.
+
+Les ressources disponibles pour la réalisation du projet comprennent le module Daisy Seed, un oscilloscope, divers composants électroniques (potentiomètres, fils, résistances, etc.), ainsi que des ressources en ligne pour la programmation du microcontrôleur, telles que la documentation de la librairie du Daisy Seed, des chaînes YouTube spécialisées, un serveur Discord et des forums dédiés au Daisy Seed.
 
 <a id="item-16"></a>
 
 # Apprentissages à Faire
-Le projet implique l'apprentissage de la programmation d'un microcontrôleur pour gérer des signaux audio, la compréhension des librairies associées au Daisy Seed, la mise en œuvre d'un oscilloscope, ainsi que la conception et l'impression 3D d'un boîtier et un PCB pour le synthétiseur.
+Le projet implique l'apprentissage de la programmation d'un microcontrôleur pour gérer des signaux audio, la compréhension des bibliothèques associées au Daisy Seed, la mise en œuvre d'un oscilloscope, ainsi que la conception et l'impression 3D d'un boîtier et d'un circuit imprimé (PCB) pour le synthétiseur.
 
 <a id="item-17"></a>
 
 # Exigences Particulières
 
-Les principales exigences comprennent la compatibilité des librairies avec le Daisy Seed, la gestion des signaux audio, la communication série, et la création d'un oscilloscope intégré.
+Les principales exigences comprennent la compatibilité des bibliothèques avec le Daisy Seed, la gestion des signaux audio, la communication série, et la création d'un oscilloscope intégré.
 
 <a id="item-18"></a>
 
