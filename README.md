@@ -172,3 +172,9 @@ Les principales exigences comprennent la compatibilité des bibliothèques avec 
 
 # Conclusion *à venir*
 
+# Definition Of Done
+
+Meeting chaque semaine afin de présenter nos changement et faire approuver.
+
+# Nomenclature et autre
+
