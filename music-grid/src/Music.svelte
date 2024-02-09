@@ -6,7 +6,7 @@
   let recorder;
   let destinationStream;
 
-  let scales = {
+  export const scales = {
     classic: [
       "C1",
       "D1",
