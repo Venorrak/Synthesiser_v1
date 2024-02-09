@@ -59,6 +59,7 @@
     await Tone.start();
     await Tone.context.resume();
     console.log("audio is ready");
+
   };
 
   export const setScale = (key) => {
