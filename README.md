@@ -175,8 +175,8 @@ Les principales exigences comprennent la compatibilité des bibliothèques avec 
 # Definition Of Done
 
 Meeting chaque semaine afin de présenter nos changement et faire approuver.
-
-une fonctionnalitée est consideré comme fini lorsque tout fonctionne et qu'elle est sur le main.
+Une fonctionnalitée est consideré comme fini lorsque tout fonctionne et qu'elle est sur le main.
+Le camelCase doit être utilisé pour la nomencalture.
 
 # Nomenclature et autre
 
