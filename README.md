@@ -165,9 +165,9 @@ Les principales exigences comprennent la compatibilité des bibliothèques avec 
 
 # Réseau des entécédents
 
->![Pert diagram](/images/PERT.drawio.png)
->![Pert diagram](/images/RoadMap.png)
->![synth_preview](/images/Synth_V2.drawio.png)
+![Pert diagram](/images/PERT.drawio.png)
+![Pert diagram](/images/RoadMap.png)
+<img src="images/Synth_V2.drawio.png" alt="synth_preview" style="background-color:White;"/>
 
 <a id="item-19"></a>
 
