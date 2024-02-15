@@ -1,7 +1,7 @@
 <script>
 	import Row from './Row.svelte';
 	import Controls from './Controls.svelte';
-	import {initAudio, playRow, startRecording, stopRecording, setScale} from './Music.svelte';
+	import {initAudio, playRow, startRecording, stopRecording, setScale, scales} from './Music.svelte';
 	let config = {
 		playing: false,
 		speed: 175,
@@ -9,7 +9,7 @@
 		scale_key: 'classic',
 	}
 
-	let columns = 48;
+	let columns = 29;
 	let grid = [];
 	let gameInterval;
 	let curRow = 0;
@@ -69,6 +69,9 @@
 		let array = hash.split('&')[0].slice(1).split('-').map(x => parseInt(x, 10));
 		config.rows = array.length - 1;
 		grid = []
+		// add header note
+
+		console.log(document.getElementById('notesContainer'));
 		for (var i = array.length - 2; i >= 0; i--) {
 			let temp = [... Array(columns).fill(false)];
 			for (var j = columns - 1; j >= 0; j--) {
@@ -175,6 +178,7 @@
 		<span class="message">Please wait for the playback to finish</span>
 	{/if}
 	<a bind:this={downloadLink} download="music-grid.wav" hidden="true">Download</a>
+	<div id="notesContainer"></div>
 	<table on:click|once={startPlaying}>
 		{#each grid as row}
 			<Row bind:row={row} bind:playing={row.isPlaying} paused={!config.playing}/>

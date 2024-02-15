@@ -6,21 +6,38 @@
   let recorder;
   let destinationStream;
 
-  let scales = {
+  export const scales = {
     classic: [
+      "C1",
+      "D1",
+      "E1",
+      "F1",
+      "G1",
+      "A1",
+      "B1",
+      "C2",
+      "D2",
+      "E2",
+      "F2",
+      "G2",
+      "A2",
+      "B2",
+      "C3",
+      "D3",
+      "E3",
+      "F3",
+      "G3",
+      "A3",
       "B3",
-      "C#4",
-      "F#4",
-      "G#4",
-      "C#5",
-      "D#5",
-      "E5",
-      "G#5",
-      "B5",
-      "C#6",
-      "F#6",
-      "G#6",
-    ]
+      "C4",
+      "D4",
+      "E4",
+      "F4",
+      "G4",
+      "A4",
+      "B4",
+      "C5",
+    ],
   };
 
   let currentScale = scales["classic"];
@@ -42,6 +59,7 @@
     await Tone.start();
     await Tone.context.resume();
     console.log("audio is ready");
+
   };
 
   export const setScale = (key) => {
@@ -62,20 +80,17 @@
     console.log(notesToPlay); // log the notes to play
     //synth.triggerAttackRelease(notesToPlay, "16n");
 
+    // scroll to playing row
+    const playingRows = document.getElementsByClassName("playing");
 
-  // scroll to playing row
-	const playingRows = document.getElementsByClassName('playing');
-    
     if (playingRows.length > 0) {
-        const playingRow = playingRows[0];
+      const playingRow = playingRows[0];
 
-        playingRow.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+      playingRow.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
-
-
   };
 
   export const playCell = async (index) => {
