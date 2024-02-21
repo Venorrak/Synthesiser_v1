@@ -24,7 +24,7 @@
 # Énoncé – Travail ÉQUIPE
 Équipe no : E  
 
-Noms : Justin, Miguel et Vincent
+Noms : Justin (Venorrak), Miguel (Aluzay) et Vincent (HydroshieldMKII)
 
 Nom du projet : Synthétiseur ICUS-1
 
