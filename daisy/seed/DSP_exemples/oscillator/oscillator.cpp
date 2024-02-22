@@ -15,10 +15,12 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
     float sig;
     for(size_t i = 0; i < size; i += 2)
     {
-        float knobFrequence = hw.adc.GetFloat(0);
-        // float knobAmplitude = fclamp(patch.GetAdcValue(20), 0.0f, 1.0f);
+        float knobFrequence = hw.adc.GetFloat(1);
+        float knobAmplitude = hw.adc.GetFloat(0);
 
         osc.SetFreq(knobFrequence * 440.f + 440.0f);
+        osc.SetAmp(knobAmplitude);
+
         sig = osc.Process();
 
         // left out
@@ -36,9 +38,13 @@ int main(void)
     hw.Configure();
     hw.Init();
 
-    AdcChannelConfig adcConfigFrequence;
-    adcConfigFrequence.InitSingle(hw.GetPin(21));
-    hw.adc.Init(&adcConfigFrequence, 1);
+    AdcChannelConfig adcConfig[2];
+
+    adcConfig[0].InitSingle(hw.GetPin(20));
+    adcConfig[1].InitSingle(hw.GetPin(21));
+   
+    hw.adc.Init(adcConfig, 2);
+    hw.adc.Start();
 
     hw.SetAudioBlockSize(4);
     sample_rate = hw.AudioSampleRate();
@@ -50,7 +56,6 @@ int main(void)
     osc.SetAmp(0.5);
 
     // start callback
-    hw.adc.Start();
     hw.StartAudio(AudioCallback);
 
     while(1) {}
