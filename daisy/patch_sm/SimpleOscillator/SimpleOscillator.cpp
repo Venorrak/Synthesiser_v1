@@ -25,7 +25,7 @@ void AudioCallback(AudioHandle::InputBuffer  in,
     float midi_nn = fclamp(coarse + voct, 0.f, 127.f);
     float freq    = mtof(midi_nn);
 
-    osc.SetFreq(freq);
+    osc.SetFreq(440.0f);
 
     for(size_t i = 0; i < size; i++)
     {

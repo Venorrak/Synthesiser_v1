@@ -17,9 +17,9 @@ void AudioCallback(AudioHandle::InputBuffer  in,
         bool t = tick.Process();
         if(t)
         {
-            sd.SetAccent(random() / (float)RAND_MAX);
-            sd.SetDecay(random() / (float)RAND_MAX);
-            sd.SetSnappy(random() / (float)RAND_MAX);
+            sd.SetAccent(1000 / (float)RAND_MAX);
+            sd.SetDecay(1000 / (float)RAND_MAX);
+            sd.SetSnappy(1000 / (float)RAND_MAX);
         }
         out[0][i] = out[1][i] = sd.Process(t);
     }

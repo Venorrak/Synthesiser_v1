@@ -6,6 +6,7 @@ using namespace daisy;
 
 static DaisySeed  hw;
 static Oscillator osc;
+// Switch button1;
 
 static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
                           AudioHandle::InterleavingOutputBuffer out,
@@ -14,6 +15,10 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
     float sig;
     for(size_t i = 0; i < size; i += 2)
     {
+        float knobFrequence = hw.adc.GetFloat(0);
+        // float knobAmplitude = fclamp(patch.GetAdcValue(20), 0.0f, 1.0f);
+
+        osc.SetFreq(knobFrequence * 440.f + 440.0f);
         sig = osc.Process();
 
         // left out
@@ -30,6 +35,11 @@ int main(void)
     float sample_rate;
     hw.Configure();
     hw.Init();
+
+    AdcChannelConfig adcConfigFrequence;
+    adcConfigFrequence.InitSingle(hw.GetPin(21));
+    hw.adc.Init(&adcConfigFrequence, 1);
+
     hw.SetAudioBlockSize(4);
     sample_rate = hw.AudioSampleRate();
     osc.Init(sample_rate);
@@ -39,10 +49,9 @@ int main(void)
     osc.SetFreq(440);
     osc.SetAmp(0.5);
 
-
     // start callback
+    hw.adc.Start();
     hw.StartAudio(AudioCallback);
-
 
     while(1) {}
 }
