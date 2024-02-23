@@ -583,7 +583,14 @@ var app = (function () {
     		"G4",
     		"A4",
     		"B4",
-    		"C5"
+    		"C5",
+    		"D5",
+    		"E5",
+    		"F5",
+    		"G5",
+    		"A5",
+    		"B6",
+    		"C6"
     	]
     };
 
@@ -619,7 +626,10 @@ var app = (function () {
 
     	console.log(notesToPlay); // log the notes to play
 
-    	//synth.triggerAttackRelease(notesToPlay, "16n");
+    	{
+    		synth.triggerAttackRelease(notesToPlay, "16n");
+    	}
+
     	// scroll to playing row
     	const playingRows = document.getElementsByClassName("playing");
 
@@ -2757,7 +2767,11 @@ var app = (function () {
     	let t10;
     	let br1;
     	let t11;
+    	let a2;
+    	let t13;
     	let br2;
+    	let t14;
+    	let br3;
     	let current;
     	let mounted;
     	let dispose;
@@ -2832,7 +2846,12 @@ var app = (function () {
     			t10 = space();
     			br1 = element("br");
     			t11 = space();
+    			a2 = element("a");
+    			a2.textContent = "Mario";
+    			t13 = space();
     			br2 = element("br");
+    			t14 = space();
+    			br3 = element("br");
     			set_style(h3, "text-decoration", "underline");
     			add_location(h3, file$3, 165, 1, 3134);
     			attr_dev(a0, "download", "music-grid.wav");
@@ -2847,11 +2866,16 @@ var app = (function () {
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "class", "svelte-wvhii7");
     			add_location(a1, file$3, 188, 2, 3902);
+    			add_location(br1, file$3, 189, 2, 3994);
+    			attr_dev(a2, "href", "#0-2048-0-144-1072-0-40-530-0-268-24-0-1048-0-24-2072-0-2048-0-1024-0-0-512-18-0-268-24-0-1048-0-24-2072-0-0-2048-144-1072-0-40-530-0-268-24-0-1048-0-24-24-0-0-0-528-40-64-0-136-0-34-68-0-9-18-0-72-656-0-656-40-0-72-0-144-0-0-544-0-0-272-0-0-36-0-0-0-2304-0-0-0-17-0-1058-2084-0-1058-0-1058-1058-&399&classic");
+    			attr_dev(a2, "target", "_blank");
+    			attr_dev(a2, "class", "svelte-wvhii7");
+    			add_location(a2, file$3, 190, 2, 4002);
     			attr_dev(div1, "class", "footer svelte-wvhii7");
     			attr_dev(div1, "align", "center");
     			add_location(div1, file$3, 187, 1, 3864);
-    			add_location(br1, file$3, 194, 1, 4249);
-    			add_location(br2, file$3, 195, 1, 4256);
+    			add_location(br2, file$3, 192, 1, 4357);
+    			add_location(br3, file$3, 193, 1, 4364);
     			attr_dev(div2, "class", "container svelte-wvhii7");
     			attr_dev(div2, "align", "center");
     			add_location(div2, file$3, 164, 0, 3094);
@@ -2883,10 +2907,14 @@ var app = (function () {
     			append_dev(div2, t8);
     			append_dev(div2, div1);
     			append_dev(div1, a1);
-    			append_dev(div2, t10);
-    			append_dev(div2, br1);
-    			append_dev(div2, t11);
+    			append_dev(div1, t10);
+    			append_dev(div1, br1);
+    			append_dev(div1, t11);
+    			append_dev(div1, a2);
+    			append_dev(div2, t13);
     			append_dev(div2, br2);
+    			append_dev(div2, t14);
+    			append_dev(div2, br3);
     			current = true;
 
     			if (!mounted) {
@@ -3000,7 +3028,7 @@ var app = (function () {
     		scale_key: "classic"
     	};
 
-    	let columns = 29;
+    	let columns = 36;
     	let grid = [];
     	let gameInterval;
     	let curRow = 0;

@@ -9,7 +9,7 @@
 		scale_key: 'classic',
 	}
 
-	let columns = 29;
+	let columns = 36;
 	let grid = [];
 	let gameInterval;
 	let curRow = 0;
@@ -187,10 +187,8 @@
 	<br/>
 	<div class="footer" align="center">
 		<a href="https://irshadpi.me/best-of-music-grid" target="_blank">Exemples de musiques</a>
-		<!--<br/>
-		<a href="https://svelte.dev" target="_blank">Svelte</a> 
-		| <a href="https://github.com/irshadshalu/music-grid" target="_blank"><i class="fa fa-lg fa-github"></i></a> 
-		| <a href="https://irshadpi.me" target="_blank">irshad</a> -->
+		<br/>
+		<a href="#0-2048-0-144-1072-0-40-530-0-268-24-0-1048-0-24-2072-0-2048-0-1024-0-0-512-18-0-268-24-0-1048-0-24-2072-0-0-2048-144-1072-0-40-530-0-268-24-0-1048-0-24-24-0-0-0-528-40-64-0-136-0-34-68-0-9-18-0-72-656-0-656-40-0-72-0-144-0-0-544-0-0-272-0-0-36-0-0-0-2304-0-0-0-17-0-1058-2084-0-1058-0-1058-1058-&399&classic" target="_blank">Mario</a> 
 	</div>
 	<br/>
 	<br/>

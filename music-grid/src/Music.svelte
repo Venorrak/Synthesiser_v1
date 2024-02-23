@@ -6,6 +6,8 @@
   let recorder;
   let destinationStream;
 
+  let sound = true; //enable 
+
   export const scales = {
     classic: [
       "C1",
@@ -37,6 +39,13 @@
       "A4",
       "B4",
       "C5",
+      "D5",
+      "E5",
+      "F5",
+      "G5",
+      "A5",
+      "B6",
+      "C6",
     ],
   };
 
@@ -78,7 +87,9 @@
       }
     }
     console.log(notesToPlay); // log the notes to play
-    //synth.triggerAttackRelease(notesToPlay, "16n");
+    if (sound) {
+      synth.triggerAttackRelease(notesToPlay, "16n");
+    }
 
     // scroll to playing row
     const playingRows = document.getElementsByClassName("playing");
