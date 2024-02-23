@@ -6,6 +6,7 @@ using namespace daisy;
 
 // Declare a DaisySeed object called hardware
 DaisySeed hw;
+bool ledState = false;
 
 int main(void)
 {
@@ -18,16 +19,19 @@ int main(void)
     //Configure and initialize button
     Switch button1;
     //Set button to pin 28, to be updated at a 1kHz  samplerate
-    button1.Init(hw.GetPin(28), 1000);
+    button1.Init(hw.GetPin(22), 1000);
 
     // Loop forever
     for(;;)
     {
         //Debounce the button
         button1.Debounce();
-        //If the button is pressed, turn the LED on
-        hw.SetLed(button1.Pressed());
-        //wait 1 ms
-        System::Delay(1);
+
+        //If button pressed it changes the state of the light
+        if (button1.RisingEdge())
+        {
+            ledState = !ledState;
+            hw.SetLed(ledState);
+        }
     }
 }
