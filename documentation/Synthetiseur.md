@@ -26,11 +26,10 @@ En gros, ces fonctionnalitées nous permetterons de modifier le son qui sera pro
 
 <a id="item-4"></a>
 
-# Librairies utilisées
+# Librairie utilisée
 La librairie principale que nous utilisons pour le synthétiseur est [libDaisy](https://github.com/electro-smith/libDaisy)
 
 <a id="item-5"></a>
 
 # Configuration
-Pour le moment, nous avons un filage bien normal, mais nous aimerions comme produit final avoir un pcb qui nous permetterait d'avoir un design plus jolie et moins bordélique
-![Synthétiseur Configuration]()
+Pour le moment, nous avons un filage bien normal, mais nous aimerions comme produit final avoir un pcb qui nous permetterait d'avoir un design plus jolie et moins bordélique (image à venir)
