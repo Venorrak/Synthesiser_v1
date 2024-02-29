@@ -33,3 +33,6 @@
 - https://github.com/electro-smith/Hardware/blob/master/reference/daisy_seed/Datasheet.md
 - https://electro-smith.github.io/DaisySP/index.html
 - https://electro-smith.github.io/libDaisy/index.html
+
+## Syntétiseur
+- https://forum.electro-smith.com/t/adc-reading/541/2 (brancher plusieurs pins) 
