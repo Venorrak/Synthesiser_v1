@@ -9,6 +9,7 @@ Démo : https://music-grid.surge.sh
 ## Table des matières
 
 - [Installation](#installation)
+- [Problèmes courants](#Problèmes)
 - [Utilisation](#Fonctionnalités)
 - [Fonctionnalités](#fonctionnalités)
 - [Licence](#licence)
@@ -17,11 +18,11 @@ Démo : https://music-grid.surge.sh
 
 Pour utiliser le client web de Music Maker, suivez ces étapes :
 
-1. Clonez le dépôt : `git clone https://github.com/your-username/music-maker-webclient.git`
+1. Clonez le dépôt : `git clone https://github.com/LINKKK!!!`
 2. Installez les dépendances : `npm install`
 3. Lancez le serveur de développement : `npm run dev`
 
-## Comment exécuter
+## Problèmes
 
 Assurez-vous d'avoir nodejs et npm installés.
 
