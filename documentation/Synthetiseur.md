@@ -26,8 +26,9 @@ En gros, ces fonctionnalitées nous permetterons de modifier le son qui sera pro
 
 <a id="item-4"></a>
 
-# Librairie utilisée
-La librairie principale que nous utilisons pour le synthétiseur est [libDaisy](https://github.com/electro-smith/libDaisy)
+# Librairies utilisées
+- [libDaisy](https://github.com/electro-smith/libDaisy)
+- [DaisySP](https://github.com/electro-smith/DaisySP)
 
 <a id="item-5"></a>
 
