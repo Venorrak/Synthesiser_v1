@@ -2,11 +2,11 @@
   import * as Tone from "tone";
   import bufferToWav from "audiobuffer-to-wav";
 
+  import { isSoundEnabled } from "./controls";
+  
   let synth;
   let recorder;
   let destinationStream;
-
-  let sound = true; //enable 
 
   export const scales = {
     classic: [
@@ -87,9 +87,11 @@
       }
     }
     console.log(notesToPlay); // log the notes to play
-    if (sound) {
+    console.log(isSoundEnabled); // log the sound status
+
+    /*if (isSoundEnabled.value) {
       synth.triggerAttackRelease(notesToPlay, "16n");
-    }
+    }*/
 
     // scroll to playing row
     const playingRows = document.getElementsByClassName("playing");

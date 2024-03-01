@@ -11,6 +11,14 @@
   let urlUpdatedRecently = false;
   let scrollY = 0;
 
+  export let isSoundEnabled = false;
+
+  const toggleSound = () => {
+    console.log("toggle sound");
+    isSoundEnabled = !isSoundEnabled;
+    console.log(isSoundEnabled);
+  };
+
   const encodeGridToUrl = (grid, speed, scale) => {
     let res = "";
     for (var i = grid.length - 1; i >= 0; i--) {
@@ -113,6 +121,7 @@
     <a on:click={() => dispatch("download")}
       ><i class="fa fa-lg fa-download" /></a
     >
+    <a on:click={toggleSound}><i class="fa fa-lg fa-volume-up" /></a>
   </div>
   <br />
 </div>
