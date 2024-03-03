@@ -76,6 +76,7 @@ Le programme va utiliser ces pins jusqu'au transfert vers le ESP32.
 - 10 -> CS
 - 11 -> SDA
 - 13 -> SDK
+- A0 -> audio
 
 <a id="item-6"></a>
 
