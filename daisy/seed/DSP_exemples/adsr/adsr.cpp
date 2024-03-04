@@ -33,7 +33,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         {
             gate = !gate;
         }
-
+        
         // Use envelope to control the amplitude of the oscillator.
         env_out = env.Process(gate);
         osc.SetAmp(env_out);
@@ -50,18 +50,19 @@ int main(void)
     float sample_rate;
     hw.Configure();
     hw.Init();
+    hw.StartLog();
     hw.SetAudioBlockSize(4);
     sample_rate = hw.AudioSampleRate();
     env.Init(sample_rate);
     osc.Init(sample_rate);
 
     // Set up metro to pulse every second
-    tick.Init(1.0f, sample_rate);
+    tick.Init(2.0f, sample_rate);
 
     //Set envelope parameters
-    env.SetTime(ADSR_SEG_ATTACK, .1);
-    env.SetTime(ADSR_SEG_DECAY, .1);
-    env.SetTime(ADSR_SEG_RELEASE, .01);
+    env.SetTime(ADSR_SEG_ATTACK, .5);
+    env.SetTime(ADSR_SEG_DECAY, .5);
+    env.SetTime(ADSR_SEG_RELEASE, .05);
 
     env.SetSustainLevel(.25);
 

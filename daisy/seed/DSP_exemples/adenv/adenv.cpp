@@ -33,7 +33,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
 
         // Use envelope to control the amplitude of the oscillator.
         env_out = env.Process();
-        osc.SetAmp(env_out);
+        osc.SetAmp(5.0f);
         osc_out = osc.Process();
 
         out[LEFT]  = osc_out;
