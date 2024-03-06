@@ -1,17 +1,50 @@
+/*
+    PMO-RP1 V2.0
+    20200427_OLEDoscilloscope_V200E.ino)
+    sketch：23020byte、local variable:1231byte free
+    Apr.27 2020 by radiopench http://radiopench.blog96.fc2.com/
+
+    PMO-RP/JSB V2.0s
+    July 2020, simplified version by Zaphod B.
+    This version is meant to display the signal only for visual inspection of
+    the signal form, not for measurement purposes. Consequently this version:
+    - has no y-axis annotations,
+    - does not show the duty cycle,
+    - has no ticks on the x-axis,
+    - uses the full width of the display to show the signal.
+
+    PMO-RP/JSB V2.1 
+    April 14. 2021, 
+    - added vertical offset levelling menu item.
+    - Led will signal when data has been saved to EEPROM via pulsed flashing.
+
+    PMO-RP/JSB V2.2 
+    May 7. 2021, 
+    - storing vertical offset for each range to EEPROM
+    - voltage range menu now wraps around
+
+*/
+
 #include <Wire.h>
-#include <Adafruit_GFX.h>    // Core graphics library
-#include <Adafruit_ST7735.h> // Hardware-specific library
-#include <SPI.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 #include <EEPROM.h>
 
+// Note: if you define SIMPLIFIED, then the code
+// will show a simplified version of the original content.
+// This is meant to display the signal only for visual inspection of
+// its form, not for measurement purposes.
+// If you do not define SIMPLIFIED, the display will show the content as
+// show by the original v2.0 code by radiopench.
+
 #define SIMPLIFIED
-//#define SHOW_OFFSET
+#define SHOW_OFFSET
 
 #ifdef SIMPLIFIED
   #define BEGIN_X 0   // Begin position of plot on x-axis
   //#define DISPLAY_ZERO_LINE 1
 //  #define FREQ_Y 0
-//  #define DISPLAY_FREQUENCY 1
+//#define DISPLAY_FREQUENCY 1
 #else
   #define BEGIN_X 24  // Begin position of plot on x-axis
   #define DISPLAY_AVERAGE_TR 1
@@ -33,25 +66,24 @@
 #define FREQ_X 91
 // horizontal position of plotted frequency in pixels
 
-#define SCREEN_WIDTH 160                // OLED display width
-#define SCREEN_HEIGHT 128                // OLED display height
+#define SCREEN_WIDTH 128                // OLED display width
+#define SCREEN_HEIGHT 64                // OLED display height
 
 #define REC_LENG 200                    // size of wave data buffer
-#define MIN_TRIG_SWING 5
+#define MIN_TRIG_SWING 5                // minimum trigger swing.(Display "Unsync" if swing smaller than this value
 
-#define OLED_CS     10
-#define OLED_RST    8
-#define OLED_DC     9
-Adafruit_ST7735 oled = Adafruit_ST7735(OLED_CS,  OLED_DC, OLED_RST);
-#define OLED_SCLK 13   // set these to be whatever pins you like!
-#define OLED_MOSI 11   // set these to be whatever pins you like!
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+#define OLED_RESET     -1      // Reset pin # (or -1 if sharing Arduino reset pin)
+Adafruit_SSD1306 oled(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);   // device name is oled
 
+// Range name table (those are stored in flash memory)
 #define VRANGE_MAX 10
 const char vRangeName[10][5] PROGMEM = {"A50V", "A 5V", " 50V", " 20V", " 10V", "  5V", "  2V", "  1V", "0.5V", "0.2V"}; // Vertical display character (number of characters including \ 0 is required)
 const char * const vstring_table[] PROGMEM = {vRangeName[0], vRangeName[1], vRangeName[2], vRangeName[3], vRangeName[4], vRangeName[5], vRangeName[6], vRangeName[7], vRangeName[8], vRangeName[9]};
 const char hRangeName[10][6] PROGMEM = {"200ms", "100ms", " 50ms", " 20ms", " 10ms", "  5ms", "  2ms", "  1ms", "500us", "200us"};  //  Hrizontal display characters
 const char * const hstring_table[] PROGMEM = {hRangeName[0], hRangeName[1], hRangeName[2], hRangeName[3], hRangeName[4], hRangeName[5], hRangeName[6], hRangeName[7], hRangeName[8], hRangeName[9]};
 const PROGMEM float hRangeValue[] = { 0.2, 0.1, 0.05, 0.02, 0.01, 0.005, 0.002, 0.001, 0.5e-3, 0.2e-3}; // horizontal range value in second. ( = 25pix on screen)
+
 
 int dataOffset[VRANGE_MAX];    // Vertical offset for wave form.
 int waveBuff[REC_LENG];        // Wave form buffer (RAM remaining capacity is barely)
@@ -103,46 +135,37 @@ template <class T> int EEPROM_readAnything(int ee, T& value)
     return i;
 }
 
-
-
-void setup(void) {
-  pinMode( 3, INPUT_PULLUP);            // Button pussed interrupt (int.0 IRQ)
-  pinMode( 4, INPUT_PULLUP);            // Select button
-  pinMode( 5, INPUT_PULLUP);            // Down
-  pinMode(6, INPUT_PULLUP);            // Up
-  pinMode(7, INPUT_PULLUP);            // Hold
+void setup() {
+  pinMode( 2, INPUT_PULLUP);            // Button pussed   (int.0 IRQ)
+  pinMode( 8, INPUT_PULLUP);            // Select button
+  pinMode( 9, INPUT_PULLUP);            // Down
+  pinMode(10, INPUT_PULLUP);            // Up
+  pinMode(11, INPUT_PULLUP);            // Hold
   pinMode(12, INPUT);                   // 1/10 attenuator(Off=High-Z, Enable=Output Low)
-  pinMode(2, OUTPUT);                  // LED
+  pinMode(13, OUTPUT);                  // LED
 
-  //------------------------------------------------------------------------------
-
-  Serial.begin(9600);
-  // Use this initializer if you're using a 1.8" TFT
-  oled.initR(INITR_BLACKTAB);   // initialize a ST7735S chip, black tab
-  oled.enableDisplay(true);
-  // Use this initializer (uncomment) if you're using a 1.44" TFT
-  //tft.initR(INITR_144GREENTAB);   // initialize a ST7735S chip, black tab
-  uint16_t time = millis();
-  time = millis() - time;
-  Serial.println(time, DEC);
-
+  Serial.begin(115200);              // A lot of RAM is used when activating this. (may by crash!)
+  if (!oled.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // select 3C or 3D (set your OLED I2C address)
+    for (;;);                           // loop forever
+  }
   auxFunctions();                       // Voltage measure (never return)
   loadEEPROM();                         // Read last settings from EEPROM
-  analogReference(INTERNAL);            // ADC full scale = 1.1V
+  analogReference(1.1);            // ADC full scale = 1.1V
   attachInterrupt(0, pin2IRQ, FALLING); // Activate IRQ at falling edge mode
   startScreen();                        // Display start message
 }
+
 void loop() {
   setConditions();                      // Set measurement conditions
-  digitalWrite(2, HIGH);               // Flash LED at start of measurement.
+  digitalWrite(13, HIGH);               // Flash LED at start of measurement.
   readWave();                           // Read wave form and store into buffer memory.
-  digitalWrite(2, LOW);                // Stop LED at end of measurement.
+  digitalWrite(13, LOW);                // Stop LED at end of measurement.
   setConditions();                      // Set measurment conditions again (reflect change during measure).
   dataAnalyze();                        // Analyze data.
   writeCommonImage();                   // Write fixed screen image (2.6ms).
   plotData();                           // Plot waveform (10-18ms).
-  dispInf();                            // Display information (6.5-8.5ms).
-  //oled.display();                       // Send screen buffer to OLED (37ms).
+  //dispInf();                            // Display information (6.5-8.5ms).
+  oled.display();                       // Send screen buffer to OLED (37ms).
   saveEEPROM();                         // Save settings to EEPROM if necessary.
   while (hold == true) {                // Wait if Hold flag ON.
     dispHold();
@@ -232,9 +255,8 @@ void setConditions() {           // measuring condition setting
 }
 
 void writeCommonImage() {                 // Show menu.
-  //oled.clearDisplay();             // Erase all(0.4ms)
-  //oled.setTextColor(WHITE);        // Use white characters (in case of multi color display).
-  oled.setTextColor(WDIE);
+  oled.clearDisplay();             // Erase all(0.4ms)
+  oled.setTextColor(WHITE);        // Use white characters (in case of multi color display).
 
   #ifdef DISPLAY_AVERAGE_TR  
     oled.setCursor(86, 0);                  // Start at top-left corner
@@ -305,7 +327,7 @@ void readWave() {                            // Record waveform to memory array
         ADCSRA = ADCSRA & 0xf8;              // Clear bottom 3bit.
         ADCSRA = ADCSRA | 0x07;              // dividing ratio = 128 (default of Arduino）
         for (int i = 0; i < REC_LENG; i++) { // Up to rec buffer size
-          waveBuff[i] = analogRead(0);       // read and save approx 112us
+          waveBuff[i] = analogRead(A0);       // read and save approx 112us
           delayMicroseconds(7888);           // timing adjustment
           if (switchPushed == true) {        // If any switch touched then
             switchPushed = false;
@@ -561,9 +583,9 @@ int sum3(int k) {       // Sum of before and after and own value
 }
 
 void startScreen() {                      // Start up screen
-  //oled.clearDisplay();
+  oled.clearDisplay();
   oled.setTextSize(2);                    // at double size character
-  oled.setTextColor(WDIE);
+  oled.setTextColor(WHITE);
   oled.setCursor(4, 15);
   oled.println(F("PMO-RP/JSB"));          // Title(Poor Man's Osilloscope, RadioPench 1)  
   #ifdef SIMPLIFIED  
@@ -573,17 +595,17 @@ void startScreen() {                      // Start up screen
     oled.setCursor(10, 35);
     oled.println(F("    v2.0")) ;           // 'original' version No.
   #endif  
-    //oled.display();                         // Actual display here.
-    delay(1500);
-    //oled.clearDisplay();
-    oled.setTextSize(1);                    // After this, standard font size.
-  }
+  oled.display();                         // Actual display here.
+  delay(1500);
+  oled.clearDisplay();
+  oled.setTextSize(1);                    // After this, standard font size.
+}
 
-  void dispHold() {                         // Display "Hold".
-    //oled.fillRect(42, 11, 24, 8, BLACK);    // Black paint 4 characters.
-    oled.setCursor(42, 11);
-    oled.print(F("Hold"));                  // Hold
-    //oled.display();                         //
+void dispHold() {                         // Display "Hold".
+  oled.fillRect(42, 11, 24, 8, BLACK);    // Black paint 4 characters.
+  oled.setCursor(42, 11);
+  oled.print(F("Hold"));                  // Hold
+  oled.display();                         //
 }
 
 void dispInf() {                          // Display of various information
@@ -592,18 +614,18 @@ void dispInf() {                          // Display of various information
   oled.setCursor(2, 0);                   // Around top left
   oled.print(vScale);                     // Vertical sensitivity value
   if (scopeP == 0) {                      // if scoped then
-    oled.drawFastHLine(0,  7, 27, WDIE); // display scoped mark at the bottom.
-    oled.drawFastVLine(0,  5,  2, WDIE);
-    oled.drawFastVLine(26, 5,  2, WDIE);
+    oled.drawFastHLine(0,  7, 27, WHITE); // display scoped mark at the bottom.
+    oled.drawFastVLine(0,  5,  2, WHITE);
+    oled.drawFastVLine(26, 5,  2, WHITE);
   }
 
   // Display horizontal sweep speed.
   oled.setCursor(34, 0);                  //
   oled.print(hScale);                     // Display sweep speed (time/div).
   if (scopeP == 1) {                      // If scoped then
-    oled.drawFastHLine(32, 7, 33, WDIE); // display scoped mark at the bottom.
-    oled.drawFastVLine(32, 5,  2, WDIE);
-    oled.drawFastVLine(64, 5,  2, WDIE);
+    oled.drawFastHLine(32, 7, 33, WHITE); // display scoped mark at the bottom.
+    oled.drawFastVLine(32, 5,  2, WHITE);
+    oled.drawFastVLine(64, 5,  2, WHITE);
   }
 
   // SHow trigger polarity.
@@ -614,9 +636,9 @@ void dispInf() {                          // Display of various information
     oled.print(char(0x19));               // else show down mark.
   }
   if (scopeP == 2) {                      // If scoped then
-    oled.drawFastHLine(71, 7, 13, WDIE); // display scoped mark at the bottom.
-    oled.drawFastVLine(71, 5,  2, WDIE);
-    oled.drawFastVLine(83, 5,  2, WDIE);
+    oled.drawFastHLine(71, 7, 13, WHITE); // display scoped mark at the bottom.
+    oled.drawFastVLine(71, 5,  2, WHITE);
+    oled.drawFastVLine(83, 5,  2, WHITE);
   }
 
   // Show calibration menu item.
@@ -627,9 +649,9 @@ void dispInf() {                          // Display of various information
     oled.print(dataOffset[vRange]);
   #endif
   if (scopeP == 3) {
-    oled.drawFastHLine( 98, 7, 28, WDIE); // Display zero menu item mark.
-    oled.drawFastVLine( 98, 5,  2, WDIE);
-    oled.drawFastVLine(125, 5,  2, WDIE);
+    oled.drawFastHLine( 98, 7, 28, WHITE); // Display zero menu item mark.
+    oled.drawFastVLine( 98, 5,  2, WHITE);
+    oled.drawFastVLine(125, 5,  2, WHITE);
   }
 
   #ifdef DISPLAY_AVERAGE_TR
@@ -718,36 +740,36 @@ void dispInf() {                          // Display of various information
 }
 
 #ifdef SIMPLIFIED
-void plotData() { // Plot wave form on OLED over full screen width.
-  long y1, y2;
-  for (int x = 0; x <= 98; x++) {
-    y1 = map(waveBuff[x + trigP - 50] + dataOffset[vRange], rangeMin, rangeMax, 63, 9); // Convert to plot address
-    y1 = constrain(y1, 9, 63);                                                  // Crush(Saturate) the protruding part
-    y2 = map(waveBuff[x + trigP - 49] + dataOffset[vRange], rangeMin, rangeMax, 63, 9); // Convert to plot address
-    y2 = constrain(y2, 9, 63);                                                  // Limit y2 to the range [9...63]
-    int xx = map(x, 0, 98, 0, SCREEN_WIDTH - 1);
-    oled.drawLine(xx + BEGIN_X + 3, y1, xx + BEGIN_X + 4, y2, WDIE);// connect between point
+  void plotData() { // Plot wave form on OLED over full screen width.
+    long y1, y2;
+    for (int x = 0; x <= 98; x++) {
+      y1 = map(waveBuff[x + trigP - 50] + dataOffset[vRange], rangeMin, rangeMax, 63, 9); // Convert to plot address
+      y1 = constrain(y1, 9, 63);                                                  // Crush(Saturate) the protruding part
+      y2 = map(waveBuff[x + trigP - 49] + dataOffset[vRange], rangeMin, rangeMax, 63, 9); // Convert to plot address
+      y2 = constrain(y2, 9, 63);                                                  // Limit y2 to the range [9...63]
+      int xx = map(x, 0, 98, 0, SCREEN_WIDTH - 1);
+      oled.drawLine(xx + BEGIN_X + 3, y1, xx + BEGIN_X + 4, y2, WHITE);// connect between point
+    }
   }
-}
-#else
-void plotData() { // Plot wave form on OLED over part of screen.
-  long y1, y2;
-  for (int x = 0; x <= 98; x++) {
-    y1 = map(waveBuff[x + trigP - 50], rangeMin, rangeMax, 63, 9); // Convert to plot address
-    y1 = constrain(y1, 9, 63);                                     // Crush(Saturate) the protruding part
-    y2 = map(waveBuff[x + trigP - 49], rangeMin, rangeMax, 63, 9); 
-    y2 = constrain(y2, 9, 63);
-    oled.drawLine(x + BEGIN_X + 3, y1, x + BEGIN_X + 4, y2, WHITE);// Connect between point
+  #else
+  void plotData() { // Plot wave form on OLED over part of screen.
+    long y1, y2;
+    for (int x = 0; x <= 98; x++) {
+      y1 = map(waveBuff[x + trigP - 50], rangeMin, rangeMax, 63, 9); // Convert to plot address
+      y1 = constrain(y1, 9, 63);                                     // Crush(Saturate) the protruding part
+      y2 = map(waveBuff[x + trigP - 49], rangeMin, rangeMax, 63, 9); 
+      y2 = constrain(y2, 9, 63);
+      oled.drawLine(x + BEGIN_X + 3, y1, x + BEGIN_X + 4, y2, WHITE);// Connect between point
+    }
   }
-}
 #endif
 
 void flashLed() {
   for (int j = 0; j < 3; j++){
     for (int i = 0; i < 5; i++){
-      digitalWrite(2, HIGH); // LED on.
+      digitalWrite(13, HIGH); // LED on.
       delay(100);
-      digitalWrite(2, LOW);  // LED off.
+      digitalWrite(13, LOW);  // LED off.
       delay(10);
     }
   delay(300);
@@ -809,8 +831,8 @@ void auxFunctions() {                       // voltage meter function
         x = x + analogRead(1);              // read A1 pin voltage and accumulate
       }
       voltage = (x / 100.0) * 5.0 / 1023.0; // convert voltage value
-      //oled.clearDisplay();                  // all erase screen(0.4ms)
-      oled.setTextColor(WDIE);             // write in white character
+      oled.clearDisplay();                  // all erase screen(0.4ms)
+      oled.setTextColor(WHITE);             // write in white character
       oled.setCursor(20, 16);               //
       oled.setTextSize(1);                  // standerd size character
       oled.println(F("Battery voltage"));
@@ -819,22 +841,23 @@ void auxFunctions() {                       // voltage meter function
       dtostrf(voltage, 4, 2, chrBuff);      // display batterry voltage x.xxV
       oled.print(chrBuff);
       oled.println(F("V"));
-      //oled.display();
+      oled.display();
       delay(150);
     }
   }
   if (digitalRead(9) == LOW) {              // if UP button pushed, 5V range
-    analogReference(INTERNAL);              // Configures the reference voltage used for analog input 
+    
+    analogReference(1.1);              // Configures the reference voltage used for analog input 
                                             // (i.e. the value used as the top of the input range).
                                             // INTERNAL: an built-in reference, equal to 1.1 volts on the 
                                             // ATmega168 or ATmega328 and 2.56 volts on the ATmega8 (not 
                                             // available on the Arduino Mega).
     pinMode(12, INPUT);                     // Set the attenuator control pin to Hi-z (use as input)
     while (1) {                             // do forever,
-      digitalWrite(2, HIGH);               // flash LED
+      digitalWrite(13, HIGH);               // flash LED
       voltage = analogRead(0) * lsb5V;      // measure voltage
-      //oled.clearDisplay();                  // erase screen (0.4ms)
-      oled.setTextColor(WDIE);             // write in white character
+      oled.clearDisplay();                  // erase screen (0.4ms)
+      oled.setTextColor(WHITE);             // write in white character
       oled.setCursor(26, 16);               //
       oled.setTextSize(1);                  // by standerd size character
       oled.println(F("DVM 5V Range"));
@@ -843,20 +866,20 @@ void auxFunctions() {                       // voltage meter function
       dtostrf(voltage, 4, 2, chrBuff);      // display batterry voltage x.xxV
       oled.print(chrBuff);
       oled.println(F("V"));
-      //oled.display();
-      digitalWrite(2, LOW);                // stop LED flash
+      oled.display();
+      digitalWrite(13, LOW);                // stop LED flash
       delay(150);
     }
   }
   if (digitalRead(10) == LOW) {             // if DOWN botton pushed, 50V range
-    analogReference(INTERNAL);
+    analogReference(1.1);
     pinMode(12, OUTPUT);                    // Set the attenuator control pin to OUTPUT
     digitalWrite(12, LOW);                  // output LOW
     while (1) {                             // do forever
-      digitalWrite(2, HIGH);               // flush LED
+      digitalWrite(13, HIGH);               // flush LED
       voltage = analogRead(0) * lsb50V;     // measure voltage
-      //oled.clearDisplay();                  // erase screen (0.4ms)
-      oled.setTextColor(WDIE);             // write in white character
+      oled.clearDisplay();                  // erase screen (0.4ms)
+      oled.setTextColor(WHITE);             // write in white character
       oled.setCursor(26, 16);               //
       oled.setTextSize(1);                  // by standerd size character
       oled.println(F("DVM 50V Range"));
@@ -865,8 +888,8 @@ void auxFunctions() {                       // voltage meter function
       dtostrf(voltage, 4, 1, chrBuff);      // display batterry voltage xx.xV
       oled.print(chrBuff);
       oled.println(F("V"));
-      //oled.display();
-      digitalWrite(2, LOW);                // stop LED flash
+      oled.display();
+      digitalWrite(13, LOW);                // stop LED flash
       delay(150);
     }
   }
