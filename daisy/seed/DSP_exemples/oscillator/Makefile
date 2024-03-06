@@ -1,6 +1,6 @@
 # Project Name
 TARGET = oscillator
-
+USE_DAISYSP_LGPL = 1
 # Sources
 CPP_SOURCES = oscillator.cpp
 

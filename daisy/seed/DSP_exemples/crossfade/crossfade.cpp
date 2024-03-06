@@ -25,6 +25,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         pos = (pos + 1) / 2;
 
         cfade.SetPos(pos);
+        
         output = cfade.Process(sine, saw);
 
         // left out

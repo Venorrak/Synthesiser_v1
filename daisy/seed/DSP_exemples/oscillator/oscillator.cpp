@@ -1,5 +1,6 @@
 #include "daisysp.h"
 #include "daisy_seed.h"
+#include "daisysp-lgpl.h"
 #include <cmath>
 
 #define LEFT (i)
@@ -9,11 +10,14 @@ using namespace daisysp;
 using namespace daisy;
 
 static DaisySeed  hw;
-static Oscillator osc;
+static Oscillator osc, lfo;
 static Adsr env;
 static Metro tick;
 static Switch3 toggleWaveForm;
+static ReverbSc reverb;
+static CrossFade mixer;
 bool gate;
+float sample_rate;
 
 float convertValue(int value, float new_min, float new_max) {
     int min_value = 0;
@@ -33,7 +37,7 @@ void changeWaveForm()
     switch(toggleWaveForm.Read())
     {
         case Switch3::POS_UP: osc.SetWaveform(osc.WAVE_SQUARE); break;
-        case Switch3::POS_CENTER: osc.SetWaveform(osc.WAVE_SAW); break;
+        case Switch3::POS_CENTER: osc.SetWaveform(osc.WAVE_POLYBLEP_SAW); break;
         case Switch3::POS_DOWN: osc.SetWaveform(osc.WAVE_TRI); break;
     }
 }
@@ -56,6 +60,8 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         float knobAttack = hw.adc.Get(3);
         float knobDecay = hw.adc.Get(4);
         float knobSustain = hw.adc.Get(5);
+        float knobVerbVolume = hw.adc.Get(6);
+        float knobVerbFrequence = hw.adc.Get(7);
         
         env_out = env.Process(gate);
         osc_out = osc.Process();
@@ -67,21 +73,31 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         env.SetTime(ADSR_SEG_DECAY, convertValue(knobDecay, 1.0f, 5.0f));
         env.SetSustainLevel(convertValue(knobSustain, 0.0f, 1.0f));
 
-        out[LEFT]  = osc_out;
-        out[RIGHT] = osc_out;
+        if (convertValue(knobVerbVolume, 0.0f, 1.0f) < 0.05f) 
+        {    
+            out[LEFT]  = osc_out;
+            out[RIGHT] = osc_out;
+        }
+        else 
+        {
+            float sig = env_out * osc_out;
+            reverb.SetFeedback(convertValue(knobVerbVolume, 0.0f, 1.0f));
+            reverb.SetLpFreq(convertValue(knobVerbFrequence, 1000.0f, 36000.0f));
+            reverb.Process(sig, sig, &out[LEFT], &out[RIGHT]);  
+        }        
     }
 }
 
 int main(void)
 {
     // initialize seed hardware and oscillator daisysp module
-    float sample_rate;
+    
     hw.Configure();
     hw.Init();
 
     toggleWaveForm.Init(seed::D29, seed::D30);
     
-    AdcChannelConfig adcConfig[6];
+    AdcChannelConfig adcConfig[8];
 
     adcConfig[0].InitSingle(hw.GetPin(20));
     adcConfig[1].InitSingle(hw.GetPin(21));
@@ -89,14 +105,18 @@ int main(void)
     adcConfig[3].InitSingle(hw.GetPin(18));
     adcConfig[4].InitSingle(hw.GetPin(17));
     adcConfig[5].InitSingle(hw.GetPin(16));
+    adcConfig[6].InitSingle(hw.GetPin(22));
+    adcConfig[7].InitSingle(hw.GetPin(23));
+
    
-    hw.adc.Init(adcConfig, 6);
+    hw.adc.Init(adcConfig, 8);
     hw.adc.Start();
     hw.StartLog();
 
     hw.SetAudioBlockSize(4);
     sample_rate = hw.AudioSampleRate();
     osc.Init(sample_rate);
+    // lfo.Init(20.0f);
     env.Init(sample_rate);
 
     // Set up metro to pulse x second
@@ -113,12 +133,17 @@ int main(void)
     osc.SetFreq(440);
     osc.SetAmp(0.5);
 
+    // Set parameters for reverb
+    reverb.Init(sample_rate);
+    reverb.SetFeedback(0.1f);
+    reverb.SetLpFreq(18000.0f);
+
     // start callback
     hw.StartAudio(AudioCallback);
 
     while(1) 
     {
         changeWaveForm();
-        hw.PrintLine("Input 1: %d", hw.adc.Get(5));      
+        hw.PrintLine("Input 1: %d", sample_rate);      
     }
 }

@@ -1,5 +1,6 @@
 #include "daisysp.h"
 #include "daisy_seed.h"
+#include "daisysp-lgpl.h"
 
 using namespace daisysp;
 using namespace daisy;
@@ -24,6 +25,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
 
         float sig = env.Process() * osc.Process();
         verb.Process(sig, sig, &out[i], &out[i + 1]);
+        
     }
 }
 

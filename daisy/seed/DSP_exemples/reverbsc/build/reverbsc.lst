@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   27:../../../DaisySP/Source/Control/adenv.h ****     ADENV_SEG_DECAY,
   28:../../../DaisySP/Source/Control/adenv.h ****     /** The final segment of the envelope (currently decay) */
   29:../../../DaisySP/Source/Control/adenv.h ****     ADENV_SEG_LAST,
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 2
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 2
 
 
   30:../../../DaisySP/Source/Control/adenv.h **** };
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   18:../../../DaisySP/Source/Synthesis/oscillator.h **** /** Synthesis of several waveforms, including polyBLEP bandlimited waveforms.
   19:../../../DaisySP/Source/Synthesis/oscillator.h **** */
   20:../../../DaisySP/Source/Synthesis/oscillator.h **** class Oscillator
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 3
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 3
 
 
   21:../../../DaisySP/Source/Synthesis/oscillator.h **** {
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   84              		@ link register save eliminated.
   85              		.loc 3 23 15 is_stmt 0 view .LVU5
   86 0000 7047     		bx	lr
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 4
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 4
 
 
   87              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  105              		.loc 4 38 5 is_stmt 1 view -0
  106              		.cfi_startproc
  107              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 5
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 5
 
 
  108              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
    5:../../../libDaisy/src/sys/system.h **** 
    6:../../../libDaisy/src/sys/system.h **** #include <cstdint>
    7:../../../libDaisy/src/sys/system.h **** #include "per/tim.h"
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 6
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 6
 
 
    8:../../../libDaisy/src/sys/system.h **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   62:../../../libDaisy/src/sys/system.h ****     enum MemoryRegion
   63:../../../libDaisy/src/sys/system.h ****     {
   64:../../../libDaisy/src/sys/system.h ****         INTERNAL_FLASH = 0,
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 7
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 7
 
 
   65:../../../libDaisy/src/sys/system.h ****         ITCMRAM,
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   16:../../../libDaisy/src/hid/usb.h ****     @date December 2019
   17:../../../libDaisy/src/hid/usb.h **** */
   18:../../../libDaisy/src/hid/usb.h **** class UsbHandle
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 8
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 8
 
 
   19:../../../libDaisy/src/hid/usb.h **** {
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   25:../../../libDaisy/src/per/adc.h ****  *           one channel.
   26:../../../libDaisy/src/per/adc.h ****  *  @note    Sharing data lines to multiple muxes _is_ possible, but
   27:../../../libDaisy/src/per/adc.h ****  *           each channel sharing data lines must be set to the maximum
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 9
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 9
 
 
   28:../../../libDaisy/src/per/adc.h ****  *           number of channels, even if some multiplexers have fewer
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   82:../../../libDaisy/src/per/adc.h ****     dsy_gpio        mux_pin_[MUX_SEL_LAST]; /**< & */
   83:../../../libDaisy/src/per/adc.h ****     uint8_t         mux_channels_;          /**< & */
   84:../../../libDaisy/src/per/adc.h ****     ConversionSpeed speed_;
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 10
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 10
 
 
   85:../../../libDaisy/src/per/adc.h **** };
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   23:../../../libDaisy/src/hid/audio.h **** {
   24:../../../libDaisy/src/hid/audio.h ****   public:
   25:../../../libDaisy/src/hid/audio.h ****     /** Manually configurable details about the Audio Engine */
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 11
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 11
 
 
   26:../../../libDaisy/src/hid/audio.h ****     /** TODO: Figure out how to get samplerate in here. */
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   80:../../../libDaisy/src/hid/audio.h ****     */
   81:../../../libDaisy/src/hid/audio.h ****     typedef const float* InterleavingInputBuffer;
   82:../../../libDaisy/src/hid/audio.h **** 
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 12
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 12
 
 
   83:../../../libDaisy/src/hid/audio.h ****     /** Interleaving Output buffer 
@@ -697,39 +697,40 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  177              		.file 10 "reverbsc.cpp"
    1:reverbsc.cpp  **** #include "daisysp.h"
    2:reverbsc.cpp  **** #include "daisy_seed.h"
-   3:reverbsc.cpp  **** 
-   4:reverbsc.cpp  **** using namespace daisysp;
-   5:reverbsc.cpp  **** using namespace daisy;
-   6:reverbsc.cpp  **** 
-   7:reverbsc.cpp  **** static DaisySeed hw;
-   8:reverbsc.cpp  **** 
-   9:reverbsc.cpp  **** ReverbSc   verb;
-  10:reverbsc.cpp  **** Oscillator osc;
-  11:reverbsc.cpp  **** AdEnv      env;
-  12:reverbsc.cpp  **** Metro      tick;
-  13:reverbsc.cpp  **** 
-  14:reverbsc.cpp  **** static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
-  15:reverbsc.cpp  ****                           AudioHandle::InterleavingOutputBuffer out,
-  16:reverbsc.cpp  ****                           size_t                                size)
-  17:reverbsc.cpp  **** {
- 178              		.loc 10 17 1 is_stmt 1 view -0
+   3:reverbsc.cpp  **** #include "daisysp-lgpl.h"
+   4:reverbsc.cpp  **** 
+   5:reverbsc.cpp  **** using namespace daisysp;
+   6:reverbsc.cpp  **** using namespace daisy;
+   7:reverbsc.cpp  **** 
+   8:reverbsc.cpp  **** static DaisySeed hw;
+   9:reverbsc.cpp  **** 
+  10:reverbsc.cpp  **** ReverbSc   verb;
+  11:reverbsc.cpp  **** Oscillator osc;
+  12:reverbsc.cpp  **** AdEnv      env;
+  13:reverbsc.cpp  **** Metro      tick;
+  14:reverbsc.cpp  **** 
+  15:reverbsc.cpp  **** static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
+  16:reverbsc.cpp  ****                           AudioHandle::InterleavingOutputBuffer out,
+  17:reverbsc.cpp  ****                           size_t                                size)
+  18:reverbsc.cpp  **** {
+ 178              		.loc 10 18 1 is_stmt 1 view -0
  179              		.cfi_startproc
  180              		@ args = 0, pretend = 0, frame = 8
  181              		@ frame_needed = 0, uses_anonymous_args = 0
-  18:reverbsc.cpp  ****     for(size_t i = 0; i < size; i += 2)
- 182              		.loc 10 18 5 view .LVU19
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 13
+  19:reverbsc.cpp  ****     for(size_t i = 0; i < size; i += 2)
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 13
 
 
+ 182              		.loc 10 19 5 view .LVU19
  183              	.LBB113:
- 184              		.loc 10 18 25 view .LVU20
+ 184              		.loc 10 19 25 view .LVU20
  185 0000 62B3     		cbz	r2, .L19
  186 0002 013A     		subs	r2, r2, #1
  187              	.LVL6:
- 188              		.loc 10 18 25 is_stmt 0 view .LVU21
+ 188              		.loc 10 19 25 is_stmt 0 view .LVU21
  189              	.LBE113:
-  17:reverbsc.cpp  ****     for(size_t i = 0; i < size; i += 2)
- 190              		.loc 10 17 1 view .LVU22
+  18:reverbsc.cpp  ****     for(size_t i = 0; i < size; i += 2)
+ 190              		.loc 10 18 1 view .LVU22
  191 0004 F0B5     		push	{r4, r5, r6, r7, lr}
  192              		.cfi_def_cfa_offset 20
  193              		.cfi_offset 4, -20
@@ -739,12 +740,12 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  197              		.cfi_offset 14, -4
  198 0006 0C46     		mov	r4, r1
  199              	.LBB122:
- 200              		.loc 10 18 25 view .LVU23
+ 200              		.loc 10 19 25 view .LVU23
  201 0008 0025     		movs	r5, #0
  202 000a 5708     		lsrs	r7, r2, #1
  203              	.LBE122:
-  17:reverbsc.cpp  ****     for(size_t i = 0; i < size; i += 2)
- 204              		.loc 10 17 1 view .LVU24
+  18:reverbsc.cpp  ****     for(size_t i = 0; i < size; i += 2)
+ 204              		.loc 10 18 1 view .LVU24
  205 000c 2DED028B 		vpush.64	{d8}
  206              		.cfi_def_cfa_offset 28
  207              		.cfi_offset 80, -28
@@ -755,16 +756,16 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  212              	.L10:
  213              	.LBB123:
  214              	.LBB114:
-  19:reverbsc.cpp  ****     {
-  20:reverbsc.cpp  ****         if(tick.Process())
- 215              		.loc 10 20 9 is_stmt 1 view .LVU25
- 216              		.loc 10 20 24 is_stmt 0 view .LVU26
+  20:reverbsc.cpp  ****     {
+  21:reverbsc.cpp  ****         if(tick.Process())
+ 215              		.loc 10 21 9 is_stmt 1 view .LVU25
+ 216              		.loc 10 21 24 is_stmt 0 view .LVU26
  217 0012 1348     		ldr	r0, .L22
  218 0014 FFF7FEFF 		bl	_ZN7daisysp5Metro7ProcessEv
  219              	.LVL8:
-  21:reverbsc.cpp  ****         {
-  22:reverbsc.cpp  ****             env.Trigger();
- 220              		.loc 10 22 13 is_stmt 1 view .LVU27
+  22:reverbsc.cpp  ****         {
+  23:reverbsc.cpp  ****             env.Trigger();
+ 220              		.loc 10 23 13 is_stmt 1 view .LVU27
  221              	.LBB115:
  222              	.LBI115:
   44:../../../DaisySP/Source/Control/adenv.h ****     /** Initializes the ad envelope.
@@ -777,10 +778,10 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   51:../../../DaisySP/Source/Control/adenv.h ****             - max = 1
   52:../../../DaisySP/Source/Control/adenv.h **** 
   53:../../../DaisySP/Source/Control/adenv.h ****         \param sample_rate      sample rate of the audio engine being run
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 14
+
+
   54:../../../DaisySP/Source/Control/adenv.h ****     */
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 14
-
-
   55:../../../DaisySP/Source/Control/adenv.h ****     void Init(float sample_rate);
   56:../../../DaisySP/Source/Control/adenv.h **** 
   57:../../../DaisySP/Source/Control/adenv.h ****     /** Processes the current sample of the envelope. This should be called once
@@ -797,12 +798,12 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  226              		.loc 1 64 29 is_stmt 0 view .LVU30
  227              	.LBE116:
  228              	.LBE115:
-  23:reverbsc.cpp  ****         }
-  24:reverbsc.cpp  **** 
-  25:reverbsc.cpp  ****         float sig = env.Process() * osc.Process();
- 229              		.loc 10 25 9 is_stmt 1 view .LVU31
-  20:reverbsc.cpp  ****         {
- 230              		.loc 10 20 24 is_stmt 0 view .LVU32
+  24:reverbsc.cpp  ****         }
+  25:reverbsc.cpp  **** 
+  26:reverbsc.cpp  ****         float sig = env.Process() * osc.Process();
+ 229              		.loc 10 26 9 is_stmt 1 view .LVU31
+  21:reverbsc.cpp  ****         {
+ 230              		.loc 10 21 24 is_stmt 0 view .LVU32
  231 0018 0346     		mov	r3, r0
  232              	.LBB119:
  233              	.LBB117:
@@ -810,10 +811,10 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  235 001a 0121     		movs	r1, #1
  236              	.LBE117:
  237              	.LBE119:
- 238              		.loc 10 25 32 view .LVU34
+ 238              		.loc 10 26 32 view .LVU34
  239 001c 1148     		ldr	r0, .L22+4
-  20:reverbsc.cpp  ****         {
- 240              		.loc 10 20 9 view .LVU35
+  21:reverbsc.cpp  ****         {
+ 240              		.loc 10 21 9 view .LVU35
  241 001e 0BB1     		cbz	r3, .L9
  242              	.LBB120:
  243              	.LBB118:
@@ -822,60 +823,61 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  246              	.L9:
  247              	.LBE118:
  248              	.LBE120:
- 249              		.loc 10 25 32 discriminator 2 view .LVU37
+ 249              		.loc 10 26 32 discriminator 2 view .LVU37
  250 0024 FFF7FEFF 		bl	_ZN7daisysp5AdEnv7ProcessEv
  251              	.LVL9:
  252 0028 B0EE408A 		vmov.f32	s16, s0
- 253              		.loc 10 25 48 discriminator 2 view .LVU38
+ 253              		.loc 10 26 48 discriminator 2 view .LVU38
  254 002c 0E48     		ldr	r0, .L22+8
-  26:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
- 255              		.loc 10 26 21 discriminator 2 view .LVU39
+  27:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
+ 255              		.loc 10 27 21 discriminator 2 view .LVU39
  256 002e 261D     		adds	r6, r4, #4
-  25:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
- 257              		.loc 10 25 48 discriminator 2 view .LVU40
+  26:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
+ 257              		.loc 10 26 48 discriminator 2 view .LVU40
  258 0030 FFF7FEFF 		bl	_ZN7daisysp10Oscillator7ProcessEv
  259              	.LVL10:
- 260              		.loc 10 26 21 discriminator 2 view .LVU41
+ 260              		.loc 10 27 21 discriminator 2 view .LVU41
  261 0034 03AA     		add	r2, sp, #12
-  25:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 15
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 15
 
 
- 262              		.loc 10 25 35 discriminator 2 view .LVU42
+  26:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
+ 262              		.loc 10 26 35 discriminator 2 view .LVU42
  263 0036 28EE000A 		vmul.f32	s0, s16, s0
- 264              		.loc 10 26 21 discriminator 2 view .LVU43
+ 264              		.loc 10 27 21 discriminator 2 view .LVU43
  265 003a 2346     		mov	r3, r4
  266 003c 1146     		mov	r1, r2
  267 003e 0B48     		ldr	r0, .L22+12
  268 0040 0096     		str	r6, [sp]
  269              	.LBE114:
-  18:reverbsc.cpp  ****     {
- 270              		.loc 10 18 25 discriminator 2 view .LVU44
+  19:reverbsc.cpp  ****     {
+ 270              		.loc 10 19 25 discriminator 2 view .LVU44
  271 0042 0834     		adds	r4, r4, #8
  272              	.LBB121:
-  25:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
- 273              		.loc 10 25 49 discriminator 2 view .LVU45
+  26:reverbsc.cpp  ****         verb.Process(sig, sig, &out[i], &out[i + 1]);
+ 273              		.loc 10 26 49 discriminator 2 view .LVU45
  274 0044 8DED030A 		vstr.32	s0, [sp, #12]
- 275              		.loc 10 26 9 is_stmt 1 discriminator 2 view .LVU46
- 276              		.loc 10 26 21 is_stmt 0 discriminator 2 view .LVU47
+ 275              		.loc 10 27 9 is_stmt 1 discriminator 2 view .LVU46
+ 276              		.loc 10 27 21 is_stmt 0 discriminator 2 view .LVU47
  277 0048 FFF7FEFF 		bl	_ZN7daisysp8ReverbSc7ProcessERKfS2_PfS3_
  278              	.LVL11:
  279              	.LBE121:
-  18:reverbsc.cpp  ****     {
- 280              		.loc 10 18 5 is_stmt 1 discriminator 2 view .LVU48
-  18:reverbsc.cpp  ****     {
- 281              		.loc 10 18 25 discriminator 2 view .LVU49
+  19:reverbsc.cpp  ****     {
+ 280              		.loc 10 19 5 is_stmt 1 discriminator 2 view .LVU48
+  19:reverbsc.cpp  ****     {
+ 281              		.loc 10 19 25 discriminator 2 view .LVU49
  282 004c 6B1C     		adds	r3, r5, #1
  283 004e BD42     		cmp	r5, r7
  284 0050 1D46     		mov	r5, r3
  285              	.LVL12:
-  18:reverbsc.cpp  ****     {
- 286              		.loc 10 18 25 is_stmt 0 discriminator 2 view .LVU50
+  19:reverbsc.cpp  ****     {
+ 286              		.loc 10 19 25 is_stmt 0 discriminator 2 view .LVU50
  287 0052 DED1     		bne	.L10
  288              	.LBE123:
-  27:reverbsc.cpp  ****     }
-  28:reverbsc.cpp  **** }
- 289              		.loc 10 28 1 view .LVU51
+  28:reverbsc.cpp  ****         
+  29:reverbsc.cpp  ****     }
+  30:reverbsc.cpp  **** }
+ 289              		.loc 10 30 1 view .LVU51
  290 0054 05B0     		add	sp, sp, #20
  291              		.cfi_def_cfa_offset 28
  292              		@ sp needed
@@ -892,15 +894,15 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  303              		.cfi_restore 6
  304              		.cfi_restore 7
  305              		.cfi_restore 14
- 306              		.loc 10 28 1 view .LVU52
+ 306              		.loc 10 30 1 view .LVU52
  307 005c 7047     		bx	lr
  308              	.L23:
  309 005e 00BF     		.align	2
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 16
+
+
  310              	.L22:
  311 0060 00000000 		.word	.LANCHOR0
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 16
-
-
  312 0064 00000000 		.word	.LANCHOR1
  313 0068 00000000 		.word	.LANCHOR2
  314 006c 00000000 		.word	verb
@@ -916,51 +918,51 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  325              		.fpu fpv5-d16
  327              	main:
  328              	.LFB4847:
-  29:reverbsc.cpp  **** 
-  30:reverbsc.cpp  **** int main(void)
-  31:reverbsc.cpp  **** {
- 329              		.loc 10 31 1 is_stmt 1 view -0
+  31:reverbsc.cpp  **** 
+  32:reverbsc.cpp  **** int main(void)
+  33:reverbsc.cpp  **** {
+ 329              		.loc 10 33 1 is_stmt 1 view -0
  330              		.cfi_startproc
  331              		@ args = 0, pretend = 0, frame = 0
  332              		@ frame_needed = 0, uses_anonymous_args = 0
-  32:reverbsc.cpp  ****     // initialize seed hardware and whitenoise daisysp module
-  33:reverbsc.cpp  ****     float sample_rate;
- 333              		.loc 10 33 5 view .LVU54
-  34:reverbsc.cpp  ****     hw.Configure();
- 334              		.loc 10 34 5 view .LVU55
-  31:reverbsc.cpp  ****     // initialize seed hardware and whitenoise daisysp module
- 335              		.loc 10 31 1 is_stmt 0 view .LVU56
+  34:reverbsc.cpp  ****     // initialize seed hardware and whitenoise daisysp module
+  35:reverbsc.cpp  ****     float sample_rate;
+ 333              		.loc 10 35 5 view .LVU54
+  36:reverbsc.cpp  ****     hw.Configure();
+ 334              		.loc 10 36 5 view .LVU55
+  33:reverbsc.cpp  ****     // initialize seed hardware and whitenoise daisysp module
+ 335              		.loc 10 33 1 is_stmt 0 view .LVU56
  336 0000 70B5     		push	{r4, r5, r6, lr}
  337              		.cfi_def_cfa_offset 16
  338              		.cfi_offset 4, -16
  339              		.cfi_offset 5, -12
  340              		.cfi_offset 6, -8
  341              		.cfi_offset 14, -4
- 342              		.loc 10 34 17 view .LVU57
+ 342              		.loc 10 36 17 view .LVU57
  343 0002 2E48     		ldr	r0, .L27
-  35:reverbsc.cpp  ****     hw.Init();
-  36:reverbsc.cpp  ****     hw.SetAudioBlockSize(4);
-  37:reverbsc.cpp  ****     sample_rate = hw.AudioSampleRate();
-  38:reverbsc.cpp  **** 
-  39:reverbsc.cpp  ****     //setup reverb
-  40:reverbsc.cpp  ****     verb.Init(sample_rate);
- 344              		.loc 10 40 14 view .LVU58
+  37:reverbsc.cpp  ****     hw.Init();
+  38:reverbsc.cpp  ****     hw.SetAudioBlockSize(4);
+  39:reverbsc.cpp  ****     sample_rate = hw.AudioSampleRate();
+  40:reverbsc.cpp  **** 
+  41:reverbsc.cpp  ****     //setup reverb
+  42:reverbsc.cpp  ****     verb.Init(sample_rate);
+ 344              		.loc 10 42 14 view .LVU58
  345 0004 2E4E     		ldr	r6, .L27+4
-  41:reverbsc.cpp  ****     verb.SetFeedback(0.9f);
-  42:reverbsc.cpp  ****     verb.SetLpFreq(18000.0f);
-  43:reverbsc.cpp  **** 
-  44:reverbsc.cpp  ****     //setup metro
-  45:reverbsc.cpp  ****     tick.Init(1.f, sample_rate);
-  46:reverbsc.cpp  **** 
-  47:reverbsc.cpp  ****     //setup envelope
-  48:reverbsc.cpp  ****     env.Init(sample_rate);
- 346              		.loc 10 48 13 view .LVU59
+  43:reverbsc.cpp  ****     verb.SetFeedback(0.9f);
+  44:reverbsc.cpp  ****     verb.SetLpFreq(18000.0f);
+  45:reverbsc.cpp  **** 
+  46:reverbsc.cpp  ****     //setup metro
+  47:reverbsc.cpp  ****     tick.Init(1.f, sample_rate);
+  48:reverbsc.cpp  **** 
+  49:reverbsc.cpp  ****     //setup envelope
+  50:reverbsc.cpp  ****     env.Init(sample_rate);
+ 346              		.loc 10 50 13 view .LVU59
  347 0006 2F4D     		ldr	r5, .L27+8
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 17
+
+
  348              	.LBB144:
  349              	.LBB145:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 17
-
-
   25:../../../DaisySP/Source/Synthesis/oscillator.h ****     /** Choices for output waveforms, POLYBLEP are appropriately labeled. Others are naive forms.
   26:../../../DaisySP/Source/Synthesis/oscillator.h ****     */
   27:../../../DaisySP/Source/Synthesis/oscillator.h ****     enum
@@ -993,53 +995,53 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  351 0008 2F4C     		ldr	r4, .L27+12
  352              	.LBE145:
  353              	.LBE144:
-  31:reverbsc.cpp  ****     // initialize seed hardware and whitenoise daisysp module
- 354              		.loc 10 31 1 view .LVU61
+  33:reverbsc.cpp  ****     // initialize seed hardware and whitenoise daisysp module
+ 354              		.loc 10 33 1 view .LVU61
  355 000a 2DED028B 		vpush.64	{d8}
  356              		.cfi_def_cfa_offset 24
  357              		.cfi_offset 80, -24
  358              		.cfi_offset 81, -20
-  34:reverbsc.cpp  ****     hw.Init();
- 359              		.loc 10 34 17 view .LVU62
+  36:reverbsc.cpp  ****     hw.Init();
+ 359              		.loc 10 36 17 view .LVU62
  360 000e FFF7FEFF 		bl	_ZN5daisy9DaisySeed9ConfigureEv
  361              	.LVL14:
-  35:reverbsc.cpp  ****     hw.SetAudioBlockSize(4);
- 362              		.loc 10 35 5 is_stmt 1 view .LVU63
-  35:reverbsc.cpp  ****     hw.SetAudioBlockSize(4);
- 363              		.loc 10 35 12 is_stmt 0 view .LVU64
+  37:reverbsc.cpp  ****     hw.SetAudioBlockSize(4);
+ 362              		.loc 10 37 5 is_stmt 1 view .LVU63
+  37:reverbsc.cpp  ****     hw.SetAudioBlockSize(4);
+ 363              		.loc 10 37 12 is_stmt 0 view .LVU64
  364 0012 0021     		movs	r1, #0
  365 0014 2948     		ldr	r0, .L27
  366 0016 FFF7FEFF 		bl	_ZN5daisy9DaisySeed4InitEb
  367              	.LVL15:
-  36:reverbsc.cpp  ****     sample_rate = hw.AudioSampleRate();
- 368              		.loc 10 36 5 is_stmt 1 view .LVU65
-  36:reverbsc.cpp  ****     sample_rate = hw.AudioSampleRate();
- 369              		.loc 10 36 25 is_stmt 0 view .LVU66
+  38:reverbsc.cpp  ****     sample_rate = hw.AudioSampleRate();
+ 368              		.loc 10 38 5 is_stmt 1 view .LVU65
+  38:reverbsc.cpp  ****     sample_rate = hw.AudioSampleRate();
+ 369              		.loc 10 38 25 is_stmt 0 view .LVU66
  370 001a 0421     		movs	r1, #4
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 18
+
+
  371 001c 2748     		ldr	r0, .L27
  372 001e FFF7FEFF 		bl	_ZN5daisy9DaisySeed17SetAudioBlockSizeEj
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 18
-
-
  373              	.LVL16:
-  37:reverbsc.cpp  **** 
- 374              		.loc 10 37 5 is_stmt 1 view .LVU67
-  37:reverbsc.cpp  **** 
- 375              		.loc 10 37 37 is_stmt 0 view .LVU68
+  39:reverbsc.cpp  **** 
+ 374              		.loc 10 39 5 is_stmt 1 view .LVU67
+  39:reverbsc.cpp  **** 
+ 375              		.loc 10 39 37 is_stmt 0 view .LVU68
  376 0022 2648     		ldr	r0, .L27
  377 0024 FFF7FEFF 		bl	_ZN5daisy9DaisySeed15AudioSampleRateEv
  378              	.LVL17:
  379 0028 B0EE408A 		vmov.f32	s16, s0
  380              	.LVL18:
-  40:reverbsc.cpp  ****     verb.SetFeedback(0.9f);
- 381              		.loc 10 40 5 is_stmt 1 view .LVU69
-  40:reverbsc.cpp  ****     verb.SetFeedback(0.9f);
- 382              		.loc 10 40 14 is_stmt 0 view .LVU70
+  42:reverbsc.cpp  ****     verb.SetFeedback(0.9f);
+ 381              		.loc 10 42 5 is_stmt 1 view .LVU69
+  42:reverbsc.cpp  ****     verb.SetFeedback(0.9f);
+ 382              		.loc 10 42 14 is_stmt 0 view .LVU70
  383 002c 3046     		mov	r0, r6
  384 002e FFF7FEFF 		bl	_ZN7daisysp8ReverbSc4InitEf
  385              	.LVL19:
-  41:reverbsc.cpp  ****     verb.SetLpFreq(18000.0f);
- 386              		.loc 10 41 5 is_stmt 1 view .LVU71
+  43:reverbsc.cpp  ****     verb.SetLpFreq(18000.0f);
+ 386              		.loc 10 43 5 is_stmt 1 view .LVU71
  387              	.LBB150:
  388              	.LBI150:
   39:../../../DaisySP/DaisySP-LGPL/Source/Effects/reverbsc.h ****     /** Initializes the reverb module, and sets the sample_rate at which the Process function will 
@@ -1072,15 +1074,15 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  399 0034 264B     		ldr	r3, .L27+20
  400              	.LBE154:
  401              	.LBE153:
-  45:reverbsc.cpp  **** 
- 402              		.loc 10 45 14 view .LVU76
+  47:reverbsc.cpp  **** 
+ 402              		.loc 10 47 14 view .LVU76
  403 0036 F0EE480A 		vmov.f32	s1, s16
  404 003a B7EE000A 		vmov.f32	s0, #1.0e+0
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 19
+
+
  405 003e 2548     		ldr	r0, .L27+24
  406              	.LBB156:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 19
-
-
  407              	.LBB152:
   51:../../../DaisySP/DaisySP-LGPL/Source/Effects/reverbsc.h ****     /** controls the internal dampening filter's cutoff frequency.
  408              		.loc 4 51 58 view .LVU77
@@ -1090,8 +1092,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  411              		.loc 4 51 58 view .LVU78
  412              	.LBE152:
  413              	.LBE156:
-  42:reverbsc.cpp  **** 
- 414              		.loc 10 42 5 is_stmt 1 view .LVU79
+  44:reverbsc.cpp  **** 
+ 414              		.loc 10 44 5 is_stmt 1 view .LVU79
  415              	.LBB157:
  416              	.LBI153:
  417              		.loc 4 55 17 view .LVU80
@@ -1103,20 +1105,20 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  423              		.loc 4 55 56 view .LVU83
  424              	.LBE155:
  425              	.LBE157:
-  45:reverbsc.cpp  **** 
- 426              		.loc 10 45 5 is_stmt 1 view .LVU84
-  45:reverbsc.cpp  **** 
- 427              		.loc 10 45 14 is_stmt 0 view .LVU85
+  47:reverbsc.cpp  **** 
+ 426              		.loc 10 47 5 is_stmt 1 view .LVU84
+  47:reverbsc.cpp  **** 
+ 427              		.loc 10 47 14 is_stmt 0 view .LVU85
  428 0044 FFF7FEFF 		bl	_ZN7daisysp5Metro4InitEff
  429              	.LVL22:
- 430              		.loc 10 48 5 is_stmt 1 view .LVU86
- 431              		.loc 10 48 13 is_stmt 0 view .LVU87
+ 430              		.loc 10 50 5 is_stmt 1 view .LVU86
+ 431              		.loc 10 50 13 is_stmt 0 view .LVU87
  432 0048 B0EE480A 		vmov.f32	s0, s16
  433 004c 2846     		mov	r0, r5
  434 004e FFF7FEFF 		bl	_ZN7daisysp5AdEnv4InitEf
  435              	.LVL23:
-  49:reverbsc.cpp  ****     env.SetTime(ADENV_SEG_ATTACK, .1f);
- 436              		.loc 10 49 5 is_stmt 1 view .LVU88
+  51:reverbsc.cpp  ****     env.SetTime(ADENV_SEG_ATTACK, .1f);
+ 436              		.loc 10 51 5 is_stmt 1 view .LVU88
  437              	.LBB158:
  438              	.LBI158:
   65:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the length of time (in seconds) for a specific segment. */
@@ -1136,11 +1138,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   72:../../../DaisySP/Source/Control/adenv.h ****         Input range: -FLTmax_, to FLTmax_
   73:../../../DaisySP/Source/Control/adenv.h ****     */
   74:../../../DaisySP/Source/Control/adenv.h ****     inline void SetMin(float min) { min_ = min; }
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 20
+
+
   75:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the maximum value of the envelope output.
   76:../../../DaisySP/Source/Control/adenv.h ****         Input range: -FLTmax_, to FLTmax_
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 20
-
-
   77:../../../DaisySP/Source/Control/adenv.h ****     */
   78:../../../DaisySP/Source/Control/adenv.h ****     inline void SetMax(float max) { max_ = max; }
  446              		.loc 1 78 42 is_stmt 0 view .LVU91
@@ -1191,16 +1193,16 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  479              		.loc 1 66 71 view .LVU99
  480              	.LBE161:
  481              	.LBE170:
-  50:reverbsc.cpp  ****     env.SetTime(ADENV_SEG_DECAY, .1f);
- 482              		.loc 10 50 5 is_stmt 1 view .LVU100
+  52:reverbsc.cpp  ****     env.SetTime(ADENV_SEG_DECAY, .1f);
+ 482              		.loc 10 52 5 is_stmt 1 view .LVU100
  483              	.LBB171:
  484              	.LBI171:
   66:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the amount of curve applied. A positve value will create a log
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 21
+
+
  485              		.loc 1 66 17 view .LVU101
  486              	.LBB172:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 21
-
-
   66:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the amount of curve applied. A positve value will create a log
  487              		.loc 1 66 52 view .LVU102
   66:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the amount of curve applied. A positve value will create a log
@@ -1211,8 +1213,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  491              		.loc 1 66 71 view .LVU104
  492              	.LBE172:
  493              	.LBE171:
-  51:reverbsc.cpp  ****     env.SetMax(1.f);
- 494              		.loc 10 51 5 is_stmt 1 view .LVU105
+  53:reverbsc.cpp  ****     env.SetMax(1.f);
+ 494              		.loc 10 53 5 is_stmt 1 view .LVU105
  495              	.LBB173:
  496              	.LBI162:
  497              		.loc 1 78 17 view .LVU106
@@ -1224,8 +1226,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  503              		.loc 1 78 42 view .LVU109
  504              	.LBE164:
  505              	.LBE173:
-  52:reverbsc.cpp  ****     env.SetMin(0.f);
- 506              		.loc 10 52 5 is_stmt 1 view .LVU110
+  54:reverbsc.cpp  ****     env.SetMin(0.f);
+ 506              		.loc 10 54 5 is_stmt 1 view .LVU110
  507              	.LBB174:
  508              	.LBI165:
   74:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the maximum value of the envelope output.
@@ -1241,8 +1243,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  515              		.loc 1 74 42 view .LVU114
  516              	.LBE167:
  517              	.LBE174:
-  53:reverbsc.cpp  ****     env.SetCurve(0.f); //linear
- 518              		.loc 10 53 5 is_stmt 1 view .LVU115
+  55:reverbsc.cpp  ****     env.SetCurve(0.f); //linear
+ 518              		.loc 10 55 5 is_stmt 1 view .LVU115
  519              	.LBB175:
  520              	.LBI175:
   70:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the minimum value of the envelope output.
@@ -1256,15 +1258,15 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  526              	.LVL28:
   70:../../../DaisySP/Source/Control/adenv.h ****     /** Sets the minimum value of the envelope output.
  527              		.loc 1 70 56 view .LVU119
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 22
+
+
  528              	.LBE176:
  529              	.LBE175:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 22
-
-
-  54:reverbsc.cpp  **** 
-  55:reverbsc.cpp  ****     //setup oscillator
-  56:reverbsc.cpp  ****     osc.Init(sample_rate);
- 530              		.loc 10 56 5 is_stmt 1 view .LVU120
+  56:reverbsc.cpp  **** 
+  57:reverbsc.cpp  ****     //setup oscillator
+  58:reverbsc.cpp  ****     osc.Init(sample_rate);
+ 530              		.loc 10 58 5 is_stmt 1 view .LVU120
  531              	.LBB177:
  532              	.LBI144:
   50:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1316,11 +1318,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  563              	.LBB179:
   62:../../../DaisySP/Source/Synthesis/oscillator.h ****     }
   63:../../../DaisySP/Source/Synthesis/oscillator.h **** 
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 23
+
+
   64:../../../DaisySP/Source/Synthesis/oscillator.h **** 
   65:../../../DaisySP/Source/Synthesis/oscillator.h ****     /** Changes the frequency of the Oscillator, and recalculates phase increment.
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 23
-
-
   66:../../../DaisySP/Source/Synthesis/oscillator.h ****     */
   67:../../../DaisySP/Source/Synthesis/oscillator.h ****     inline void SetFreq(const float f)
   68:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1365,8 +1367,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  592              		.loc 2 61 9 is_stmt 0 view .LVU146
  593              	.LBE149:
  594              	.LBE185:
-  57:reverbsc.cpp  ****     osc.SetFreq(440.f);
- 595              		.loc 10 57 5 is_stmt 1 view .LVU147
+  59:reverbsc.cpp  ****     osc.SetFreq(440.f);
+ 595              		.loc 10 59 5 is_stmt 1 view .LVU147
  596              	.LBB186:
  597              	.LBI178:
   67:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1376,11 +1378,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  600              		.loc 2 69 9 view .LVU149
   69:../../../DaisySP/Source/Synthesis/oscillator.h ****         phase_inc_ = CalcPhaseInc(f);
  601              		.loc 2 69 20 is_stmt 0 view .LVU150
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 24
+
+
  602 00a2 84ED020A 		vstr.32	s0, [r4, #8]
  603              		.loc 2 70 9 is_stmt 1 view .LVU151
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 24
-
-
  604              		.loc 2 70 34 is_stmt 0 view .LVU152
  605 00a6 FFF7FEFF 		bl	_ZN7daisysp10Oscillator12CalcPhaseIncEf
  606              	.LVL31:
@@ -1403,11 +1405,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  612 00aa 0123     		movs	r3, #1
  613              	.LBE188:
  614              	.LBE187:
-  58:reverbsc.cpp  ****     osc.SetWaveform(Oscillator::WAVE_TRI);
-  59:reverbsc.cpp  **** 
-  60:reverbsc.cpp  ****     // start callback
-  61:reverbsc.cpp  ****     hw.StartAudio(AudioCallback);
- 615              		.loc 10 61 18 view .LVU154
+  60:reverbsc.cpp  ****     osc.SetWaveform(Oscillator::WAVE_TRI);
+  61:reverbsc.cpp  **** 
+  62:reverbsc.cpp  ****     // start callback
+  63:reverbsc.cpp  ****     hw.StartAudio(AudioCallback);
+ 615              		.loc 10 63 18 view .LVU154
  616 00ac 0D49     		ldr	r1, .L27+40
  617 00ae 0348     		ldr	r0, .L27
  618              	.LBB190:
@@ -1420,8 +1422,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  623              		.loc 2 70 20 view .LVU156
  624              	.LBE182:
  625              	.LBE190:
-  58:reverbsc.cpp  ****     osc.SetWaveform(Oscillator::WAVE_TRI);
- 626              		.loc 10 58 5 is_stmt 1 view .LVU157
+  60:reverbsc.cpp  ****     osc.SetWaveform(Oscillator::WAVE_TRI);
+ 626              		.loc 10 60 5 is_stmt 1 view .LVU157
  627              	.LBB191:
  628              	.LBI187:
   79:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1434,19 +1436,19 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  635              		.loc 2 81 19 view .LVU161
  636              	.LBE189:
  637              	.LBE191:
- 638              		.loc 10 61 5 is_stmt 1 view .LVU162
- 639              		.loc 10 61 18 is_stmt 0 view .LVU163
+ 638              		.loc 10 63 5 is_stmt 1 view .LVU162
+ 639              		.loc 10 63 18 is_stmt 0 view .LVU163
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 25
+
+
  640 00b6 FFF7FEFF 		bl	_ZN5daisy9DaisySeed10StartAudioEPFvPKfPfjE
  641              	.LVL34:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 25
-
-
  642              	.L25:
-  62:reverbsc.cpp  ****     while(1) {}
- 643              		.loc 10 62 5 is_stmt 1 discriminator 1 view .LVU164
- 644              		.loc 10 62 5 discriminator 1 view .LVU165
- 645              		.loc 10 62 5 discriminator 1 view .LVU166
- 646              		.loc 10 62 5 discriminator 1 view .LVU167
+  64:reverbsc.cpp  ****     while(1) {}
+ 643              		.loc 10 64 5 is_stmt 1 discriminator 1 view .LVU164
+ 644              		.loc 10 64 5 discriminator 1 view .LVU165
+ 645              		.loc 10 64 5 discriminator 1 view .LVU166
+ 646              		.loc 10 64 5 discriminator 1 view .LVU167
  647 00ba FEE7     		b	.L25
  648              	.L28:
  649              		.align	2
@@ -1473,14 +1475,14 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  671              		.fpu fpv5-d16
  673              	_GLOBAL__sub_I_verb:
  674              	.LFB5410:
-  63:reverbsc.cpp  **** }
- 675              		.loc 10 63 1 view -0
+  65:reverbsc.cpp  **** }
+ 675              		.loc 10 65 1 view -0
  676              		.cfi_startproc
  677              		@ args = 0, pretend = 0, frame = 0
  678              		@ frame_needed = 0, uses_anonymous_args = 0
  679              	.LBB221:
  680              	.LBI221:
- 681              		.loc 10 63 1 view .LVU169
+ 681              		.loc 10 65 1 view .LVU169
  682              	.LVL35:
  683              	.LBB222:
  684              	.LBB223:
@@ -1496,11 +1498,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
    3:../../../libDaisy/src/per/qspi.h **** 
    4:../../../libDaisy/src/per/qspi.h **** #ifndef UNIT_TEST // for unit tests, a dummy implementation
    5:../../../libDaisy/src/per/qspi.h **** 
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 26
+
+
    6:../../../libDaisy/src/per/qspi.h **** #include <cstdint>
    7:../../../libDaisy/src/per/qspi.h **** #include "daisy_core.h" // Added for dsy_gpio_pin typedef
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 26
-
-
    8:../../../libDaisy/src/per/qspi.h **** 
    9:../../../libDaisy/src/per/qspi.h **** #define DSY_QSPI_TEXT       \
   10:../../../libDaisy/src/per/qspi.h ****     __attribute__((section( \
@@ -1556,11 +1558,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   60:../../../libDaisy/src/per/qspi.h ****         enum Device
   61:../../../libDaisy/src/per/qspi.h ****         {
   62:../../../libDaisy/src/per/qspi.h ****             IS25LP080D,  /**< & */
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 27
+
+
   63:../../../libDaisy/src/per/qspi.h ****             IS25LP064A,  /**< & */
   64:../../../libDaisy/src/per/qspi.h ****             DEVICE_LAST, /**< & */
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 27
-
-
   65:../../../libDaisy/src/per/qspi.h ****         };
   66:../../../libDaisy/src/per/qspi.h **** 
   67:../../../libDaisy/src/per/qspi.h ****         /** 
@@ -1616,11 +1618,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  117:../../../libDaisy/src/per/qspi.h ****         For IS25LP*, page size is 256 bytes.
  118:../../../libDaisy/src/per/qspi.h ****         \param address Address to write to
  119:../../../libDaisy/src/per/qspi.h ****         \param size Buffer size
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 28
+
+
  120:../../../libDaisy/src/per/qspi.h ****         \param buffer Buffer to write
  121:../../../libDaisy/src/per/qspi.h ****         \return Result::OK or Result::ERR
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 28
-
-
  122:../../../libDaisy/src/per/qspi.h ****         */
  123:../../../libDaisy/src/per/qspi.h ****     Result WritePage(uint32_t address, uint32_t size, uint8_t* buffer);
  124:../../../libDaisy/src/per/qspi.h **** 
@@ -1672,15 +1674,15 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  694              	.LBE223:
  695              	.LBE222:
  696              	.LBE221:
- 697              		.loc 10 63 1 is_stmt 0 view .LVU172
+ 697              		.loc 10 65 1 is_stmt 0 view .LVU172
  698 0000 08B5     		push	{r3, lr}
  699              		.cfi_def_cfa_offset 8
  700              		.cfi_offset 3, -8
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 29
+
+
  701              		.cfi_offset 14, -4
  702              	.LBB254:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 29
-
-
  703              	.LBB252:
  704              	.LBB246:
  705              	.LBB244:
@@ -1695,8 +1697,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  714              	.LBE230:
  715              	.LBE244:
  716              	.LBE246:
-   7:reverbsc.cpp  **** 
- 717              		.loc 10 7 18 view .LVU174
+   8:reverbsc.cpp  **** 
+ 717              		.loc 10 8 18 view .LVU174
  718 0006 104A     		ldr	r2, .L31+4
  719              	.LBB247:
  720              	.LBB245:
@@ -1736,11 +1738,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  749              	.LBI236:
  750              		.file 12 "../../../libDaisy/src/per/dac.h"
    1:../../../libDaisy/src/per/dac.h **** #pragma once
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 30
+
+
    2:../../../libDaisy/src/per/dac.h **** #ifndef DSY_DAC_H
    3:../../../libDaisy/src/per/dac.h **** #define DSY_DAC_H
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 30
-
-
    4:../../../libDaisy/src/per/dac.h **** 
    5:../../../libDaisy/src/per/dac.h **** #include "daisy_core.h"
    6:../../../libDaisy/src/per/dac.h **** 
@@ -1796,11 +1798,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   56:../../../libDaisy/src/per/dac.h ****     enum class BitDepth
   57:../../../libDaisy/src/per/dac.h ****     {
   58:../../../libDaisy/src/per/dac.h ****         BITS_8,
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 31
+
+
   59:../../../libDaisy/src/per/dac.h ****         BITS_12
   60:../../../libDaisy/src/per/dac.h ****     };
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 31
-
-
   61:../../../libDaisy/src/per/dac.h **** 
   62:../../../libDaisy/src/per/dac.h ****     /** Sets whether the DAC output is buffered for higher drive ability. */
   63:../../../libDaisy/src/per/dac.h ****     enum class BufferState
@@ -1856,11 +1858,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
    2:../../../libDaisy/src/per/sai.h **** #ifndef DSY_SAI_H
    3:../../../libDaisy/src/per/sai.h **** #define DSY_SAI_H
    4:../../../libDaisy/src/per/sai.h **** 
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 32
+
+
    5:../../../libDaisy/src/per/sai.h **** #include "daisy_core.h"
    6:../../../libDaisy/src/per/sai.h **** 
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 32
-
-
    7:../../../libDaisy/src/per/sai.h **** namespace daisy
    8:../../../libDaisy/src/per/sai.h **** {
    9:../../../libDaisy/src/per/sai.h **** /** 
@@ -1916,11 +1918,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   59:../../../libDaisy/src/per/sai.h ****             SAI_16KHZ,
   60:../../../libDaisy/src/per/sai.h ****             SAI_32KHZ,
   61:../../../libDaisy/src/per/sai.h ****             SAI_48KHZ,
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 33
+
+
   62:../../../libDaisy/src/per/sai.h ****             SAI_96KHZ,
   63:../../../libDaisy/src/per/sai.h ****         };
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 33
-
-
   64:../../../libDaisy/src/per/sai.h **** 
   65:../../../libDaisy/src/per/sai.h ****         /** Bit Depth that the hardware expects to be transferred to/from the device. */
   66:../../../libDaisy/src/per/sai.h ****         enum class BitDepth
@@ -1976,13 +1978,13 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  781              	.LBE243:
  782              	.LBE242:
  783              	.LBE241:
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 34
+
+
  784              	.LBE245:
  785              	.LBE247:
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 34
-
-
-   7:reverbsc.cpp  **** 
- 786              		.loc 10 7 18 view .LVU192
+   8:reverbsc.cpp  **** 
+ 786              		.loc 10 8 18 view .LVU192
  787 0010 0E49     		ldr	r1, .L31+8
  788 0012 FFF7FEFF 		bl	__aeabi_atexit
  789              	.LVL40:
@@ -1993,8 +1995,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   37:../../../DaisySP/DaisySP-LGPL/Source/Effects/reverbsc.h ****     ~ReverbSc() {}
  793              		.loc 4 37 5 is_stmt 0 view .LVU194
  794              	.LBE248:
-   9:reverbsc.cpp  **** Oscillator osc;
- 795              		.loc 10 9 12 view .LVU195
+  10:reverbsc.cpp  **** Oscillator osc;
+ 795              		.loc 10 10 12 view .LVU195
  796 0016 0C4A     		ldr	r2, .L31+4
  797 0018 0D49     		ldr	r1, .L31+12
  798 001a 0E48     		ldr	r0, .L31+16
@@ -2007,8 +2009,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   23:../../../DaisySP/Source/Synthesis/oscillator.h ****     ~Oscillator() {}
  804              		.loc 2 23 5 is_stmt 0 view .LVU197
  805              	.LBE249:
-  10:reverbsc.cpp  **** AdEnv      env;
- 806              		.loc 10 10 12 view .LVU198
+  11:reverbsc.cpp  **** AdEnv      env;
+ 806              		.loc 10 11 12 view .LVU198
  807 0020 094A     		ldr	r2, .L31+4
  808 0022 0D49     		ldr	r1, .L31+20
  809 0024 0D48     		ldr	r0, .L31+24
@@ -2021,8 +2023,8 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   42:../../../DaisySP/Source/Control/adenv.h ****     ~AdEnv() {}
  815              		.loc 1 42 5 is_stmt 0 view .LVU200
  816              	.LBE250:
-  11:reverbsc.cpp  **** Metro      tick;
- 817              		.loc 10 11 12 view .LVU201
+  12:reverbsc.cpp  **** Metro      tick;
+ 817              		.loc 10 12 12 view .LVU201
  818 002a 074A     		ldr	r2, .L31+4
  819 002c 0C49     		ldr	r1, .L31+28
  820 002e 0D48     		ldr	r0, .L31+32
@@ -2035,25 +2037,25 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
   22:../../../DaisySP/Source/Utility/metro.h ****     ~Metro() {}
  826              		.loc 3 22 5 is_stmt 0 view .LVU203
  827              	.LBE251:
-  12:reverbsc.cpp  **** 
- 828              		.loc 10 12 12 view .LVU204
+  13:reverbsc.cpp  **** 
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 35
+
+
+ 828              		.loc 10 13 12 view .LVU204
  829 0034 044A     		ldr	r2, .L31+4
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 35
-
-
  830 0036 0C49     		ldr	r1, .L31+36
  831 0038 0C48     		ldr	r0, .L31+40
  832              	.LBE252:
  833              	.LBE254:
- 834              		.loc 10 63 1 view .LVU205
+ 834              		.loc 10 65 1 view .LVU205
  835 003a BDE80840 		pop	{r3, lr}
  836              		.cfi_restore 14
  837              		.cfi_restore 3
  838              		.cfi_def_cfa_offset 0
  839              	.LBB255:
  840              	.LBB253:
-  12:reverbsc.cpp  **** 
- 841              		.loc 10 12 12 view .LVU206
+  13:reverbsc.cpp  **** 
+ 841              		.loc 10 13 12 view .LVU206
  842 003e FFF7FEBF 		b	__aeabi_atexit
  843              	.LVL44:
  844              	.L32:
@@ -2096,11 +2098,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  882              	env:
  883 0000 00000000 		.space	56
  883      00000000 
- 883      00000000 
- 883      00000000 
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 36
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 36
 
 
+ 883      00000000 
+ 883      00000000 
  883      00000000 
  884              		.section	.bss.osc,"aw",%nobits
  885              		.align	2
@@ -2156,11 +2158,11 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  930              		.file 38 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\sys\\lock.h"
  931              		.file 39 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\math.h"
  932              		.file 40 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\stdlib.h"
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 37
+
+
  933              		.file 41 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\math.h"
  934              		.file 42 "../../../DaisySP/Source/Utility/dsp.h"
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 37
-
-
  935              		.file 43 "c:\\program files\\daisytoolchain\\lib\\gcc\\arm-none-eabi\\10.2.1\\include\\stdarg.h"
  936              		.file 44 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\wchar.h"
  937              		.file 45 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\locale.h"
@@ -2175,46 +2177,46 @@ ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 1
  946              		.file 54 "../../../libDaisy/src/dev/sdram.h"
  947              		.file 55 "<built-in>"
  948              		.file 56 "../../../libDaisy/src/dev/sr_595.h"
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 38
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 reverbsc.cpp
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:17     .text._ZN7daisysp5AdEnvD2Ev:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:26     .text._ZN7daisysp5AdEnvD2Ev:00000000 _ZN7daisysp5AdEnvD2Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:26     .text._ZN7daisysp5AdEnvD2Ev:00000000 _ZN7daisysp5AdEnvD1Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:43     .text._ZN7daisysp10OscillatorD2Ev:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:51     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD2Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:51     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD1Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:68     .text._ZN7daisysp5MetroD2Ev:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:76     .text._ZN7daisysp5MetroD2Ev:00000000 _ZN7daisysp5MetroD2Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:76     .text._ZN7daisysp5MetroD2Ev:00000000 _ZN7daisysp5MetroD1Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:93     .text._ZN7daisysp8ReverbScD2Ev:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:101    .text._ZN7daisysp8ReverbScD2Ev:00000000 _ZN7daisysp8ReverbScD2Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:101    .text._ZN7daisysp8ReverbScD2Ev:00000000 _ZN7daisysp8ReverbScD1Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:118    .text._ZN5daisy9DaisySeedD2Ev:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:126    .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD2Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:126    .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD1Ev
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:167    .text._ZL13AudioCallbackPKfPfj:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:174    .text._ZL13AudioCallbackPKfPfj:00000000 _ZL13AudioCallbackPKfPfj
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:311    .text._ZL13AudioCallbackPKfPfj:00000060 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:902    .bss.verb:00000000 verb
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:319    .text.startup.main:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:327    .text.startup.main:00000000 main
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:651    .text.startup.main:000000bc $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:666    .text.startup._GLOBAL__sub_I_verb:00000000 $t
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:673    .text.startup._GLOBAL__sub_I_verb:00000000 _GLOBAL__sub_I_verb
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:847    .text.startup._GLOBAL__sub_I_verb:00000044 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:864    .init_array:00000000 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:896    .bss.tick:00000000 tick
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:882    .bss.env:00000000 env
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:889    .bss.osc:00000000 osc
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:871    .bss._ZL2hw:00000000 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:875    .bss._ZL2hw:00000000 _ZL2hw
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:878    .bss.env:00000000 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:885    .bss.osc:00000000 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:892    .bss.tick:00000000 $d
-C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s:899    .bss.verb:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:17     .text._ZN7daisysp5AdEnvD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:26     .text._ZN7daisysp5AdEnvD2Ev:00000000 _ZN7daisysp5AdEnvD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:26     .text._ZN7daisysp5AdEnvD2Ev:00000000 _ZN7daisysp5AdEnvD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:43     .text._ZN7daisysp10OscillatorD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:51     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:51     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:68     .text._ZN7daisysp5MetroD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:76     .text._ZN7daisysp5MetroD2Ev:00000000 _ZN7daisysp5MetroD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:76     .text._ZN7daisysp5MetroD2Ev:00000000 _ZN7daisysp5MetroD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:93     .text._ZN7daisysp8ReverbScD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:101    .text._ZN7daisysp8ReverbScD2Ev:00000000 _ZN7daisysp8ReverbScD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:101    .text._ZN7daisysp8ReverbScD2Ev:00000000 _ZN7daisysp8ReverbScD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:118    .text._ZN5daisy9DaisySeedD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:126    .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:126    .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:167    .text._ZL13AudioCallbackPKfPfj:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:174    .text._ZL13AudioCallbackPKfPfj:00000000 _ZL13AudioCallbackPKfPfj
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:311    .text._ZL13AudioCallbackPKfPfj:00000060 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:902    .bss.verb:00000000 verb
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:319    .text.startup.main:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:327    .text.startup.main:00000000 main
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:651    .text.startup.main:000000bc $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:666    .text.startup._GLOBAL__sub_I_verb:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:673    .text.startup._GLOBAL__sub_I_verb:00000000 _GLOBAL__sub_I_verb
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:847    .text.startup._GLOBAL__sub_I_verb:00000044 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:864    .init_array:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:896    .bss.tick:00000000 tick
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:882    .bss.env:00000000 env
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:889    .bss.osc:00000000 osc
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:871    .bss._ZL2hw:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:875    .bss._ZL2hw:00000000 _ZL2hw
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:878    .bss.env:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:885    .bss.osc:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:892    .bss.tick:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s:899    .bss.verb:00000000 $d
                            .group:00000000 _ZN7daisysp5AdEnvD5Ev
                            .group:00000000 _ZN7daisysp10OscillatorD5Ev
                            .group:00000000 _ZN7daisysp5MetroD5Ev
@@ -2235,7 +2237,7 @@ _ZN7daisysp5Metro4InitEff
 _ZN7daisysp5AdEnv4InitEf
 _ZN7daisysp10Oscillator12CalcPhaseIncEf
 _ZN5daisy9DaisySeed10StartAudioEPFvPKfPfjE
-ARM GAS  C:\Users\jaude\AppData\Local\Temp\cc5q4WcC.s 			page 39
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwiFyUn.s 			page 39
 
 
 __aeabi_atexit

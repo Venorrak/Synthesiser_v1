@@ -1,5 +1,6 @@
 #include "daisysp.h"
 #include "daisy_seed.h"
+#include "daisysp-lgpl.h"
 
 using namespace daisysp;
 using namespace daisy;
@@ -18,6 +19,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         freq = 2500 + (lfo.Process() * 2500);
         saw  = osc.Process();
 
+         // CUT OFF FREQUENCY
         flt.SetFreq(freq);
         output = flt.Process(saw);
 
