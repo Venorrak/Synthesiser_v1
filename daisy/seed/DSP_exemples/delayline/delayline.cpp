@@ -42,7 +42,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         osc.SetAmp(env_out);
         osc_out = osc.Process();
 
-        // Read from delay line
+        // Read from delay linex
         del_out = del.Read();
         // Calculate output and feedback
         sig_out  = del_out + osc_out;
