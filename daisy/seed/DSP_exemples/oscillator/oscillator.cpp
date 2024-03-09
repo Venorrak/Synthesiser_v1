@@ -38,17 +38,17 @@ void changeWaveForm()
 {
     switch(toggleWaveForm.Read())
     {
-        case Switch3::POS_UP: osc.SetWaveform(osc.WAVE_SQUARE); osc2.SetWaveform(osc.WAVE_SQUARE); break;
-        case Switch3::POS_CENTER: osc.SetWaveform(osc.WAVE_POLYBLEP_SAW); osc2.SetWaveform(osc.WAVE_POLYBLEP_SAW); break;
-        case Switch3::POS_DOWN: osc.SetWaveform(osc.WAVE_TRI); osc2.SetWaveform(osc.WAVE_TRI); break;
+        case Switch3::POS_UP: osc.SetWaveform(osc.WAVE_SQUARE); break;
+        case Switch3::POS_CENTER: osc.SetWaveform(osc.WAVE_POLYBLEP_SAW); break;
+        case Switch3::POS_DOWN: osc.SetWaveform(osc.WAVE_TRI); break;
     }
 }
 
-static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
-                          AudioHandle::InterleavingOutputBuffer out,
-                          size_t                                size)
+static void AudioCallback( AudioHandle::InputBuffer  in,
+                        AudioHandle::OutputBuffer out, 
+                        size_t                    size)
 {
-    float osc_out, env_out, feedback, del_out, sig_out;
+    float osc_out, osc2_out, env_out, feedback, del_out, sig_out, sig2_out;
     for(size_t i = 0; i < size; i += 2)
     {
         if(tick.Process())
@@ -69,33 +69,35 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         
         env_out = env.Process(gate);
         osc_out = osc.Process();
-        del_out = del.Read();
+        osc2_out = osc2.Process();
+        // del_out = del.Read();
 
         osc.SetFreq(24.0 + (fclamp(knobFrequence, 0.0f, 1.0f) * 60) );
         osc.SetAmp(env_out * knobAmplitude);
-        del.SetDelay(convertValue(knobDel, 0.0f, 0.75f));
+        // del.SetDelay(convertValue(knobDel, 0.0f, 0.75f));
         tick.SetFreq(convertValue(knobTickFrequency, 1.0f, 5.0f));
         env.SetTime(ADSR_SEG_ATTACK, convertValue(knobAttack, 1.0f, 5.0f));
         env.SetTime(ADSR_SEG_DECAY, convertValue(knobDecay, 1.0f, 5.0f));
         env.SetSustainLevel(convertValue(knobSustain, 0.0f, 1.0f));
 
-        sig_out  = (del_out * convertValue(knobDelVolume, 0.0f, 1.0f)) + osc_out;
-        feedback = (del_out * 0.50f) + osc_out;
+        // sig_out  = (del_out * convertValue(knobDelVolume, 0.0f, 1.0f)) + osc_out;
+        // sig2_out  = (del_out * convertValue(knobDelVolume, 0.0f, 1.0f)) + osc2_out;
+        // feedback = (del_out * 0.50f) + osc_out;
 
-        // Write to the delay
-        del.Write(feedback);
+        // // Write to the delay
+        // del.Write(feedback);
 
         if (convertValue(knobVerbVolume, 0.0f, 1.0f) < 0.05f) 
         {    
-            out[LEFT]  = sig_out;
-            out[RIGHT] = sig_out;
+            out[0][i]  = osc_out;
+            out[1][i] = osc2_out;
         }
         else 
         {
-            float sig = env_out * sig_out;
+            float sig = env_out * sig_out * sig2_out;
             reverb.SetFeedback(convertValue(knobVerbVolume, 0.0f, 1.0f));
             reverb.SetLpFreq(convertValue(knobVerbFrequence, 1000.0f, 36000.0f));
-            reverb.Process(sig, sig, &out[LEFT], &out[RIGHT]);  
+            reverb.Process(sig, sig, &out[0][i], &out[1][i]);  
         }        
     }
 }
@@ -126,10 +128,10 @@ int main(void)
     hw.adc.Start();
     hw.StartLog();
 
-    hw.SetAudioBlockSize(4);
+    hw.SetAudioBlockSize(4); 
     sample_rate = hw.AudioSampleRate();
     osc.Init(sample_rate);
-    // lfo.Init(20.0f);
+    osc2.Init(sample_rate);
     env.Init(sample_rate);
 
     // Set up metro to pulse x second
@@ -145,6 +147,11 @@ int main(void)
     osc.SetWaveform(osc.WAVE_SIN);
     osc.SetFreq(440);
     osc.SetAmp(0.5);
+    
+    // Set parameters for second oscillator
+    osc2.SetWaveform(osc2.WAVE_SIN);
+    osc2.SetFreq(440);
+    osc2.SetAmp(0.5);
 
     // Set parameters for reverb
     reverb.Init(sample_rate);
