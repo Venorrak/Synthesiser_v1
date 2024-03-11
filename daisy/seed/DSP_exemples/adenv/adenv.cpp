@@ -33,7 +33,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
 
         // Use envelope to control the amplitude of the oscillator.
         env_out = env.Process();
-        osc.SetAmp(5.0f);
+        osc.SetAmp(env_out);
         osc_out = osc.Process();
 
         out[LEFT]  = osc_out;
@@ -58,14 +58,14 @@ int main(void)
     // set adenv parameters
     env.SetTime(ADENV_SEG_ATTACK, 0.15);
     env.SetTime(ADENV_SEG_DECAY, 0.35);
-    env.SetMin(0.0);
-    env.SetMax(0.25);
-    env.SetCurve(0); // linear
+    env.SetMin(0.25);
+    env.SetMax(2.0);
+    env.SetCurve(50); // linear
 
     // Set parameters for oscillator
     osc.SetWaveform(osc.WAVE_TRI);
     osc.SetFreq(220);
-    osc.SetAmp(0.25);
+    osc.SetAmp(0.75);
 
 
     // start callback
