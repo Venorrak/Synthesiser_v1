@@ -16,6 +16,22 @@ static Switch3 toggleWaveForm2;
 bool gate;
 float sampleRate;
 
+float frequencyCheck(float freqOsc, float lfoProcess) 
+{
+    float freq = ((lfoProcess * freqOsc) * 2);
+
+    if (freq < 0) 
+    {
+        freq = -1 * freq;
+    }
+
+    if (freq < 27.5f) 
+    {
+        freq = 27.5f;
+    }
+
+    return freq;
+}
 
 float convertValue(int value, float new_min, float new_max) {
     int min_value = 0;
@@ -71,9 +87,12 @@ void AudioCallback(AudioHandle::InputBuffer in,
         float reverbFreq = convertValue(hw.adc.Get(8), 1000.0f, 36000.0f);
         float reverbVolume = convertValue(hw.adc.Get(9), 0.0f, 0.9f);
 
+        freqOsc1 = frequencyCheck(freqOsc1, lfo.Process());
+        freqOsc2 = frequencyCheck(freqOsc2, lfo.Process());
+
         // LFO mods the oscillator
-        oscillator.SetFreq((freqOsc1 + lfo.Process() * freqOsc1) * 2);
-        osc2.SetFreq((freqOsc2 + lfo.Process() * freqOsc2) * 2);
+        oscillator.SetFreq(freqOsc1);
+        osc2.SetFreq(freqOsc2);
         oscillator.SetAmp(ampOsc1);
         osc2.SetAmp(ampOsc2);
         changeWaveForm();
@@ -131,6 +150,7 @@ int main(void)
 
     hw.adc.Init(adcConfig, 10);
     hw.adc.Start();
+    hw.StartLog();
 
     // Audio Oscillator
     oscillator.Init(sampleRate);
@@ -161,6 +181,6 @@ int main(void)
     
     for(;;) 
     {
-        
+
     }
 }
