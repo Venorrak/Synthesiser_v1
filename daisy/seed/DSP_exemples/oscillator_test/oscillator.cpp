@@ -16,6 +16,66 @@ static Switch3 toggleWaveForm2;
 bool gate;
 float sampleRate;
 
+int transposeOctave(float freq, int octaveDifference) 
+{
+    // Calcul de la valeur MIDI
+    float midiValue = 12 * std::log2(freq / 440.0) + 69;
+    
+    // Arrondir la valeur MIDI à l'entier le plus proche
+    int midiNote = static_cast<int>(round(midiValue));
+
+    // Si octaveDifference = 1 on descend d'un octave et si c'est -1 on monte d'un octave
+    midiNote = midiNote - (octaveDifference * 12);
+
+    if (midiNote > 108) 
+    {
+        midiNote = 108;
+    }
+    else if (midiNote < 21)
+    {
+        midiNote = 21;
+    }
+
+    return midiNote;
+}
+
+void setOscFreq(float freqOsc1, float freqOsc2) 
+{
+    int midiNote;
+    switch(toggleWaveForm.Read())
+    {
+        case Switch3::POS_UP:
+            hw.SetLed(false);
+            midiNote = transposeOctave(freqOsc1, -1); 
+            oscillator.SetFreq(mtof(midiNote));
+            break;
+        case Switch3::POS_CENTER:
+            hw.SetLed(true);
+            oscillator.SetFreq(freqOsc1);
+            break;
+        case Switch3::POS_DOWN: 
+            hw.SetLed(false);
+            midiNote = transposeOctave(freqOsc1, 1); 
+            oscillator.SetFreq(mtof(midiNote));
+            break;
+    }
+    
+    switch(toggleWaveForm2.Read())
+    {
+        case Switch3::POS_UP: 
+            midiNote = transposeOctave(freqOsc2, -1); 
+            osc2.SetFreq(mtof(midiNote));
+            break;
+        case Switch3::POS_CENTER:
+            osc2.SetFreq(freqOsc2);
+            break;
+        case Switch3::POS_DOWN: 
+            midiNote = transposeOctave(freqOsc2, 1);
+            osc2.SetFreq(mtof(midiNote));
+            break;
+    }
+}
+
 float frequencyCheck(float freqOsc, float lfoProcess) 
 {
     float freq = ((lfoProcess * freqOsc) * 2);
@@ -50,9 +110,9 @@ void changeWaveForm()
 {
     switch(toggleWaveForm.Read())
     {
-        case Switch3::POS_UP: oscillator.SetWaveform(oscillator.WAVE_SQUARE); break;
-        case Switch3::POS_CENTER: oscillator.SetWaveform(oscillator.WAVE_POLYBLEP_SAW); break;
-        case Switch3::POS_DOWN: oscillator.SetWaveform(oscillator.WAVE_TRI); break;
+        case Switch3::POS_UP: oscillator.SetWaveform(oscillator.WAVE_SQUARE); hw.SetLed(false); break;
+        case Switch3::POS_CENTER: oscillator.SetWaveform(oscillator.WAVE_POLYBLEP_SAW); hw.SetLed(true); break;
+        case Switch3::POS_DOWN: oscillator.SetWaveform(oscillator.WAVE_TRI); hw.SetLed(false); break;
     }
 
     switch(toggleWaveForm2.Read())
@@ -77,9 +137,9 @@ void AudioCallback(AudioHandle::InputBuffer in,
 
         //Read potentiometer value
         float ampOsc1 = convertValue(hw.adc.Get(0), 0.0f, 1.0f);
-        float freqOsc1 = convertValue(hw.adc.Get(1), 27.5f, 4186.0f);
+        float freqOsc1 = convertValue(hw.adc.Get(1), 27.5f, 4186.01f);
         float ampOsc2 = convertValue(hw.adc.Get(2), 0.0f, 1.0f);
-        float freqOsc2 = convertValue(hw.adc.Get(3), 27.5f, 4186.0f);
+        float freqOsc2 = convertValue(hw.adc.Get(3), 27.5f, 4186.01f);
         float envAttack = convertValue(hw.adc.Get(4), 1.0f, 5.0f);
         float envDecay = convertValue(hw.adc.Get(5), 1.0f, 5.0f);
         float sustain = convertValue(hw.adc.Get(6), 0.0f, 1.0f);
@@ -87,15 +147,17 @@ void AudioCallback(AudioHandle::InputBuffer in,
         float reverbFreq = convertValue(hw.adc.Get(8), 1000.0f, 36000.0f);
         float reverbVolume = convertValue(hw.adc.Get(9), 0.0f, 0.9f);
 
+        //Make sure that frequency is always between 27.5 - 4186.0
         freqOsc1 = frequencyCheck(freqOsc1, lfo.Process());
         freqOsc2 = frequencyCheck(freqOsc2, lfo.Process());
 
         // LFO mods the oscillator
-        oscillator.SetFreq(freqOsc1);
-        osc2.SetFreq(freqOsc2);
+        // oscillator.SetFreq(freqOsc1);
+        // osc2.SetFreq(freqOsc2);
         oscillator.SetAmp(ampOsc1);
         osc2.SetAmp(ampOsc2);
         changeWaveForm();
+        setOscFreq(freqOsc1, freqOsc2);
         // Update tick frequency
         tick.SetFreq(tickFrequency);
 
@@ -150,7 +212,6 @@ int main(void)
 
     hw.adc.Init(adcConfig, 10);
     hw.adc.Start();
-    hw.StartLog();
 
     // Audio Oscillator
     oscillator.Init(sampleRate);

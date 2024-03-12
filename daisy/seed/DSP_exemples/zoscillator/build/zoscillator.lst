@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   34              		@ link register save eliminated.
   35              	.LBB91:
   36              	.LBI91:
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 2
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 2
 
 
   37              		.file 2 "../../../libDaisy/src/sys/system.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   54:../../../libDaisy/src/sys/system.h **** 
   55:../../../libDaisy/src/sys/system.h ****         SysClkFreq cpu_freq;
   56:../../../libDaisy/src/sys/system.h ****         bool       use_dcache;
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 3
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 3
 
 
   57:../../../libDaisy/src/sys/system.h ****         bool       use_icache;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
    8:../../../libDaisy/src/hid/usb.h **** /** @addtogroup human_interface
    9:../../../libDaisy/src/hid/usb.h ****     @{
   10:../../../libDaisy/src/hid/usb.h **** */
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 4
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 4
 
 
   11:../../../libDaisy/src/hid/usb.h **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   17:../../../libDaisy/src/per/adc.h **** /* While there may not be many configuration options here,
   18:../../../libDaisy/src/per/adc.h **** using a struct like this allows us to add more configuration
   19:../../../libDaisy/src/per/adc.h **** later without breaking existing functionality.
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 5
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 5
 
 
   20:../../../libDaisy/src/per/adc.h **** */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   74:../../../libDaisy/src/per/adc.h ****     void InitMux(dsy_gpio_pin    adc_pin,
   75:../../../libDaisy/src/per/adc.h ****                  size_t          mux_channels,
   76:../../../libDaisy/src/per/adc.h ****                  dsy_gpio_pin    mux_0,
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 6
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 6
 
 
   77:../../../libDaisy/src/per/adc.h ****                  dsy_gpio_pin    mux_1 = {DSY_GPIOX, 0},
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   15:../../../libDaisy/src/hid/audio.h ****  *           you will have to take the following steps:
   16:../../../libDaisy/src/hid/audio.h ****  *             1. Create and Initialize an SaiHandle or two depending on your requirements
   17:../../../libDaisy/src/hid/audio.h ****  *             2. Initialize the Audio Handle with the desired settings and the Initialized SaiHand
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 7
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 7
 
 
   18:../../../libDaisy/src/hid/audio.h ****  *             3. If the connected codec requires special configuration or initialization, do so
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   72:../../../libDaisy/src/hid/audio.h ****      */
   73:../../../libDaisy/src/hid/audio.h ****     typedef void (*AudioCallback)(InputBuffer  in,
   74:../../../libDaisy/src/hid/audio.h ****                                   OutputBuffer out,
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 8
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 8
 
 
   75:../../../libDaisy/src/hid/audio.h ****                                   size_t       size);
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   12:../../../DaisySP/Source/Synthesis/oscillator.h **** #include <stdint.h>
   13:../../../DaisySP/Source/Synthesis/oscillator.h **** #include "Utility/dsp.h"
   14:../../../DaisySP/Source/Synthesis/oscillator.h **** #ifdef __cplusplus
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 9
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 9
 
 
   15:../../../DaisySP/Source/Synthesis/oscillator.h **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   22:../../../DaisySP/Source/Synthesis/zoscillator.h ****     @date Dec 2020 
   23:../../../DaisySP/Source/Synthesis/zoscillator.h ****     Sinewave multiplied by and sync'ed to a carrier. \n \n
   24:../../../DaisySP/Source/Synthesis/zoscillator.h ****     Ported from pichenettes/eurorack/plaits/dsp/oscillator/z_oscillator.h \n 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 10
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 10
 
 
   25:../../../DaisySP/Source/Synthesis/zoscillator.h ****     \n to an independent module. \n
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  137              	.LBE95:
   14:zoscillator.cpp ****     for(size_t i = 0; i < size; i++)
  138              		.loc 8 14 1 is_stmt 0 view .LVU17
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 11
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 11
 
 
  139 0002 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  185              		.loc 8 20 9 is_stmt 1 discriminator 2 view .LVU29
  186              		.loc 8 20 28 is_stmt 0 discriminator 2 view .LVU30
  187 0032 1448     		ldr	r0, .L16+16
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 12
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 12
 
 
  188              		.loc 8 20 42 discriminator 2 view .LVU31
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   25:zoscillator.cpp **** }
  234              		.loc 8 25 1 is_stmt 0 view .LVU48
  235 0068 BDEC028B 		vldm	sp!, {d8}
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 13
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 13
 
 
  236              		.cfi_restore 80
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  287              		.cfi_offset 7, -8
  288              		.cfi_offset 14, -4
  289              		.loc 8 29 17 view .LVU54
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 14
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 14
 
 
  290 0002 3B48     		ldr	r0, .L21
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  304 000e 2DED068B 		vpush.64	{d8, d9, d10}
  305              		.cfi_def_cfa_offset 48
  306              		.cfi_offset 80, -48
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 15
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 15
 
 
  307              		.cfi_offset 81, -44
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  353 003a FFF7FEFF 		bl	_ZN7daisysp11ZOscillator4InitEf
  354              	.LVL22:
   35:zoscillator.cpp ****     zosc.SetFreq(80.f);
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 16
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 16
 
 
  355              		.loc 8 35 5 is_stmt 1 view .LVU75
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  393 0072 84ED05AA 		vstr.32	s20, [r4, #20]
   54:../../../DaisySP/Source/Synthesis/oscillator.h ****         amp_       = 0.5f;
  394              		.loc 6 54 9 is_stmt 1 view .LVU93
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 17
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 17
 
 
   55:../../../DaisySP/Source/Synthesis/oscillator.h ****         pw_        = 0.5f;
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  430              		.loc 6 60 9 view .LVU105
   61:../../../DaisySP/Source/Synthesis/oscillator.h ****     }
  431              		.loc 6 61 9 view .LVU106
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 18
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 18
 
 
  432              	.LVL26:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   70:../../../DaisySP/Source/Synthesis/oscillator.h ****     }
  471              		.loc 6 70 20 view .LVU120
  472 00a0 C4ED077A 		vstr.32	s15, [r4, #28]
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 19
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 19
 
 
  473              	.LVL29:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  507              	.LVL30:
  508 00c2 F0EE407A 		vmov.f32	s15, s0
  509              	.LBE136:
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 20
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 20
 
 
  510              	.LBE139:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  551              		.loc 6 69 20 is_stmt 0 view .LVU156
  552 00d8 84ED028A 		vstr.32	s16, [r4, #8]
   70:../../../DaisySP/Source/Synthesis/oscillator.h ****     }
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 21
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 21
 
 
  553              		.loc 6 70 9 is_stmt 1 view .LVU157
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   48:zoscillator.cpp **** }
  603              		.loc 8 48 1 view -0
  604              		.cfi_startproc
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 22
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 22
 
 
  605              		@ args = 0, pretend = 0, frame = 0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   40:../../../libDaisy/src/per/qspi.h ****          *  Warnings are indicated by a leading W.
   41:../../../libDaisy/src/per/qspi.h ****          *  Errors are indicated by a leading E and cause an immediate exit.
   42:../../../libDaisy/src/per/qspi.h ****          * 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 23
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 23
 
 
   43:../../../libDaisy/src/per/qspi.h ****          *  \param GOOD - No errors have been reported.
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   97:../../../libDaisy/src/per/qspi.h ****         Initializes QSPI peripheral, and Resets, and prepares memory for access.
   98:../../../libDaisy/src/per/qspi.h ****         \param config should be populated with the mode, device and pin_config before calling this 
   99:../../../libDaisy/src/per/qspi.h ****         \return Result::OK or Result::ERR
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 24
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 24
 
 
  100:../../../libDaisy/src/per/qspi.h ****         */
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  154:../../../libDaisy/src/per/qspi.h ****      */
  155:../../../libDaisy/src/per/qspi.h ****     Status GetStatus();
  156:../../../libDaisy/src/per/qspi.h **** 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 25
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 25
 
 
  157:../../../libDaisy/src/per/qspi.h ****     /** Returns a pointer to the actual memory used 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  660              	.LBB188:
   95:../../../libDaisy/src/hid/audio.h ****     ~AudioHandle() {}
  661              		.loc 5 95 35 is_stmt 0 view .LVU179
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 26
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 26
 
 
  662 000e 4361     		str	r3, [r0, #20]
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   38:../../../libDaisy/src/per/dac.h **** 
   39:../../../libDaisy/src/per/dac.h ****     /** Sets the Mode for the DAC channels.
   40:../../../libDaisy/src/per/dac.h ****      **
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 27
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 27
 
 
   41:../../../libDaisy/src/per/dac.h ****      ** Polling mode uses the blocking mode to transmit a single value at a time.
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  686              	.LBB193:
  687              	.LBI193:
   40:../../../libDaisy/src/hid/usb.h **** 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 28
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 28
 
 
  688              		.loc 3 40 5 is_stmt 1 view .LVU186
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   41:../../../libDaisy/src/per/sai.h ****  */
   42:../../../libDaisy/src/per/sai.h **** class SaiHandle
   43:../../../libDaisy/src/per/sai.h **** {
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 29
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 29
 
 
   44:../../../libDaisy/src/per/sai.h ****   public:
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   98:../../../libDaisy/src/per/sai.h ****         Direction  a_dir, b_dir;
   99:../../../libDaisy/src/per/sai.h ****     };
  100:../../../libDaisy/src/per/sai.h **** 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 30
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 30
 
 
  101:../../../libDaisy/src/per/sai.h ****     /** Return values for SAI functions */
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
   23:../../../DaisySP/Source/Synthesis/oscillator.h ****     ~Oscillator() {}
  738              		.loc 6 23 5 is_stmt 1 view .LVU200
   23:../../../DaisySP/Source/Synthesis/oscillator.h ****     ~Oscillator() {}
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 31
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 31
 
 
  739              		.loc 6 23 5 is_stmt 0 view .LVU201
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  792              	lfo1:
  793 0000 00000000 		.space	44
  793      00000000 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 32
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 32
 
 
  793      00000000 
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  841              		.file 43 "../../../libDaisy/src/util/wav_format.h"
  842              		.file 44 "../../../libDaisy/src/dev/max11300.h"
  843              		.file 45 "../../../libDaisy/src/per/gpio.h"
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 33
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 33
 
 
  844              		.file 46 "../../../libDaisy/src/dev/sdram.h"
@@ -1931,38 +1931,38 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 1
  851              		.file 53 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\locale.h"
  852              		.file 54 "<built-in>"
  853              		.file 55 "../../../libDaisy/src/dev/sr_595.h"
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s 			page 34
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s 			page 34
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 zoscillator.cpp
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:17     .text._ZN5daisy9DaisySeedD2Ev:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:26     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD2Ev
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:26     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD1Ev
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:67     .text._ZN7daisysp10OscillatorD2Ev:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:75     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD2Ev
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:75     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD1Ev
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:92     .text._ZN7daisysp11ZOscillatorD2Ev:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:100    .text._ZN7daisysp11ZOscillatorD2Ev:00000000 _ZN7daisysp11ZOscillatorD2Ev
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:100    .text._ZN7daisysp11ZOscillatorD2Ev:00000000 _ZN7daisysp11ZOscillatorD1Ev
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:117    .text._Z13AudioCallbackPKPKfPPfj:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:125    .text._Z13AudioCallbackPKPKfPPfj:00000000 _Z13AudioCallbackPKPKfPPfj
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:256    .text._Z13AudioCallbackPKPKfPPfj:00000074 $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:265    .text.startup.main:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:273    .text.startup.main:00000000 main
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:583    .text.startup.main:000000f0 $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:594    .text.startup._GLOBAL__sub_I_hw:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:601    .text.startup._GLOBAL__sub_I_hw:00000000 _GLOBAL__sub_I_hw
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:760    .text.startup._GLOBAL__sub_I_hw:0000003c $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:774    .init_array:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:799    .bss.lfo2:00000000 lfo2
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:792    .bss.lfo1:00000000 lfo1
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:806    .bss.zosc:00000000 zosc
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:785    .bss.hw:00000000 hw
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:781    .bss.hw:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:788    .bss.lfo1:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:795    .bss.lfo2:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccrzMGba.s:802    .bss.zosc:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:17     .text._ZN5daisy9DaisySeedD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:26     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:26     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:67     .text._ZN7daisysp10OscillatorD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:75     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:75     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:92     .text._ZN7daisysp11ZOscillatorD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:100    .text._ZN7daisysp11ZOscillatorD2Ev:00000000 _ZN7daisysp11ZOscillatorD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:100    .text._ZN7daisysp11ZOscillatorD2Ev:00000000 _ZN7daisysp11ZOscillatorD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:117    .text._Z13AudioCallbackPKPKfPPfj:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:125    .text._Z13AudioCallbackPKPKfPPfj:00000000 _Z13AudioCallbackPKPKfPPfj
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:256    .text._Z13AudioCallbackPKPKfPPfj:00000074 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:265    .text.startup.main:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:273    .text.startup.main:00000000 main
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:583    .text.startup.main:000000f0 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:594    .text.startup._GLOBAL__sub_I_hw:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:601    .text.startup._GLOBAL__sub_I_hw:00000000 _GLOBAL__sub_I_hw
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:760    .text.startup._GLOBAL__sub_I_hw:0000003c $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:774    .init_array:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:799    .bss.lfo2:00000000 lfo2
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:792    .bss.lfo1:00000000 lfo1
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:806    .bss.zosc:00000000 zosc
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:785    .bss.hw:00000000 hw
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:781    .bss.hw:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:788    .bss.lfo1:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:795    .bss.lfo2:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccOaGRPJ.s:802    .bss.zosc:00000000 $d
                            .group:00000000 _ZN5daisy9DaisySeedD5Ev
                            .group:00000000 _ZN7daisysp10OscillatorD5Ev
                            .group:00000000 _ZN7daisysp11ZOscillatorD5Ev
