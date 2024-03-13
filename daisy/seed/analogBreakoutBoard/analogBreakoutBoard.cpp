@@ -10,6 +10,8 @@ GPIO board0;
 GPIO board1;
 GPIO board2;
 
+// function to read the ADC value for the selected knob
+// knobPin is the number of the knob to read (0-7)
 float getBoardKnobValue(int knobPin)
 {
 	switch (knobPin)
@@ -79,12 +81,16 @@ int main(void)
 	hw.Init();
 	sample_rate = hw.AudioSampleRate();
 
+	// read the ADC on pin 15
+	// Z pin on the breakout board
 	AdcChannelConfig adcConfig;
 	adcConfig.InitSingle(hw.GetPin(15));
 	hw.adc.Init(&adcConfig, 1);
 	hw.adc.Start();
 
-	
+	// set up the GPIO pins for the breakout board
+	// S0, S1, S2 on the breakout board
+	// used to select which knob to read
 	board0.Init(daisy::seed::D1, GPIO::Mode::OUTPUT);
 	board1.Init(daisy::seed::D2, GPIO::Mode::OUTPUT);
 	board2.Init(daisy::seed::D3, GPIO::Mode::OUTPUT);
