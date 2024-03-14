@@ -15,8 +15,8 @@
 # Prérequis
 - ESP **-WROOM-32**
 - Arduino IDE
-- Écran OLED (***ST7735S***)
-- Bouton X 5
+- Écran OLED (***SSD1309***)
+- 3 boutons
 
 <a id="item-2"></a>
 
@@ -42,19 +42,13 @@ L'ESP32 va prendre en charge plusieurs fonctionnalitées du synthétiseur
 
 - 5V -> VCC
 - GND -> GND
-- 3V3 -> LED(LCD)
-- 3 -> MOSI
-- 2 -> SCK
-- TX -> RX (Daisy seed)
-- 10 -> DC
-- 8 -> RST
-- 7 -> LED
-- 6 -> Bouton 1
-- 5 -> Bouton 2
-- 4 -> Bouton 3
-- 18 -> Bouton 4
-- 19 -> Bouton 5
-- 0 -> sound input
+- D1 -> Bouton 1
+- D2 -> Bouton 2
+- D3 -> Bouton 3
+- D21 -> SDA
+- D22 -> SDK
+- A0 -> audio
+- TX -> Rx (daisy seed)
 
 <a id="item-5"></a>
 
@@ -64,19 +58,13 @@ Le programme va utiliser ces pins jusqu'au transfert vers le ESP32.
 
 - 5V -> VCC
 - GND -> GND
-- 3V3 -> LED(LCD)
-- 2 -> LED
-- 3 -> Bouton 1
-- 4 -> Bouton 2
-- 5 -> Bouton 3
-- 6 -> Bouton 4
-- 7 -> Bouton 5
-- 8 -> RST
-- 9 -> DC
-- 10 -> CS
-- 11 -> SDA
-- 13 -> SDK
+- 2 -> Bouton 1
+- 10 -> Bouton 2
+- 11 -> Bouton 3
+- SDA -> SDA
+- SDK -> SDK
 - A0 -> audio
+- TX -> Rx (daisy seed)
 
 <a id="item-6"></a>
 
@@ -88,23 +76,47 @@ Description du fonctionnement du code
 ## Librairies
 
 - WIRE.h *
-- SPI.h *
-- EEPROM.h *
 - Adafruit_GFX.h
-- Adafruit_ST7735.h
+- Adafruit_SSD1309.h
+- OneButton.h
 
-"*" = intégré dans le arduino IDE.
+\* = intégré dans le arduino IDE.
 
-Adafruit_GFX & Adafruit_ST7735 Peuvent être trouvés dans le library manager de arduino IDE.
+Adafruit_GFX, Adafruit_SSD1309 & OneButton Peuvent être trouvés dans le library manager de arduino IDE.
 
 <a id="item-8"></a>
 
 ## Base de départ du code
 
-Le code pour l'utilisation de l'écran LCD à été adapté à partir de ce [site internet](https://www.electronics-lab.com/project/using-st7735-1-8-color-tft-display-arduino/)
-
 Le code pour simuler un oscilloscope à été tiré d'un repository github "[Scope-O-Matic](https://github.com/josbouten/Scope-O-Matic/tree/master?tab=readme-ov-file)". Le code de ce repository sera majoritairement réutilisé avec des modifications pour s'adapter à Un autre model d'écran et à une utilisation plus adapté pour nous. Ce projet était à la base un module utilisé dans un [Eurorack](https://fr.wikipedia.org/wiki/Eurorack) donc il ne serait pas adapté à notre utilisation si on ne le modifirait pas.
+
+Le résultat final est un code beaucoup plus simple et épuré qui prend la moitié moins de place.
+
+La librairie pour le SSD1309 était grandement similaire à celle du 1306 donc peu de changements ont été nécessaires pour adapter le code pour qu'il fonctionne.
+
+La librairie OneButton sert à simplifier l'usage des bouton à travers plusieurs loop et la lenteur causé par les processus de l'ocilloscope.
 
 <a id="item-9"></a>
 
 ## Comment ça marche ?
+
+#### setConditions
+Cette fonction détermine les paramètres d'affichage en fonction de l'échelle qui peut être modifié par les différents boutons (x-scale, y-scale)
+
+#### readWave
+Cette fonction viens lire les données provenant de la Pin A0 et l'enregistre dans un array. Aussi elle change des variables en fonction du x-scale.
+
+#### dataAnalyze
+Cette fonction décide des valeurs maximum et minimum du display et d'autres paramètres d'affichage.
+
+#### startScreen
+Affiche une image de marque au lancement du programme.
+
+#### dispHold
+Quand l'utilisateur appuie sur le bouton "hold" le rafraichissement de l'écran stoppe et affiche le mot "hold" en haut de l'écran jusqu'à ce que le mode soit désactivé.
+
+#### plotData
+Cette fonction prend les points enregistré dans la fonction readWave et dessine des lignes entre ces points. L'affichage est changé par les fonctions dataAnalyze et setConditions.
+
+#### updateButtons
+Cette fonction viens updater les boutons pour détecter si quelqu'un à appuyer sur le bouton.
