@@ -553,6 +553,45 @@ var app = (function () {
     let recorder;
     let destinationStream;
 
+    const midiNotes = {
+    	C1: 24,
+    	D1: 26,
+    	E1: 28,
+    	F1: 29,
+    	G1: 31,
+    	A1: 33,
+    	B1: 35,
+    	C2: 36,
+    	D2: 38,
+    	E2: 40,
+    	F2: 41,
+    	G2: 43,
+    	A2: 45,
+    	B2: 47,
+    	C3: 48,
+    	D3: 50,
+    	E3: 52,
+    	F3: 53,
+    	G3: 55,
+    	A3: 57,
+    	B3: 59,
+    	C4: 60,
+    	D4: 62,
+    	E4: 64,
+    	F4: 65,
+    	G4: 67,
+    	A4: 69,
+    	B4: 71,
+    	C5: 72,
+    	D5: 74,
+    	E5: 76,
+    	F5: 77,
+    	G5: 79,
+    	A5: 81,
+    	B6: 83,
+    	C6: 84
+    };
+
     const scales = {
     	classic: [
     		"C1",
@@ -595,7 +634,7 @@ var app = (function () {
     };
 
     let currentScale = scales["classic"];
-    const scale_keys = Object.keys(scales);
+    let midiNotesConversion = midiNotes;
 
     const initAudio = async () => {
     	destinationStream = Tone$1.context.createMediaStreamDestination();
@@ -628,15 +667,17 @@ var app = (function () {
     	}
 
     	// get midi notes to play
-    	for (var i = notesToPlay.length - 1; i >= 0; i--) {
-    		midiNotes.push(midiNotes[notesToPlay[i]]);
+    	for (var i = 0; i <= notesToPlay.length - 1; i++) {
+    		midiNotes.push(midiNotesConversion[notesToPlay[i]]);
     	}
 
     	console.log(notesToPlay);
     	console.log(midiNotes);
 
     	// play notes in browser
-    	synth.triggerAttackRelease(notesToPlay, "16n");
+    	if (isSoundEnabled) {
+    		synth.triggerAttackRelease(notesToPlay, "16n");
+    	}
 
     	// scroll to playing row
     	const playingRows = document.getElementsByClassName("playing");
@@ -2110,7 +2151,7 @@ var app = (function () {
     const { console: console_1, setTimeout: setTimeout_1, window: window_1 } = globals;
     const file$2 = "src/Controls.svelte";
 
-    // (107:6) {:else}
+    // (108:6) {:else}
     function create_else_block(ctx) {
     	let i;
 
@@ -2118,7 +2159,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "fa fa-lg fa-inverse fa-play svelte-jgzd42");
-    			add_location(i, file$2, 107, 8, 2420);
+    			add_location(i, file$2, 108, 8, 2458);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -2132,14 +2173,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(107:6) {:else}",
+    		source: "(108:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (105:6) {#if config.playing}
+    // (106:6) {#if config.playing}
     function create_if_block(ctx) {
     	let i;
 
@@ -2147,7 +2188,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			attr_dev(i, "class", "fa fa-lg fa-inverse fa-pause svelte-jgzd42");
-    			add_location(i, file$2, 105, 8, 2355);
+    			add_location(i, file$2, 106, 8, 2393);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, i, anchor);
@@ -2161,7 +2202,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(105:6) {#if config.playing}",
+    		source: "(106:6) {#if config.playing}",
     		ctx
     	});
 
@@ -2216,7 +2257,7 @@ var app = (function () {
     	let br1;
     	let mounted;
     	let dispose;
-    	add_render_callback(/*onwindowscroll*/ ctx[7]);
+    	add_render_callback(/*onwindowscroll*/ ctx[8]);
 
     	function select_block_type(ctx, dirty) {
     		if (/*config*/ ctx[0].playing) return create_if_block;
@@ -2268,44 +2309,44 @@ var app = (function () {
     			attr_dev(input0, "min", "8");
     			attr_dev(input0, "max", "100");
     			attr_dev(input0, "class", "slider");
-    			add_location(input0, file$2, 79, 6, 1801);
-    			add_location(label0, file$2, 77, 4, 1763);
-    			add_location(br0, file$2, 89, 4, 2012);
+    			add_location(input0, file$2, 80, 6, 1839);
+    			add_location(label0, file$2, 78, 4, 1801);
+    			add_location(br0, file$2, 90, 4, 2050);
     			attr_dev(input1, "type", "range");
     			attr_dev(input1, "min", "60");
     			attr_dev(input1, "max", "500");
     			attr_dev(input1, "class", "slider");
-    			add_location(input1, file$2, 92, 6, 2053);
-    			add_location(label1, file$2, 90, 4, 2023);
+    			add_location(input1, file$2, 93, 6, 2091);
+    			add_location(label1, file$2, 91, 4, 2061);
     			attr_dev(div0, "class", "settings svelte-jgzd42");
-    			add_location(div0, file$2, 76, 2, 1736);
+    			add_location(div0, file$2, 77, 2, 1774);
     			attr_dev(a0, "class", "svelte-jgzd42");
-    			add_location(a0, file$2, 103, 4, 2277);
+    			add_location(a0, file$2, 104, 4, 2315);
     			attr_dev(i0, "class", "fa fa-inverse fa-lg fa-stop svelte-jgzd42");
-    			add_location(i0, file$2, 111, 7, 2531);
+    			add_location(i0, file$2, 112, 7, 2569);
     			attr_dev(a1, "class", "svelte-jgzd42");
-    			add_location(a1, file$2, 110, 4, 2487);
+    			add_location(a1, file$2, 111, 4, 2525);
     			attr_dev(i1, "class", "fa fa-lg fa-trash svelte-jgzd42");
-    			add_location(i1, file$2, 113, 42, 2624);
+    			add_location(i1, file$2, 114, 42, 2662);
     			attr_dev(a2, "class", "svelte-jgzd42");
-    			add_location(a2, file$2, 113, 4, 2586);
+    			add_location(a2, file$2, 114, 4, 2624);
     			attr_dev(i2, "class", "fa fa-lg fa-share-alt svelte-jgzd42");
-    			add_location(i2, file$2, 116, 20, 2763);
+    			add_location(i2, file$2, 117, 20, 2801);
     			attr_dev(a3, "class", "share svelte-jgzd42");
-    			add_location(a3, file$2, 114, 4, 2664);
+    			add_location(a3, file$2, 115, 4, 2702);
     			attr_dev(i3, "class", "fa fa-lg fa-download svelte-jgzd42");
-    			add_location(i3, file$2, 119, 7, 2860);
+    			add_location(i3, file$2, 120, 7, 2898);
     			attr_dev(a4, "class", "svelte-jgzd42");
-    			add_location(a4, file$2, 118, 4, 2812);
+    			add_location(a4, file$2, 119, 4, 2850);
     			attr_dev(i4, "class", "fa fa-lg fa-volume-up svelte-jgzd42");
-    			add_location(i4, file$2, 121, 30, 2934);
+    			add_location(i4, file$2, 122, 30, 2972);
     			attr_dev(a5, "class", "svelte-jgzd42");
-    			add_location(a5, file$2, 121, 4, 2908);
+    			add_location(a5, file$2, 122, 4, 2946);
     			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty(/*primaryClass*/ ctx[3]) + " svelte-jgzd42"));
-    			add_location(div1, file$2, 102, 2, 2227);
-    			add_location(br1, file$2, 123, 2, 2985);
+    			add_location(div1, file$2, 103, 2, 2265);
+    			add_location(br1, file$2, 124, 2, 3023);
     			attr_dev(div2, "class", "container");
-    			add_location(div2, file$2, 75, 0, 1710);
+    			add_location(div2, file$2, 76, 0, 1748);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2347,7 +2388,7 @@ var app = (function () {
     			append_dev(div1, t13);
     			append_dev(div1, a5);
     			append_dev(a5, i4);
-    			/*div1_binding*/ ctx[16](div1);
+    			/*div1_binding*/ ctx[17](div1);
     			append_dev(div2, t14);
     			append_dev(div2, br1);
 
@@ -2357,18 +2398,18 @@ var app = (function () {
     						scrolling = true;
     						clearTimeout(scrolling_timeout);
     						scrolling_timeout = setTimeout_1(clear_scrolling, 100);
-    						/*onwindowscroll*/ ctx[7]();
+    						/*onwindowscroll*/ ctx[8]();
     					}),
-    					listen_dev(input0, "change", /*input0_change_input_handler*/ ctx[8]),
-    					listen_dev(input0, "input", /*input0_change_input_handler*/ ctx[8]),
-    					listen_dev(input0, "input", /*input_handler*/ ctx[9], false, false, false),
-    					listen_dev(input1, "change", /*input1_change_input_handler*/ ctx[10]),
-    					listen_dev(input1, "input", /*input1_change_input_handler*/ ctx[10]),
-    					listen_dev(a0, "click", /*click_handler*/ ctx[11], false, false, false),
-    					listen_dev(a1, "click", /*click_handler_1*/ ctx[12], false, false, false),
-    					listen_dev(a2, "click", /*click_handler_2*/ ctx[13], false, false, false),
-    					listen_dev(a3, "click", /*click_handler_3*/ ctx[14], false, false, false),
-    					listen_dev(a4, "click", /*click_handler_4*/ ctx[15], false, false, false),
+    					listen_dev(input0, "change", /*input0_change_input_handler*/ ctx[9]),
+    					listen_dev(input0, "input", /*input0_change_input_handler*/ ctx[9]),
+    					listen_dev(input0, "input", /*input_handler*/ ctx[10], false, false, false),
+    					listen_dev(input1, "change", /*input1_change_input_handler*/ ctx[11]),
+    					listen_dev(input1, "input", /*input1_change_input_handler*/ ctx[11]),
+    					listen_dev(a0, "click", /*click_handler*/ ctx[12], false, false, false),
+    					listen_dev(a1, "click", /*click_handler_1*/ ctx[13], false, false, false),
+    					listen_dev(a2, "click", /*click_handler_2*/ ctx[14], false, false, false),
+    					listen_dev(a3, "click", /*click_handler_3*/ ctx[15], false, false, false),
+    					listen_dev(a4, "click", /*click_handler_4*/ ctx[16], false, false, false),
     					listen_dev(a5, "click", /*toggleSound*/ ctx[5], false, false, false)
     				];
 
@@ -2414,7 +2455,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
     			if_block.d();
-    			/*div1_binding*/ ctx[16](null);
+    			/*div1_binding*/ ctx[17](null);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -2437,10 +2478,11 @@ var app = (function () {
     	let { config } = $$props;
     	let urlUpdatedRecently = false;
     	let scrollY = 0;
+    	let { isSoundEnabled = true } = $$props;
 
     	const toggleSound = () => {
     		console.log("toggle sound");
-    		isSoundEnabled = !isSoundEnabled;
+    		$$invalidate(6, isSoundEnabled = !isSoundEnabled);
     		console.log(isSoundEnabled);
     	};
 
@@ -2501,7 +2543,7 @@ var app = (function () {
     		}
     	};
 
-    	const writable_props = ["grid", "config"];
+    	const writable_props = ["grid", "config", "isSoundEnabled"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Controls> was created with unknown prop '${key}'`);
@@ -2540,20 +2582,21 @@ var app = (function () {
     	}
 
     	$$self.$set = $$props => {
-    		if ("grid" in $$props) $$invalidate(6, grid = $$props.grid);
+    		if ("grid" in $$props) $$invalidate(7, grid = $$props.grid);
     		if ("config" in $$props) $$invalidate(0, config = $$props.config);
+    		if ("isSoundEnabled" in $$props) $$invalidate(6, isSoundEnabled = $$props.isSoundEnabled);
     	};
 
     	$$self.$capture_state = () => ({
     		createEventDispatcher,
     		onMount,
     		ClipboardJS,
-    		scale_keys,
     		dispatch,
     		grid,
     		config,
     		urlUpdatedRecently,
     		scrollY,
+    		isSoundEnabled,
     		toggleSound,
     		encodeGridToUrl,
     		updateUrl,
@@ -2565,10 +2608,11 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("grid" in $$props) $$invalidate(6, grid = $$props.grid);
+    		if ("grid" in $$props) $$invalidate(7, grid = $$props.grid);
     		if ("config" in $$props) $$invalidate(0, config = $$props.config);
     		if ("urlUpdatedRecently" in $$props) urlUpdatedRecently = $$props.urlUpdatedRecently;
     		if ("scrollY" in $$props) $$invalidate(1, scrollY = $$props.scrollY);
+    		if ("isSoundEnabled" in $$props) $$invalidate(6, isSoundEnabled = $$props.isSoundEnabled);
     		if ("clipboard" in $$props) clipboard = $$props.clipboard;
     		if ("header" in $$props) $$invalidate(2, header = $$props.header);
     		if ("headerOffset" in $$props) headerOffset = $$props.headerOffset;
@@ -2580,7 +2624,7 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*grid, config*/ 65) {
+    		if ($$self.$$.dirty & /*grid, config*/ 129) {
     			 updateUrl(grid, config.speed, config.scale_key);
     		}
 
@@ -2596,6 +2640,7 @@ var app = (function () {
     		primaryClass,
     		dispatch,
     		toggleSound,
+    		isSoundEnabled,
     		grid,
     		onwindowscroll,
     		input0_change_input_handler,
@@ -2613,7 +2658,7 @@ var app = (function () {
     class Controls extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { grid: 6, config: 0 });
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { grid: 7, config: 0, isSoundEnabled: 6 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2625,7 +2670,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*grid*/ ctx[6] === undefined && !("grid" in props)) {
+    		if (/*grid*/ ctx[7] === undefined && !("grid" in props)) {
     			console_1.warn("<Controls> was created without expected prop 'grid'");
     		}
 
@@ -2649,6 +2694,14 @@ var app = (function () {
     	set config(value) {
     		throw new Error("<Controls>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get isSoundEnabled() {
+    		throw new Error("<Controls>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isSoundEnabled(value) {
+    		throw new Error("<Controls>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src/App.svelte generated by Svelte v3.23.2 */
@@ -2665,7 +2718,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (179:1) {#if recording}
+    // (195:1) {#if recording}
     function create_if_block$1(ctx) {
     	let span;
 
@@ -2674,7 +2727,7 @@ var app = (function () {
     			span = element("span");
     			span.textContent = "Please wait for the playback to finish";
     			attr_dev(span, "class", "message svelte-wvhii7");
-    			add_location(span, file$3, 179, 2, 3509);
+    			add_location(span, file$3, 195, 2, 4016);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2688,14 +2741,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(179:1) {#if recording}",
+    		source: "(195:1) {#if recording}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (185:2) {#each grid as row}
+    // (201:2) {#each grid as row}
     function create_each_block$1(ctx) {
     	let row;
     	let updating_row;
@@ -2769,7 +2822,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(185:2) {#each grid as row}",
+    		source: "(201:2) {#each grid as row}",
     		ctx
     	});
 
@@ -2884,32 +2937,32 @@ var app = (function () {
     			t14 = space();
     			br3 = element("br");
     			set_style(h3, "text-decoration", "underline");
-    			add_location(h3, file$3, 167, 1, 3136);
+    			add_location(h3, file$3, 183, 1, 3643);
     			attr_dev(a0, "download", "music-grid.wav");
     			a0.hidden = "true";
-    			add_location(a0, file$3, 181, 1, 3585);
+    			add_location(a0, file$3, 197, 1, 4092);
     			attr_dev(div0, "id", "notesContainer");
-    			add_location(div0, file$3, 182, 1, 3667);
+    			add_location(div0, file$3, 198, 1, 4174);
     			attr_dev(table, "class", "svelte-wvhii7");
-    			add_location(table, file$3, 183, 1, 3700);
-    			add_location(br0, file$3, 188, 1, 3859);
+    			add_location(table, file$3, 199, 1, 4207);
+    			add_location(br0, file$3, 204, 1, 4366);
     			attr_dev(a1, "href", "https://irshadpi.me/best-of-music-grid");
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "class", "svelte-wvhii7");
-    			add_location(a1, file$3, 190, 2, 3904);
-    			add_location(br1, file$3, 191, 2, 3996);
+    			add_location(a1, file$3, 206, 2, 4411);
+    			add_location(br1, file$3, 207, 2, 4503);
     			attr_dev(a2, "href", "#0-2048-0-144-1072-0-40-530-0-268-24-0-1048-0-24-2072-0-2048-0-1024-0-0-512-18-0-268-24-0-1048-0-24-2072-0-0-2048-144-1072-0-40-530-0-268-24-0-1048-0-24-24-0-0-0-528-40-64-0-136-0-34-68-0-9-18-0-72-656-0-656-40-0-72-0-144-0-0-544-0-0-272-0-0-36-0-0-0-2304-0-0-0-17-0-1058-2084-0-1058-0-1058-1058-&399&classic");
     			attr_dev(a2, "target", "_blank");
     			attr_dev(a2, "class", "svelte-wvhii7");
-    			add_location(a2, file$3, 192, 2, 4004);
+    			add_location(a2, file$3, 208, 2, 4511);
     			attr_dev(div1, "class", "footer svelte-wvhii7");
     			attr_dev(div1, "align", "center");
-    			add_location(div1, file$3, 189, 1, 3866);
-    			add_location(br2, file$3, 194, 1, 4359);
-    			add_location(br3, file$3, 195, 1, 4366);
+    			add_location(div1, file$3, 205, 1, 4373);
+    			add_location(br2, file$3, 210, 1, 4866);
+    			add_location(br3, file$3, 211, 1, 4873);
     			attr_dev(div2, "class", "container svelte-wvhii7");
     			attr_dev(div2, "align", "center");
-    			add_location(div2, file$3, 166, 0, 3096);
+    			add_location(div2, file$3, 182, 0, 3603);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3198,6 +3251,26 @@ var app = (function () {
     	if (window.location.hash !== "") {
     		initGrid(window.location.hash);
     	}
+
+    	document.addEventListener("DOMContentLoaded", () => {
+    		//display notes on the top of the grid
+    		let table = document.querySelector("table");
+
+    		let notes = scales[config.scale_key];
+
+    		//add an header note
+    		let header = document.createElement("tr");
+
+    		header.appendChild(document.createElement("td"));
+
+    		for (var i = 0; i <= notes.length - 1; i++) {
+    			let th = document.createElement("th");
+    			th.innerHTML = notes[i];
+    			header.appendChild(th);
+    		}
+
+    		table.insertBefore(header, table.firstChild);
+    	});
 
     	const writable_props = [];
 

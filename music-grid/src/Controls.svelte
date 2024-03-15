@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import ClipboardJS from "clipboard";
-  import { scale_keys } from "./Music.svelte";
+  //import { scale_keys } from "./Music.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -10,6 +10,7 @@
 
   let urlUpdatedRecently = false;
   let scrollY = 0;
+  export let isSoundEnabled = true;
 
   const toggleSound = () => {
     console.log("toggle sound");

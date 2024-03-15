@@ -132,6 +132,22 @@
 	if(window.location.hash !== '') {
 		initGrid(window.location.hash);
 	}
+
+	document.addEventListener('DOMContentLoaded', () =>{
+		//display notes on the top of the grid
+		let table = document.querySelector('table');
+		let notes = scales[config.scale_key];
+		//add an header note
+		let header = document.createElement('tr');
+		header.appendChild(document.createElement('td'));
+		for (var i = 0; i <= notes.length - 1; i++) {
+			let th = document.createElement('th');
+			th.innerHTML = notes[i];
+			header.appendChild(th);
+		}
+		table.insertBefore(header, table.firstChild);
+	});
+	
 </script>
 <style>
 	table {

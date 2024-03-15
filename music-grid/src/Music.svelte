@@ -2,49 +2,49 @@
   import * as Tone from "tone";
   import bufferToWav from "audiobuffer-to-wav";
 
-  //import { isSoundEnabled } from "./controls";
-  
+  //import { isSoundEnabled } from "./Controls.svelte";
+
   let synth;
   let recorder;
   let destinationStream;
 
-  export const midiNotes = {
-    "C1": 24,
-    "D1": 26,
-    "E1": 28,
-    "F1": 29,
-    "G1": 31,
-    "A1": 33,
-    "B1": 35,
-    "C2": 36,
-    "D2": 38,
-    "E2": 40,
-    "F2": 41,
-    "G2": 43,
-    "A2": 45,
-    "B2": 47,
-    "C3": 48,
-    "D3": 50,
-    "E3": 52,
-    "F3": 53,
-    "G3": 55,
-    "A3": 57,
-    "B3": 59,
-    "C4": 60,
-    "D4": 62,
-    "E4": 64,
-    "F4": 65,
-    "G4": 67,
-    "A4": 69,
-    "B4": 71,
-    "C5": 72,
-    "D5": 74,
-    "E5": 76,
-    "F5": 77,
-    "G5": 79,
-    "A5": 81,
-    "B6": 83,
-    "C6": 84
+  const midiNotes = {
+    C1: 24,
+    D1: 26,
+    E1: 28,
+    F1: 29,
+    G1: 31,
+    A1: 33,
+    B1: 35,
+    C2: 36,
+    D2: 38,
+    E2: 40,
+    F2: 41,
+    G2: 43,
+    A2: 45,
+    B2: 47,
+    C3: 48,
+    D3: 50,
+    E3: 52,
+    F3: 53,
+    G3: 55,
+    A3: 57,
+    B3: 59,
+    C4: 60,
+    D4: 62,
+    E4: 64,
+    F4: 65,
+    G4: 67,
+    A4: 69,
+    B4: 71,
+    C5: 72,
+    D5: 74,
+    E5: 76,
+    F5: 77,
+    G5: 79,
+    A5: 81,
+    B6: 83,
+    C6: 84,
   };
 
   export const scales = {
@@ -89,6 +89,8 @@
   };
 
   let currentScale = scales["classic"];
+  let midiNotesConversion = midiNotes;
+  const sendMidiToSynth = false;
 
   export const scale_keys = Object.keys(scales);
 
@@ -107,7 +109,6 @@
     await Tone.start();
     await Tone.context.resume();
     console.log("audio is ready");
-
   };
 
   export const setScale = (key) => {
@@ -122,6 +123,7 @@
     // get notes to play
     let notesToPlay = [];
     let midiNotes = [];
+
     for (var i = row.length - 1; i >= 0; i--) {
       if (row[i]) {
         notesToPlay.push(currentScale[i]);
@@ -129,14 +131,34 @@
     }
 
     // get midi notes to play
-    for (var i = notesToPlay.length - 1; i >= 0; i--) {
-      midiNotes.push(midiNotes[notesToPlay[i]]);
+    for (var i = 0; i <= notesToPlay.length - 1; i++) {
+      midiNotes.push(midiNotesConversion[notesToPlay[i]]);
     }
     console.log(notesToPlay);
     console.log(midiNotes);
 
+    if (sendMidiToSynth) {
+      //send midi to 192.168.0.4
+      console.log("sending midi to synth");
+      fetch("http://192.168.0.4", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ midiNotes: midiNotes }),
+      })
+      .then((response) => {
+        if (!response.ok) {
+          alert("Error sending midi to synth");
+        }
+      })
+    }
+
     // play notes in browser
-    synth.triggerAttackRelease(notesToPlay, "16n");
+    if (isSoundEnabled) {
+      synth.triggerAttackRelease(notesToPlay, "16n");
+    }
+
     // scroll to playing row
     const playingRows = document.getElementsByClassName("playing");
 
