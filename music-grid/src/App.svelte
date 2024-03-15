@@ -3,6 +3,7 @@
 	import Controls from './Controls.svelte';
 
 	import {initAudio, playRow, startRecording, stopRecording, setScale, scales} from './Music.svelte';
+
 	let config = {
 		playing: false,
 		speed: 175,

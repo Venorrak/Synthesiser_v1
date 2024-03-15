@@ -11,8 +11,6 @@
   let urlUpdatedRecently = false;
   let scrollY = 0;
 
-  export let isSoundEnabled = false;
-
   const toggleSound = () => {
     console.log("toggle sound");
     isSoundEnabled = !isSoundEnabled;
