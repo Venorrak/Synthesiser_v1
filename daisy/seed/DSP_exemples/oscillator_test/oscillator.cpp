@@ -20,7 +20,20 @@ static DelayLine<float, MAX_DELAY> del;
 bool gate;
 float sampleRate;
 
-int transposeOctave(float freq, int octaveDifference) 
+float convertValue(int value, float newMin, float newMax) {
+    int minValue = 0;
+    int maxValue = 65534;
+    
+    // Calculer la valeur normalisée entre 0 et 1
+    float normalizedValue = static_cast<float>(value - minValue) / (maxValue - minValue);
+    
+    // Appliquer la fonction de mise à l'échelle exponentielle
+    float scaledValue = ((newMax - newMin) * pow(normalizedValue, 2)) + newMin;
+    
+    return scaledValue;
+}
+
+int ftom(float freq) 
 {
     // Calcul de la valeur MIDI
     float midiValue = 12 * std::log2(freq / 440.0) + 69;
@@ -28,16 +41,24 @@ int transposeOctave(float freq, int octaveDifference)
     // Arrondir la valeur MIDI à l'entier le plus proche
     int midiNote = static_cast<int>(round(midiValue));
 
+    return midiNote;
+}
+
+// midiMin & midiMax valeurs qui déterminent le maximum qui peut atteindre et le minimum qu'il peut atteindre
+int transposeOctave(float freq, int octaveDifference, int midiMin, int midiMax) 
+{
+    int midiNote = ftom(freq);
+
     // Si octaveDifference = 1 on descend d'un octave et si c'est -1 on monte d'un octave
     midiNote = midiNote - (octaveDifference * 12);
 
-    if (midiNote > 108) 
+    if (midiNote > midiMax) 
     {
-        midiNote = 108;
+        midiNote = midiMax;
     }
-    else if (midiNote < 21)
+    else if (midiNote < midiMin)
     {
-        midiNote = 21;
+        midiNote = midiMin;
     }
 
     return midiNote;
@@ -46,11 +67,12 @@ int transposeOctave(float freq, int octaveDifference)
 void setOscFreq(float freqOsc1, float freqOsc2) 
 {
     int midiNote;
+    int tune = static_cast<int>(round(convertValue(hw.adc.Get(9), 0.0f, 12.0f)));
     switch(toggleWaveForm.Read())
     {
         case Switch3::POS_UP:
             hw.SetLed(false);
-            midiNote = transposeOctave(freqOsc1, -1); 
+            midiNote = transposeOctave(freqOsc1, -1, 33, 108);
             oscillator.SetFreq(mtof(midiNote));
             break;
         case Switch3::POS_CENTER:
@@ -59,7 +81,7 @@ void setOscFreq(float freqOsc1, float freqOsc2)
             break;
         case Switch3::POS_DOWN: 
             hw.SetLed(false);
-            midiNote = transposeOctave(freqOsc1, 1); 
+            midiNote = transposeOctave(freqOsc1, 1, 33, 108); 
             oscillator.SetFreq(mtof(midiNote));
             break;
     }
@@ -67,14 +89,18 @@ void setOscFreq(float freqOsc1, float freqOsc2)
     switch(toggleWaveForm2.Read())
     {
         case Switch3::POS_UP: 
-            midiNote = transposeOctave(freqOsc2, -1); 
+            midiNote = transposeOctave(freqOsc2, -1, 21, 96);
+            midiNote += tune;
             osc2.SetFreq(mtof(midiNote));
             break;
         case Switch3::POS_CENTER:
+            midiNote = ftom(freqOsc2);
+            midiNote += tune;
             osc2.SetFreq(freqOsc2);
             break;
         case Switch3::POS_DOWN: 
-            midiNote = transposeOctave(freqOsc2, 1);
+            midiNote = transposeOctave(freqOsc2, 1, 21, 96);
+            midiNote += tune;
             osc2.SetFreq(mtof(midiNote));
             break;
     }
@@ -95,19 +121,6 @@ float frequencyCheck(float freqOsc, float lfoProcess)
     }
 
     return freq;
-}
-
-float convertValue(int value, float new_min, float new_max) {
-    int min_value = 0;
-    int max_value = 65534;
-    
-    // Calculer la valeur normalisée entre 0 et 1
-    float normalized_value = static_cast<float>(value - min_value) / (max_value - min_value);
-    
-    // Appliquer la fonction de mise à l'échelle exponentielle
-    float scaled_value = ((new_max - new_min) * pow(normalized_value, 2)) + new_min;
-    
-    return scaled_value;
 }
 
 void changeWaveForm() 
@@ -141,15 +154,14 @@ void AudioCallback(AudioHandle::InputBuffer in,
 
         //Read potentiometer value
         float ampOsc1 = convertValue(hw.adc.Get(0), 0.0f, 1.0f);
-        float freqOsc1 = convertValue(hw.adc.Get(1), 27.5f, 4186.01f);
+        float freqOsc1 = convertValue(hw.adc.Get(1), 110.0f, 2093.0f);
         float ampOsc2 = convertValue(hw.adc.Get(2), 0.0f, 1.0f);
-        float freqOsc2 = convertValue(hw.adc.Get(3), 27.5f, 4186.01f);
+        float freqOsc2 = convertValue(hw.adc.Get(3), 55.0f, 1046.50f);
         float envAttack = convertValue(hw.adc.Get(4), 1.0f, 5.0f);
         float envDecay = convertValue(hw.adc.Get(5), 1.0f, 5.0f);
         float sustain = convertValue(hw.adc.Get(6), 0.0f, 1.0f);
         float tickFrequency = convertValue(hw.adc.Get(7), 1.0f, 5.0f); 
         float delay = convertValue(hw.adc.Get(8), 0.0f, 0.75f);
-        float reverbVolume = convertValue(hw.adc.Get(9), 0.0f, 0.9f);
 
         //Make sure that frequency is always between 27.5 - 4186.0
         freqOsc1 = frequencyCheck(freqOsc1, lfo.Process());
@@ -245,6 +257,6 @@ int main(void)
     
     for(;;) 
     {
-        
+
     }
 }
