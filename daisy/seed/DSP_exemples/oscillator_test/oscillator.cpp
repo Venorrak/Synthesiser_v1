@@ -3,6 +3,9 @@
 #include "daisysp-lgpl.h"
 #include <cmath>
 
+// Set max delay time to 0.75 of samplerate.
+#define MAX_DELAY static_cast<size_t>(48000 * 0.75f)
+
 using namespace daisy;
 using namespace daisysp;
 
@@ -10,9 +13,10 @@ static DaisySeed hw;
 static Oscillator oscillator, osc2, lfo;
 static Adsr env;
 static Metro tick;
-static ReverbSc reverb;
 static Switch3 toggleWaveForm;
 static Switch3 toggleWaveForm2;
+// Declare a DelayLine of MAX_DELAY number of floats.
+static DelayLine<float, MAX_DELAY> del;
 bool gate;
 float sampleRate;
 
@@ -117,9 +121,9 @@ void changeWaveForm()
 
     switch(toggleWaveForm2.Read())
     {
-        case Switch3::POS_UP: oscillator.SetWaveform(lfo.WAVE_SQUARE); break;
-        case Switch3::POS_CENTER: oscillator.SetWaveform(lfo.WAVE_POLYBLEP_SAW); break;
-        case Switch3::POS_DOWN: oscillator.SetWaveform(lfo.WAVE_TRI); break;
+        case Switch3::POS_UP: lfo.SetWaveform(lfo.WAVE_SQUARE); break;
+        case Switch3::POS_CENTER: lfo.SetWaveform(lfo.WAVE_POLYBLEP_SAW); break;
+        case Switch3::POS_DOWN: lfo.SetWaveform(lfo.WAVE_TRI); break;
     }
 }
 
@@ -127,7 +131,7 @@ void AudioCallback(AudioHandle::InputBuffer in,
                    AudioHandle::OutputBuffer out, 
                    size_t size)
 {
-    float osc_out, osc2_out, env_out;
+    float osc_out, osc2_out, env_out, del_out, sig_out, feedback;
     for (size_t i = 0; i < size; i++)
     {
         if (tick.Process()) 
@@ -144,7 +148,7 @@ void AudioCallback(AudioHandle::InputBuffer in,
         float envDecay = convertValue(hw.adc.Get(5), 1.0f, 5.0f);
         float sustain = convertValue(hw.adc.Get(6), 0.0f, 1.0f);
         float tickFrequency = convertValue(hw.adc.Get(7), 1.0f, 5.0f); 
-        float reverbFreq = convertValue(hw.adc.Get(8), 1000.0f, 36000.0f);
+        float delay = convertValue(hw.adc.Get(8), 0.0f, 0.75f);
         float reverbVolume = convertValue(hw.adc.Get(9), 0.0f, 0.9f);
 
         //Make sure that frequency is always between 27.5 - 4186.0
@@ -166,25 +170,25 @@ void AudioCallback(AudioHandle::InputBuffer in,
         env.SetTime(ADSR_SEG_DECAY, envDecay);
         env.SetSustainLevel(sustain);
 
-        // Update reverb
-        reverb.SetLpFreq(reverbFreq);
-        reverb.SetFeedback(reverbVolume);
-
         // Use envelope to control the amplitude of the oscillator.
         env_out = env.Process(gate);
         osc_out = oscillator.Process() * env_out;
         osc2_out = osc2.Process() * env_out;
 
-        if (reverbVolume > 0.05f) 
-        {
-            reverb.Process(osc_out, osc2_out, OUT_L, OUT_R);
-        }
-        else 
-        {
-            // A noticeable sync effect can be heard on high frequencies
-            OUT_L[i] = osc_out;
-            OUT_R[i] = osc2_out;
-        }   
+        del_out = del.Read();
+
+          // Calculate output and feedback
+        sig_out  = del_out + osc_out + osc2_out;
+        feedback = (del_out * 0.75f) + osc_out + osc2_out;
+
+        // Write to the delay
+        del.Write(feedback);
+        
+        del.SetDelay(sampleRate * delay);
+
+        // A noticeable sync effect can be heard on high frequencies
+        OUT_L[i] = sig_out;
+        OUT_R[i] = sig_out; 
     }
 }
 
@@ -233,15 +237,14 @@ int main(void)
     env.SetTime(ADSR_SEG_DECAY, 1.0f);
     env.SetSustainLevel(.50);
 
-    // Set reverb parameters
-    reverb.Init(sampleRate);
-    reverb.SetFeedback(0.9f);
-    reverb.SetLpFreq(sampleRate/2);
+    // Set Delay parameters
+    del.Init();
+    del.SetDelay(sampleRate * 0.50f);
 
     hw.StartAudio(AudioCallback);
     
     for(;;) 
     {
-
+        
     }
 }

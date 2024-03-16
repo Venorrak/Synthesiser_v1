@@ -45,7 +45,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
         // Read from delay linex
         del_out = del.Read();
         // Calculate output and feedback
-        sig_out  = del_out + osc_out;
+        sig_out  = del_out + osc_out ;
         feedback = (del_out * 0.75f) + osc_out;
 
         // Write to the delay
@@ -85,7 +85,7 @@ int main(void)
     osc.SetAmp(0.25);
 
     // Set Delay time to 0.75 seconds
-    del.SetDelay(sample_rate * 0.75f);
+    del.SetDelay(sample_rate * 0.50f);
 
 
     // start callback
