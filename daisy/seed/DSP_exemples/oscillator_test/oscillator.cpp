@@ -10,7 +10,7 @@ using namespace daisy;
 using namespace daisysp;
 
 static DaisySeed hw;
-static Oscillator oscillator, osc2, lfo;
+static Oscillator osc1, osc2, osc3, lfo;
 static Adsr env;
 static Metro tick;
 static Switch3 toggleWaveForm;
@@ -73,16 +73,16 @@ void setOscFreq(float freqOsc1, float freqOsc2)
         case Switch3::POS_UP:
             hw.SetLed(false);
             midiNote = transposeOctave(freqOsc1, -1, 33, 108);
-            oscillator.SetFreq(mtof(midiNote));
+            osc1.SetFreq(mtof(midiNote));
             break;
         case Switch3::POS_CENTER:
             hw.SetLed(true);
-            oscillator.SetFreq(freqOsc1);
+            osc1.SetFreq(freqOsc1);
             break;
         case Switch3::POS_DOWN: 
             hw.SetLed(false);
             midiNote = transposeOctave(freqOsc1, 1, 33, 108); 
-            oscillator.SetFreq(mtof(midiNote));
+            osc1.SetFreq(mtof(midiNote));
             break;
     }
     
@@ -106,7 +106,7 @@ void setOscFreq(float freqOsc1, float freqOsc2)
     }
 }
 
-float frequencyCheck(float freqOsc, float lfoProcess) 
+float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) 
 {
     float freq = ((lfoProcess * freqOsc) * 2);
 
@@ -115,9 +115,9 @@ float frequencyCheck(float freqOsc, float lfoProcess)
         freq = -1 * freq;
     }
 
-    if (freq < 27.5f) 
+    if (freq < minFreq) 
     {
-        freq = 27.5f;
+        freq = minFreq;
     }
 
     return freq;
@@ -127,9 +127,9 @@ void changeWaveForm()
 {
     switch(toggleWaveForm.Read())
     {
-        case Switch3::POS_UP: oscillator.SetWaveform(oscillator.WAVE_SQUARE); hw.SetLed(false); break;
-        case Switch3::POS_CENTER: oscillator.SetWaveform(oscillator.WAVE_POLYBLEP_SAW); hw.SetLed(true); break;
-        case Switch3::POS_DOWN: oscillator.SetWaveform(oscillator.WAVE_TRI); hw.SetLed(false); break;
+        case Switch3::POS_UP: osc1.SetWaveform(osc1.WAVE_SQUARE); osc3.SetWaveform(osc3.WAVE_SQUARE); break;
+        case Switch3::POS_CENTER: osc1.SetWaveform(osc1.WAVE_POLYBLEP_SAW); osc3.SetWaveform(osc3.WAVE_POLYBLEP_SAW); break;
+        case Switch3::POS_DOWN: osc1.SetWaveform(osc1.WAVE_TRI); osc3.SetWaveform(osc3.WAVE_TRI); break;
     }
 
     switch(toggleWaveForm2.Read())
@@ -140,11 +140,87 @@ void changeWaveForm()
     }
 }
 
+void setSubFreq(float freq) 
+{
+    int midiNote = transposeOctave(freq, 1, 21, 108);
+    osc3.SetFreq(mtof(midiNote));
+}
+
+bool setDelay() 
+{
+    int delay = static_cast<int>(round(convertValue(hw.adc.Get(8), 0.0f, 80.0f)));
+
+    switch (delay)
+    {
+        case 0 ... 9:
+            return false;
+        break;
+        
+        case 10 ... 14:
+            del.SetDelay(sampleRate * 0.10f);
+        break;
+
+        case 15 ... 19:
+            del.SetDelay(sampleRate * 0.15f);
+        break;
+        
+        case 20 ... 24:
+            del.SetDelay(sampleRate * 0.20f);
+        break;
+
+        case 25 ... 29:
+            del.SetDelay(sampleRate * 0.25f);
+        break;
+
+        case 30 ... 34:
+            del.SetDelay(sampleRate * 0.30f);
+        break;
+
+        case 35 ... 39:
+            del.SetDelay(sampleRate * 0.35f);
+        break;
+
+        case 40 ... 44:
+            del.SetDelay(sampleRate * 0.40f);
+        break;
+
+        case 45 ... 49:
+            del.SetDelay(sampleRate * 0.45f);
+        break;
+
+        case 50 ... 54:
+            del.SetDelay(sampleRate * 0.50f);
+        break;
+
+        case 55 ... 59:
+            del.SetDelay(sampleRate * 0.55f);
+        break;
+
+        case 60 ... 64:
+            del.SetDelay(sampleRate * 0.60f);
+        break;
+
+        case 65 ... 69:
+            del.SetDelay(sampleRate * 0.65f);
+        break;
+
+        case 70 ... 74:
+            del.SetDelay(sampleRate * 0.70f);
+        break;
+
+        case 75 ... 80:
+            del.SetDelay(sampleRate * 0.75f);
+        break;
+    }
+
+    return true;
+}
+
 void AudioCallback(AudioHandle::InputBuffer in, 
                    AudioHandle::OutputBuffer out, 
                    size_t size)
 {
-    float osc_out, osc2_out, env_out, del_out, sig_out, feedback;
+    float osc_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback;
     for (size_t i = 0; i < size; i++)
     {
         if (tick.Process()) 
@@ -161,19 +237,19 @@ void AudioCallback(AudioHandle::InputBuffer in,
         float envDecay = convertValue(hw.adc.Get(5), 1.0f, 5.0f);
         float sustain = convertValue(hw.adc.Get(6), 0.0f, 1.0f);
         float tickFrequency = convertValue(hw.adc.Get(7), 1.0f, 5.0f); 
-        float delay = convertValue(hw.adc.Get(8), 0.0f, 0.75f);
 
-        //Make sure that frequency is always between 27.5 - 4186.0
-        freqOsc1 = frequencyCheck(freqOsc1, lfo.Process());
-        freqOsc2 = frequencyCheck(freqOsc2, lfo.Process());
+        //Make sure that frequency is not going below his minimum
+        freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0f);
+        freqOsc2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0f);
 
         // LFO mods the oscillator
-        // oscillator.SetFreq(freqOsc1);
-        // osc2.SetFreq(freqOsc2);
-        oscillator.SetAmp(ampOsc1);
+        osc1.SetAmp(ampOsc1);
         osc2.SetAmp(ampOsc2);
+        osc3.SetAmp(ampOsc1);
         changeWaveForm();
         setOscFreq(freqOsc1, freqOsc2);
+        setSubFreq(freqOsc1);
+
         // Update tick frequency
         tick.SetFreq(tickFrequency);
 
@@ -184,19 +260,25 @@ void AudioCallback(AudioHandle::InputBuffer in,
 
         // Use envelope to control the amplitude of the oscillator.
         env_out = env.Process(gate);
-        osc_out = oscillator.Process() * env_out;
+        osc_out = osc1.Process() * env_out;
         osc2_out = osc2.Process() * env_out;
+        osc3_out = osc3.Process() * env_out;
 
         del_out = del.Read();
 
-          // Calculate output and feedback
-        sig_out  = del_out + osc_out + osc2_out;
-        feedback = (del_out * 0.75f) + osc_out + osc2_out;
+        // Calculate output and feedback
+        sig_out  = del_out + osc_out + osc2_out + osc3_out;
+        feedback = (del_out * 0.75f) + osc_out + osc2_out + osc3_out;
 
         // Write to the delay
         del.Write(feedback);
         
-        del.SetDelay(sampleRate * delay);
+        bool isDelay = setDelay();
+
+        if (!isDelay) 
+        {
+            sig_out = osc_out + osc2_out + osc3_out;
+        }
 
         // A noticeable sync effect can be heard on high frequencies
         OUT_L[i] = sig_out;
@@ -228,12 +310,15 @@ int main(void)
 
     hw.adc.Init(adcConfig, 10);
     hw.adc.Start();
+    hw.StartLog();
 
     // Audio Oscillator
-    oscillator.Init(sampleRate);
+    osc1.Init(sampleRate);
     osc2.Init(sampleRate);
-    oscillator.SetWaveform(oscillator.WAVE_POLYBLEP_SAW);
-    osc2.SetWaveform(oscillator.WAVE_SQUARE);
+    osc3.Init(sampleRate);
+    osc1.SetWaveform(osc1.WAVE_POLYBLEP_SAW);
+    osc2.SetWaveform(osc1.WAVE_SQUARE);
+    osc3.SetWaveform(osc3.WAVE_POLYBLEP_SAW);
 
     // LFO
     lfo.Init(sampleRate);
@@ -257,6 +342,6 @@ int main(void)
     
     for(;;) 
     {
-
+        hw.PrintLine("My Float: " FLT_FMT(6), FLT_VAR(6, convertValue(hw.adc.Get(8), 0.0f, 0.75f)));
     }
 }
