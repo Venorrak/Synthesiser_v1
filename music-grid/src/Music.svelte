@@ -2,7 +2,13 @@
   import * as Tone from "tone";
   import bufferToWav from "audiobuffer-to-wav";
 
-  //import { isSoundEnabled } from "./Controls.svelte";
+  import { setSoundEnabled } from "./store.js";
+
+  let isSynthEnabled;
+  setSoundEnabled.subscribe((value) => {
+    console.log("MUSIC.SVELTE: Sound is now " + value);
+    isSynthEnabled = value;
+  });
 
   let synth;
   let recorder;
@@ -155,13 +161,13 @@
     }
 
     // play notes in browser
-    if (isSoundEnabled) {
+    if (isSynthEnabled) {
       synth.triggerAttackRelease(notesToPlay, "16n");
     }
 
     // scroll to playing row
     const playingRows = document.getElementsByClassName("playing");
-
+      //console.log(playingRows);
     // if there are playing rows, scroll to it
     if (playingRows.length > 0) {
       const playingRow = playingRows[0];
@@ -177,7 +183,9 @@
     if (!synth) {
       await initAudio();
     }
-    synth.triggerAttackRelease(currentScale[index], "16n");
+    if (isSynthEnabled){
+      synth.triggerAttackRelease(currentScale[index], "16n");
+    }
   };
 
   export const stopRecording = async () => {

@@ -1,7 +1,6 @@
 <script>
 	import Row from './Row.svelte';
 	import Controls from './Controls.svelte';
-
 	import {initAudio, playRow, startRecording, stopRecording, setScale, scales} from './Music.svelte';
 
 	let config = {
@@ -11,6 +10,7 @@
 		scale_key: 'classic',
 	}
 
+	//app configuration
 	let columns = 36;
 	let grid = [];
 	let gameInterval;
@@ -19,6 +19,12 @@
 	let started = false;
 	let downloadLink;
 	let recording = false;
+
+	//app functions
+	const toggleSound = async () => {
+		console.log("Toggle sound from app.svelte");
+		//$isSoundEnabled = !isSoundEnabled;
+	}
 
 	const togglePlaying = async () => {
 		config.playing = !config.playing;
@@ -66,14 +72,13 @@
 		grid[0].isPlaying = false;
 	}
 
+	//initialize the grid
 	const initGrid = (hash) => {
 		config.playing = false;
 		let array = hash.split('&')[0].slice(1).split('-').map(x => parseInt(x, 10));
 		config.rows = array.length - 1;
 		grid = []
 		// add header note
-
-		console.log(document.getElementById('notesContainer'));
 		for (var i = array.length - 2; i >= 0; i--) {
 			let temp = [... Array(columns).fill(false)];
 			for (var j = columns - 1; j >= 0; j--) {
@@ -89,6 +94,7 @@
 		}
 	}
 
+	//change playing speed
 	const changeSpeed = (bpm) => {
 		clearInterval(gameInterval);
 		gameInterval = setInterval(() => {
@@ -133,6 +139,7 @@
 		initGrid(window.location.hash);
 	}
 
+	//load the table header, to show notes at the top of the grid
 	document.addEventListener('DOMContentLoaded', () =>{
 		//display notes on the top of the grid
 		let table = document.querySelector('table');
@@ -191,6 +198,7 @@
 		on:rowchange={() => resizeGrid(config.rows)}
 		on:scalechange={() => setScale(config.scale_key)}
 		on:download={downloadAudio}
+		on:mute={toggleSound}
 	/>
 	{#if recording}
 		<span class="message">Please wait for the playback to finish</span>
