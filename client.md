@@ -120,7 +120,7 @@ surge public my-project.surge.sh
 
 ## Intéraction avec le client
 
-<b>Bouton de son</b>: L'état du bouton est sauvegardé dans le fichier 'store.js'.
+<b>Bouton de son</b>: Lorsque le bouton est appuyé, l'état est mise à jours dans le fichier 'store.js'.
 
 <b>Communication</b>: Le client envoie les données au ESP32 à l'aide du protocole http. Un server web attend des données au format afin de les transmettre au synthétiseur.
 

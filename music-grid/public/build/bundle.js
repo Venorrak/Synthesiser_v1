@@ -755,8 +755,36 @@ var app = (function () {
     		midiNotes.push(midiNotesConversion[notesToPlay[i]]);
     	}
 
-    	console.log(notesToPlay);
-    	console.log(midiNotes);
+    	//console.log(notesToPlay);
+    	//console.log(midiNotes);
+    	async function sendData(notes) {
+    		try {
+    			const response = await fetch("http://192.168.4.1", {
+    				method: "POST",
+    				headers: {
+    					"Content-Type": "application/json",
+    					"Host": "192.168.4.1"
+    				},
+    				body: JSON.stringify(notes)
+    			});
+
+    			if (response.ok) {
+    				console.log("Data sent successfully");
+    			} else {
+    				console.error("Failed to send data");
+    			}
+    		} catch(error) {
+    			console.error("Error:", error);
+    		}
+    	}
+
+    	//send midi notes to synth
+    	if ( midiNotes.length > 0) {
+    		//send midi over wifi to 192.168.0.4
+    		console.log("Sending midi notes to synth: ", midiNotes);
+
+    		sendData(midiNotes);
+    	}
 
     	// play notes sound in browser if enabled
     	if (isSynthEnabled) {

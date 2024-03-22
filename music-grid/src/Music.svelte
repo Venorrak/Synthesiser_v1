@@ -98,7 +98,7 @@
 
   let currentScale = scales["classic"];
   let midiNotesConversion = midiNotes;
-  const sendMidiToSynth = false;
+  const sendMidiToSynth = true;
 
   export const scale_keys = Object.keys(scales);
 
@@ -142,34 +142,35 @@
     for (var i = 0; i <= notesToPlay.length - 1; i++) {
       midiNotes.push(midiNotesConversion[notesToPlay[i]]);
     }
-    console.log(notesToPlay);
-    console.log(midiNotes);
+    //console.log(notesToPlay);
+    //console.log(midiNotes);
+
+    async function sendData(notes) {
+      try {
+        const response = await fetch("http://192.168.4.1", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Host' : '192.168.4.1'
+          },
+          body: JSON.stringify(notes),
+        });
+
+        if (response.ok) {
+          console.log("Data sent successfully");
+        } else {
+          console.error("Failed to send data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
 
     //send midi notes to synth
     if (sendMidiToSynth && midiNotes.length > 0) {
       //send midi over wifi to 192.168.0.4
-      async function sendData(notes) {
-        try {
-          const response = await fetch(
-            "192.168.0.4",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(notes),
-            },
-          );
-
-          if (response.ok) {
-            console.log("Data sent successfully");
-          } else {
-            console.error("Failed to send data");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }
+      console.log("Sending midi notes to synth: ", midiNotes);
+      sendData(midiNotes);
     }
 
     // play notes sound in browser if enabled
