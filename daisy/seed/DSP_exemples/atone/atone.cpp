@@ -16,7 +16,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in,
     float saw, freq, output;
     for(size_t i = 0; i < size; i += 2)
     {
-        freq = 6000 + (lfo.Process() * 6000);
+        freq = 2000 + (lfo.Process() * 2000);
         saw  = osc.Process();
         // CUT OFF FREQUENCY
         flt.SetFreq(freq);
@@ -36,6 +36,7 @@ int main(void)
     float sample_rate;
     hw.Configure();
     hw.Init();
+    hw.StartLog();
     hw.SetAudioBlockSize(4);
     sample_rate = hw.AudioSampleRate();
 
@@ -59,5 +60,8 @@ int main(void)
     hw.StartAudio(AudioCallback);
 
 
-    while(1) {}
+    while(1) 
+    {
+        hw.PrintLine("My Float: " FLT_FMT(6), FLT_VAR(6, flt.GetFreq()));
+    }
 }

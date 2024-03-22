@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		@ link register save eliminated.
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 2
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 2
 
 
   35              		.loc 1 24 20 is_stmt 0 view .LVU1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   69              		.p2align 2,,3
   70              		.weak	_ZN5daisy9DaisySeedD2Ev
   71              		.syntax unified
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 3
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 3
 
 
   72              		.thumb
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   18:../../../libDaisy/src/sys/system.h **** class System
   19:../../../libDaisy/src/sys/system.h **** {
   20:../../../libDaisy/src/sys/system.h ****   public:
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 4
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 4
 
 
   21:../../../libDaisy/src/sys/system.h ****     /** Contains settings for initializing the System */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   75:../../../libDaisy/src/sys/system.h ****     /** Bootloader struct for controlling bootloading parameters */
   76:../../../libDaisy/src/sys/system.h ****     struct BootInfo
   77:../../../libDaisy/src/sys/system.h ****     {
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 5
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 5
 
 
   78:../../../libDaisy/src/sys/system.h ****         enum class Type : uint32_t
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   29:../../../libDaisy/src/hid/usb.h ****     enum UsbPeriph
   30:../../../libDaisy/src/hid/usb.h ****     {
   31:../../../libDaisy/src/hid/usb.h ****         FS_INTERNAL, /**< Internal pin */
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 6
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 6
 
 
   32:../../../libDaisy/src/hid/usb.h ****         FS_EXTERNAL, /**< FS External D+ pin is Pin 38 (GPIO32). FS External D- pin is Pin 37 (GPIO
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   38:../../../libDaisy/src/per/adc.h ****         MUX_SEL_2,    /**< & */
   39:../../../libDaisy/src/per/adc.h ****         MUX_SEL_LAST, /**< & */
   40:../../../libDaisy/src/per/adc.h ****     };
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 7
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 7
 
 
   41:../../../libDaisy/src/per/adc.h **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   95:../../../libDaisy/src/per/adc.h ****     {
   96:../../../libDaisy/src/per/adc.h ****         OVS_NONE, /**< & */
   97:../../../libDaisy/src/per/adc.h ****         OVS_4,    /**< & */
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 8
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 8
 
 
   98:../../../libDaisy/src/per/adc.h ****         OVS_8,    /**< & */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   36:../../../libDaisy/src/hid/audio.h ****         float postgain;
   37:../../../libDaisy/src/hid/audio.h **** 
   38:../../../libDaisy/src/hid/audio.h ****         /** factor for additional one-sided compensation to audio path for hardware that may
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 9
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 9
 
 
   39:../../../libDaisy/src/hid/audio.h ****          *  have unequal input/output ranges
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   93:../../../libDaisy/src/hid/audio.h ****                                               size_t                   size);
   94:../../../libDaisy/src/hid/audio.h **** 
   95:../../../libDaisy/src/hid/audio.h ****     AudioHandle() : pimpl_(nullptr) {}
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 10
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 10
 
 
   96:../../../libDaisy/src/hid/audio.h ****     ~AudioHandle() {}
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  143              		.cfi_def_cfa_offset 20
  144              		.cfi_offset 4, -20
  145              		.cfi_offset 5, -16
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 11
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 11
 
 
  146              		.cfi_offset 6, -12
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   30:../../../DaisySP/DaisySP-LGPL/Source/Filters/tone.h ****     /** Processes one sample through the filter and returns one sample.
   31:../../../DaisySP/DaisySP-LGPL/Source/Filters/tone.h ****         in - input signal 
   32:../../../DaisySP/DaisySP-LGPL/Source/Filters/tone.h ****     */
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 12
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 12
 
 
   33:../../../DaisySP/DaisySP-LGPL/Source/Filters/tone.h ****     float Process(float in);
@@ -679,8 +679,9 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  193 0030 8DED010A 		vstr.32	s0, [sp, #4]	@ int
  194              	.LVL9:
   21:tone.cpp      **** 
-  22:tone.cpp      ****         flt.SetFreq(freq);
- 195              		.loc 8 22 9 is_stmt 1 discriminator 2 view .LVU33
+  22:tone.cpp      ****          // CUT OFF FREQUENCY
+  23:tone.cpp      ****         flt.SetFreq(freq);
+ 195              		.loc 8 23 9 is_stmt 1 discriminator 2 view .LVU33
  196              	.LBB106:
  197              	.LBI103:
   39:../../../DaisySP/DaisySP-LGPL/Source/Filters/tone.h ****     {
@@ -698,34 +699,34 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  207              		.loc 2 42 30 discriminator 2 view .LVU39
  208              	.LBE105:
  209              	.LBE106:
-  23:tone.cpp      ****         output = flt.Process(saw);
- 210              		.loc 8 23 9 is_stmt 1 discriminator 2 view .LVU40
- 211              		.loc 8 23 29 is_stmt 0 discriminator 2 view .LVU41
+  24:tone.cpp      ****         output = flt.Process(saw);
+ 210              		.loc 8 24 9 is_stmt 1 discriminator 2 view .LVU40
+ 211              		.loc 8 24 29 is_stmt 0 discriminator 2 view .LVU41
  212 003c 9DED010A 		vldr.32	s0, [sp, #4]	@ int
  213 0040 0748     		ldr	r0, .L16
  214 0042 FFF7FEFF 		bl	_ZN7daisysp4Tone7ProcessEf
  215              	.LVL11:
-  24:tone.cpp      **** 
-  25:tone.cpp      ****         // left out
-  26:tone.cpp      ****         out[i] = output;
- 216              		.loc 8 26 9 is_stmt 1 discriminator 2 view .LVU42
+  25:tone.cpp      **** 
+  26:tone.cpp      ****         // left out
+  27:tone.cpp      ****         out[i] = output;
+ 216              		.loc 8 27 9 is_stmt 1 discriminator 2 view .LVU42
   17:tone.cpp      ****     {
  217              		.loc 8 17 25 is_stmt 0 discriminator 2 view .LVU43
  218 0046 AE42     		cmp	r6, r5
- 219              		.loc 8 26 16 discriminator 2 view .LVU44
+ 219              		.loc 8 27 16 discriminator 2 view .LVU44
  220 0048 04ED020A 		vstr.32	s0, [r4, #-8]
-  27:tone.cpp      **** 
-  28:tone.cpp      ****         // right out
-  29:tone.cpp      ****         out[i + 1] = output;
- 221              		.loc 8 29 9 is_stmt 1 discriminator 2 view .LVU45
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 13
+  28:tone.cpp      **** 
+  29:tone.cpp      ****         // right out
+  30:tone.cpp      ****         out[i + 1] = output;
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 13
 
 
+ 221              		.loc 8 30 9 is_stmt 1 discriminator 2 view .LVU45
   17:tone.cpp      ****     {
  222              		.loc 8 17 25 is_stmt 0 discriminator 2 view .LVU46
  223 004c 05F10105 		add	r5, r5, #1
  224              	.LVL12:
- 225              		.loc 8 29 20 discriminator 2 view .LVU47
+ 225              		.loc 8 30 20 discriminator 2 view .LVU47
  226 0050 04ED010A 		vstr.32	s0, [r4, #-4]
   17:tone.cpp      ****     {
  227              		.loc 8 17 5 is_stmt 1 discriminator 2 view .LVU48
@@ -734,9 +735,9 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  229              		.loc 8 17 25 discriminator 2 view .LVU49
  230 0054 DED1     		bne	.L7
  231              	.LBE108:
-  30:tone.cpp      ****     }
-  31:tone.cpp      **** }
- 232              		.loc 8 31 1 is_stmt 0 view .LVU50
+  31:tone.cpp      ****     }
+  32:tone.cpp      **** }
+ 232              		.loc 8 32 1 is_stmt 0 view .LVU50
  233 0056 03B0     		add	sp, sp, #12
  234              		.cfi_def_cfa_offset 28
  235              		@ sp needed
@@ -745,7 +746,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  238              		.cfi_restore 81
  239              		.cfi_def_cfa_offset 20
  240              	.LVL14:
- 241              		.loc 8 31 1 view .LVU51
+ 241              		.loc 8 32 1 view .LVU51
  242 005c F0BD     		pop	{r4, r5, r6, r7, pc}
  243              	.LVL15:
  244              	.L13:
@@ -755,7 +756,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  248              		.cfi_restore 6
  249              		.cfi_restore 7
  250              		.cfi_restore 14
- 251              		.loc 8 31 1 view .LVU52
+ 251              		.loc 8 32 1 view .LVU52
  252 005e 7047     		bx	lr
  253              	.L17:
  254              		.align	2
@@ -776,23 +777,23 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  270              		.fpu fpv5-d16
  272              	main:
  273              	.LFB4847:
-  32:tone.cpp      **** 
-  33:tone.cpp      **** int main(void)
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 14
+  33:tone.cpp      **** 
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 14
 
 
-  34:tone.cpp      **** {
- 274              		.loc 8 34 1 is_stmt 1 view -0
+  34:tone.cpp      **** int main(void)
+  35:tone.cpp      **** {
+ 274              		.loc 8 35 1 is_stmt 1 view -0
  275              		.cfi_startproc
  276              		@ args = 0, pretend = 0, frame = 0
  277              		@ frame_needed = 0, uses_anonymous_args = 0
+  36:tone.cpp      ****     // initialize seed hardware and daisysp modules
+  37:tone.cpp      ****     float sample_rate;
+ 278              		.loc 8 37 5 view .LVU54
+  38:tone.cpp      ****     hw.Configure();
+ 279              		.loc 8 38 5 view .LVU55
   35:tone.cpp      ****     // initialize seed hardware and daisysp modules
-  36:tone.cpp      ****     float sample_rate;
- 278              		.loc 8 36 5 view .LVU54
-  37:tone.cpp      ****     hw.Configure();
- 279              		.loc 8 37 5 view .LVU55
-  34:tone.cpp      ****     // initialize seed hardware and daisysp modules
- 280              		.loc 8 34 1 is_stmt 0 view .LVU56
+ 280              		.loc 8 35 1 is_stmt 0 view .LVU56
  281 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
  282              		.cfi_def_cfa_offset 24
  283              		.cfi_offset 3, -24
@@ -801,7 +802,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  286              		.cfi_offset 6, -12
  287              		.cfi_offset 7, -8
  288              		.cfi_offset 14, -4
- 289              		.loc 8 37 17 view .LVU57
+ 289              		.loc 8 38 17 view .LVU57
  290 0002 3548     		ldr	r0, .L21
  291              	.LBB125:
  292              	.LBB126:
@@ -837,10 +838,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   54:../../../DaisySP/Source/Synthesis/oscillator.h ****         freq_      = 100.0f;
   55:../../../DaisySP/Source/Synthesis/oscillator.h ****         amp_       = 0.5f;
  293              		.loc 1 55 20 view .LVU58
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 15
+
+
  294 0004 4FF07C55 		mov	r5, #1056964608
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 15
-
-
   52:../../../DaisySP/Source/Synthesis/oscillator.h ****         sr_recip_  = 1.0f / sample_rate;
  295              		.loc 1 52 20 view .LVU59
  296 0008 344C     		ldr	r4, .L21+4
@@ -856,20 +857,20 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  300 000c 40F20116 		movw	r6, #257
  301              	.LBE126:
  302              	.LBE125:
-  34:tone.cpp      ****     // initialize seed hardware and daisysp modules
- 303              		.loc 8 34 1 view .LVU62
+  35:tone.cpp      ****     // initialize seed hardware and daisysp modules
+ 303              		.loc 8 35 1 view .LVU62
  304 0010 2DED048B 		vpush.64	{d8, d9}
  305              		.cfi_def_cfa_offset 40
  306              		.cfi_offset 80, -40
  307              		.cfi_offset 81, -36
  308              		.cfi_offset 82, -32
  309              		.cfi_offset 83, -28
- 310              		.loc 8 37 17 view .LVU63
+ 310              		.loc 8 38 17 view .LVU63
  311 0014 FFF7FEFF 		bl	_ZN5daisy9DaisySeed9ConfigureEv
  312              	.LVL16:
-  38:tone.cpp      ****     hw.Init();
- 313              		.loc 8 38 5 is_stmt 1 view .LVU64
- 314              		.loc 8 38 12 is_stmt 0 view .LVU65
+  39:tone.cpp      ****     hw.Init();
+ 313              		.loc 8 39 5 is_stmt 1 view .LVU64
+ 314              		.loc 8 39 12 is_stmt 0 view .LVU65
  315 0018 0021     		movs	r1, #0
  316 001a 2F48     		ldr	r0, .L21
  317              	.LBB131:
@@ -879,39 +880,39 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  320 001c F7EE009A 		vmov.f32	s19, #1.0e+0
  321              	.LBE127:
  322              	.LBE131:
- 323              		.loc 8 38 12 view .LVU67
+ 323              		.loc 8 39 12 view .LVU67
  324 0020 FFF7FEFF 		bl	_ZN5daisy9DaisySeed4InitEb
  325              	.LVL17:
-  39:tone.cpp      ****     hw.SetAudioBlockSize(4);
- 326              		.loc 8 39 5 is_stmt 1 view .LVU68
- 327              		.loc 8 39 25 is_stmt 0 view .LVU69
+  40:tone.cpp      ****     hw.SetAudioBlockSize(4);
+ 326              		.loc 8 40 5 is_stmt 1 view .LVU68
+ 327              		.loc 8 40 25 is_stmt 0 view .LVU69
  328 0024 0421     		movs	r1, #4
  329 0026 2C48     		ldr	r0, .L21
  330 0028 FFF7FEFF 		bl	_ZN5daisy9DaisySeed17SetAudioBlockSizeEj
  331              	.LVL18:
-  40:tone.cpp      ****     sample_rate = hw.AudioSampleRate();
- 332              		.loc 8 40 5 is_stmt 1 view .LVU70
- 333              		.loc 8 40 37 is_stmt 0 view .LVU71
+  41:tone.cpp      ****     sample_rate = hw.AudioSampleRate();
+ 332              		.loc 8 41 5 is_stmt 1 view .LVU70
+ 333              		.loc 8 41 37 is_stmt 0 view .LVU71
  334 002c 2A48     		ldr	r0, .L21
  335 002e FFF7FEFF 		bl	_ZN5daisy9DaisySeed15AudioSampleRateEv
  336              	.LVL19:
  337 0032 F0EE408A 		vmov.f32	s17, s0
  338              	.LVL20:
-  41:tone.cpp      **** 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 16
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 16
 
 
-  42:tone.cpp      ****     // initialize Tone object
-  43:tone.cpp      ****     flt.Init(sample_rate);
- 339              		.loc 8 43 5 is_stmt 1 view .LVU72
- 340              		.loc 8 43 13 is_stmt 0 view .LVU73
+  42:tone.cpp      **** 
+  43:tone.cpp      ****     // initialize Tone object
+  44:tone.cpp      ****     flt.Init(sample_rate);
+ 339              		.loc 8 44 5 is_stmt 1 view .LVU72
+ 340              		.loc 8 44 13 is_stmt 0 view .LVU73
  341 0036 2A48     		ldr	r0, .L21+8
  342 0038 FFF7FEFF 		bl	_ZN7daisysp4Tone4InitEf
  343              	.LVL21:
-  44:tone.cpp      **** 
-  45:tone.cpp      ****     // set parameters for sine oscillator object
-  46:tone.cpp      ****     lfo.Init(sample_rate);
- 344              		.loc 8 46 5 is_stmt 1 view .LVU74
+  45:tone.cpp      **** 
+  46:tone.cpp      ****     // set parameters for sine oscillator object
+  47:tone.cpp      ****     lfo.Init(sample_rate);
+ 344              		.loc 8 47 5 is_stmt 1 view .LVU74
  345              	.LBB132:
  346              	.LBI125:
   50:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -957,10 +958,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  372              		.loc 1 55 9 view .LVU89
   56:../../../DaisySP/Source/Synthesis/oscillator.h ****         phase_     = 0.0f;
  373              		.loc 1 56 9 view .LVU90
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 17
+
+
   57:../../../DaisySP/Source/Synthesis/oscillator.h ****         phase_inc_ = CalcPhaseInc(freq_);
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 17
-
-
  374              		.loc 1 57 9 view .LVU91
   58:../../../DaisySP/Source/Synthesis/oscillator.h ****         waveform_  = WAVE_SIN;
  375              		.loc 1 58 9 view .LVU92
@@ -1017,10 +1018,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  402              	.LBB143:
  403              	.LBB135:
  404              		.loc 1 81 19 view .LVU98
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 18
+
+
  405 006e 2370     		strb	r3, [r4]
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 18
-
-
  406              	.LBE135:
  407              	.LBE143:
  408              	.LBB144:
@@ -1039,8 +1040,8 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  416              		.loc 1 61 9 is_stmt 0 view .LVU103
  417              	.LBE130:
  418              	.LBE144:
-  47:tone.cpp      ****     lfo.SetWaveform(Oscillator::WAVE_TRI);
- 419              		.loc 8 47 5 is_stmt 1 view .LVU104
+  48:tone.cpp      ****     lfo.SetWaveform(Oscillator::WAVE_TRI);
+ 419              		.loc 8 48 5 is_stmt 1 view .LVU104
  420              	.LBB145:
  421              	.LBI133:
   79:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1050,8 +1051,8 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  425              		.loc 1 81 9 is_stmt 0 view .LVU107
  426              	.LBE136:
  427              	.LBE145:
-  48:tone.cpp      ****     lfo.SetAmp(1);
- 428              		.loc 8 48 5 is_stmt 1 view .LVU108
+  49:tone.cpp      ****     lfo.SetAmp(1);
+ 428              		.loc 8 49 5 is_stmt 1 view .LVU108
  429              	.LBB146:
  430              	.LBI146:
   76:../../../DaisySP/Source/Synthesis/oscillator.h ****     /** Sets the waveform to be synthesized by the Process() function.
@@ -1063,8 +1064,8 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  434              		.loc 1 76 41 is_stmt 0 view .LVU111
  435              	.LBE147:
  436              	.LBE146:
-  49:tone.cpp      ****     lfo.SetFreq(.4);
- 437              		.loc 8 49 5 is_stmt 1 view .LVU112
+  50:tone.cpp      ****     lfo.SetFreq(.4);
+ 437              		.loc 8 50 5 is_stmt 1 view .LVU112
  438              	.LBB149:
  439              	.LBI137:
   67:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1077,10 +1078,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  444              	.LBE139:
  445              	.LBE149:
  446              	.LBB150:
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 19
+
+
  447              	.LBB148:
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 19
-
-
   76:../../../DaisySP/Source/Synthesis/oscillator.h ****     /** Sets the waveform to be synthesized by the Process() function.
  448              		.loc 1 76 46 is_stmt 0 view .LVU116
  449 0074 C4ED019A 		vstr.32	s19, [r4, #4]
@@ -1115,10 +1116,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  473              		.loc 1 70 20 view .LVU121
  474              	.LBE141:
  475              	.LBE157:
-  50:tone.cpp      **** 
-  51:tone.cpp      ****     // set parameters for sine oscillator object
-  52:tone.cpp      ****     osc.Init(sample_rate);
- 476              		.loc 8 52 5 is_stmt 1 view .LVU122
+  51:tone.cpp      **** 
+  52:tone.cpp      ****     // set parameters for sine oscillator object
+  53:tone.cpp      ****     osc.Init(sample_rate);
+ 476              		.loc 8 53 5 is_stmt 1 view .LVU122
  477              	.LBB158:
  478              	.LBI152:
   50:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1137,10 +1138,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  487 0090 C4ED048A 		vstr.32	s17, [r4, #16]
   53:../../../DaisySP/Source/Synthesis/oscillator.h ****         freq_      = 100.0f;
  488              		.loc 1 53 9 is_stmt 1 view .LVU128
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 20
+
+
   53:../../../DaisySP/Source/Synthesis/oscillator.h ****         freq_      = 100.0f;
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 20
-
-
  489              		.loc 1 53 20 is_stmt 0 view .LVU129
  490 0094 84ED059A 		vstr.32	s18, [r4, #20]
   54:../../../DaisySP/Source/Synthesis/oscillator.h ****         amp_       = 0.5f;
@@ -1197,10 +1198,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  530              	.LBB161:
  531              		.loc 1 81 19 view .LVU143
  532 00b4 2370     		strb	r3, [r4]
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 21
+
+
  533              	.LBE161:
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 21
-
-
  534              	.LBE168:
  535              	.LBB169:
  536              	.LBB156:
@@ -1218,8 +1219,8 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  543              		.loc 1 61 9 is_stmt 0 view .LVU148
  544              	.LBE156:
  545              	.LBE169:
-  53:tone.cpp      ****     osc.SetWaveform(Oscillator::WAVE_POLYBLEP_SAW);
- 546              		.loc 8 53 5 is_stmt 1 view .LVU149
+  54:tone.cpp      ****     osc.SetWaveform(Oscillator::WAVE_POLYBLEP_SAW);
+ 546              		.loc 8 54 5 is_stmt 1 view .LVU149
  547              	.LBB170:
  548              	.LBI159:
   79:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1229,8 +1230,8 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  552              		.loc 1 81 9 is_stmt 0 view .LVU152
  553              	.LBE162:
  554              	.LBE170:
-  54:tone.cpp      ****     osc.SetFreq(100);
- 555              		.loc 8 54 5 is_stmt 1 view .LVU153
+  55:tone.cpp      ****     osc.SetFreq(100);
+ 555              		.loc 8 55 5 is_stmt 1 view .LVU153
  556              	.LBB171:
  557              	.LBI163:
   67:../../../DaisySP/Source/Synthesis/oscillator.h ****     {
@@ -1256,15 +1257,15 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  572 00c2 4FF07A53 		mov	r3, #1048576000
  573              	.LBE173:
  574              	.LBE172:
-  55:tone.cpp      ****     osc.SetAmp(0.25);
-  56:tone.cpp      **** 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 22
+  56:tone.cpp      ****     osc.SetAmp(0.25);
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 22
 
 
   57:tone.cpp      **** 
-  58:tone.cpp      ****     // start callback
-  59:tone.cpp      ****     hw.StartAudio(AudioCallback);
- 575              		.loc 8 59 18 view .LVU160
+  58:tone.cpp      **** 
+  59:tone.cpp      ****     // start callback
+  60:tone.cpp      ****     hw.StartAudio(AudioCallback);
+ 575              		.loc 8 60 18 view .LVU160
  576 00c6 0A49     		ldr	r1, .L21+24
  577 00c8 0348     		ldr	r0, .L21
  578              	.LBB175:
@@ -1277,8 +1278,8 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  583              		.loc 1 70 20 view .LVU162
  584              	.LBE166:
  585              	.LBE175:
-  55:tone.cpp      ****     osc.SetAmp(0.25);
- 586              		.loc 8 55 5 is_stmt 1 view .LVU163
+  56:tone.cpp      ****     osc.SetAmp(0.25);
+ 586              		.loc 8 56 5 is_stmt 1 view .LVU163
  587              	.LBB176:
  588              	.LBI172:
   76:../../../DaisySP/Source/Synthesis/oscillator.h ****     /** Sets the waveform to be synthesized by the Process() function.
@@ -1294,18 +1295,18 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  595              		.loc 1 76 46 view .LVU167
  596              	.LBE174:
  597              	.LBE176:
- 598              		.loc 8 59 5 is_stmt 1 view .LVU168
- 599              		.loc 8 59 18 is_stmt 0 view .LVU169
+ 598              		.loc 8 60 5 is_stmt 1 view .LVU168
+ 599              		.loc 8 60 18 is_stmt 0 view .LVU169
  600 00d0 FFF7FEFF 		bl	_ZN5daisy9DaisySeed10StartAudioEPFvPKfPfjE
  601              	.LVL31:
  602              	.L19:
-  60:tone.cpp      **** 
   61:tone.cpp      **** 
-  62:tone.cpp      ****     while(1) {}
- 603              		.loc 8 62 5 is_stmt 1 discriminator 1 view .LVU170
- 604              		.loc 8 62 5 discriminator 1 view .LVU171
- 605              		.loc 8 62 5 discriminator 1 view .LVU172
- 606              		.loc 8 62 5 discriminator 1 view .LVU173
+  62:tone.cpp      **** 
+  63:tone.cpp      ****     while(1) {}
+ 603              		.loc 8 63 5 is_stmt 1 discriminator 1 view .LVU170
+ 604              		.loc 8 63 5 discriminator 1 view .LVU171
+ 605              		.loc 8 63 5 discriminator 1 view .LVU172
+ 606              		.loc 8 63 5 discriminator 1 view .LVU173
  607 00d4 FEE7     		b	.L19
  608              	.L22:
  609 00d6 00BF     		.align	2
@@ -1317,10 +1318,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  615 00e8 CDCCCC3E 		.word	1053609165
  616 00ec 00000000 		.word	.LANCHOR1
  617 00f0 00000000 		.word	_ZL13AudioCallbackPKfPfj
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 23
+
+
  618              		.cfi_endproc
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 23
-
-
  619              	.LFE4847:
  621              		.section	.text.startup._GLOBAL__sub_I_main,"ax",%progbits
  622              		.align	1
@@ -1331,14 +1332,14 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  627              		.fpu fpv5-d16
  629              	_GLOBAL__sub_I_main:
  630              	.LFB5410:
-  63:tone.cpp      **** }
- 631              		.loc 8 63 1 view -0
+  64:tone.cpp      **** }
+ 631              		.loc 8 64 1 view -0
  632              		.cfi_startproc
  633              		@ args = 0, pretend = 0, frame = 0
  634              		@ frame_needed = 0, uses_anonymous_args = 0
  635              	.LBB204:
  636              	.LBI204:
- 637              		.loc 8 63 1 view .LVU175
+ 637              		.loc 8 64 1 view .LVU175
  638              	.LVL32:
  639              	.LBB205:
  640              	.LBB206:
@@ -1377,10 +1378,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   26:../../../libDaisy/src/per/qspi.h ****  Driver for QSPI peripheral to interface with external flash memory. \n 
   27:../../../libDaisy/src/per/qspi.h ****     Currently supported QSPI Devices: \n 
   28:../../../libDaisy/src/per/qspi.h ****     * IS25LP080D
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 24
+
+
   29:../../../libDaisy/src/per/qspi.h **** */
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 24
-
-
   30:../../../libDaisy/src/per/qspi.h **** class QSPIHandle
   31:../../../libDaisy/src/per/qspi.h **** {
   32:../../../libDaisy/src/per/qspi.h ****   public:
@@ -1437,10 +1438,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   83:../../../libDaisy/src/per/qspi.h ****         {
   84:../../../libDaisy/src/per/qspi.h ****             dsy_gpio_pin io0; /**< & */
   85:../../../libDaisy/src/per/qspi.h ****             dsy_gpio_pin io1; /**< & */
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 25
+
+
   86:../../../libDaisy/src/per/qspi.h ****             dsy_gpio_pin io2; /**< & */
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 25
-
-
   87:../../../libDaisy/src/per/qspi.h ****             dsy_gpio_pin io3; /**< & */
   88:../../../libDaisy/src/per/qspi.h ****             dsy_gpio_pin clk; /**< & */
   89:../../../libDaisy/src/per/qspi.h ****             dsy_gpio_pin ncs; /**< & */
@@ -1497,10 +1498,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  140:../../../libDaisy/src/per/qspi.h ****         \return Result::OK or Result::ERR
  141:../../../libDaisy/src/per/qspi.h ****         */
  142:../../../libDaisy/src/per/qspi.h ****     Result Erase(uint32_t start_addr, uint32_t end_addr);
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 26
+
+
  143:../../../libDaisy/src/per/qspi.h **** 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 26
-
-
  144:../../../libDaisy/src/per/qspi.h ****     /**  
  145:../../../libDaisy/src/per/qspi.h ****          Erases a single sector of the chip.  
  146:../../../libDaisy/src/per/qspi.h ****         TODO: Document the size of this function. 
@@ -1541,7 +1542,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  660 0006 0F49     		ldr	r1, .L25+8
  661              	.LBE205:
  662              	.LBE204:
- 663              		.loc 8 63 1 view .LVU180
+ 663              		.loc 8 64 1 view .LVU180
  664 0008 10B5     		push	{r4, lr}
  665              		.cfi_def_cfa_offset 8
  666              		.cfi_offset 4, -8
@@ -1557,10 +1558,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  675              	.LBB212:
  676              	.LBB211:
  677              		.loc 9 166 34 view .LVU182
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 27
+
+
  678 000c 0360     		str	r3, [r0]
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 27
-
-
  679              	.LVL33:
  680              		.loc 9 166 34 view .LVU183
  681              	.LBE211:
@@ -1617,10 +1618,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   24:../../../libDaisy/src/per/dac.h ****     /** Return Values for the DacHandle class */
   25:../../../libDaisy/src/per/dac.h ****     enum class Result
   26:../../../libDaisy/src/per/dac.h ****     {
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 28
+
+
   27:../../../libDaisy/src/per/dac.h ****         OK,
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 28
-
-
   28:../../../libDaisy/src/per/dac.h ****         ERR,
   29:../../../libDaisy/src/per/dac.h ****     };
   30:../../../libDaisy/src/per/dac.h **** 
@@ -1677,10 +1678,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   81:../../../libDaisy/src/per/dac.h ****         BufferState buff_state;
   82:../../../libDaisy/src/per/dac.h ****     };
   83:../../../libDaisy/src/per/dac.h **** 
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 29
+
+
   84:../../../libDaisy/src/per/dac.h ****     DacHandle() : pimpl_(nullptr) {}
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 29
-
-
  704              		.loc 10 84 5 is_stmt 1 view .LVU189
  705              	.LBB219:
  706              	.LBB220:
@@ -1737,10 +1738,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   27:../../../libDaisy/src/per/sai.h ****  *  sai_config.a_sync          = SaiHandle::Config::Sync::MASTER;
   28:../../../libDaisy/src/per/sai.h ****  *  sai_config.b_sync          = SaiHandle::Config::Sync::SLAVE;
   29:../../../libDaisy/src/per/sai.h ****  *  sai_config.a_dir           = SaiHandle::Config::Direction::RECEIVE;
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 30
+
+
   30:../../../libDaisy/src/per/sai.h ****  *  sai_config.b_dir           = SaiHandle::Config::Direction::TRANSMIT;
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 30
-
-
   31:../../../libDaisy/src/per/sai.h ****  *  sai_config.pin_config.fs   = {DSY_GPIOE, 4};
   32:../../../libDaisy/src/per/sai.h ****  *  sai_config.pin_config.mclk = {DSY_GPIOE, 2};
   33:../../../libDaisy/src/per/sai.h ****  *  sai_config.pin_config.sck  = {DSY_GPIOE, 5};
@@ -1797,10 +1798,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   84:../../../libDaisy/src/per/sai.h ****         enum class Direction
   85:../../../libDaisy/src/per/sai.h ****         {
   86:../../../libDaisy/src/per/sai.h ****             TRANSMIT,
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 31
+
+
   87:../../../libDaisy/src/per/sai.h ****             RECEIVE,
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 31
-
-
   88:../../../libDaisy/src/per/sai.h ****         };
   89:../../../libDaisy/src/per/sai.h **** 
   90:../../../libDaisy/src/per/sai.h ****         Peripheral periph;
@@ -1857,10 +1858,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
   23:../../../DaisySP/Source/Synthesis/oscillator.h ****     ~Oscillator() {}
  755              		.loc 1 23 5 is_stmt 1 view .LVU203
   23:../../../DaisySP/Source/Synthesis/oscillator.h ****     ~Oscillator() {}
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 32
+
+
  756              		.loc 1 23 5 is_stmt 0 view .LVU204
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 32
-
-
  757              	.LBE229:
   10:tone.cpp      **** 
  758              		.loc 8 10 19 view .LVU205
@@ -1883,7 +1884,7 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  772 0030 0948     		ldr	r0, .L25+28
  773              	.LBE231:
  774              	.LBE233:
- 775              		.loc 8 63 1 view .LVU209
+ 775              		.loc 8 64 1 view .LVU209
  776 0032 BDE81040 		pop	{r4, lr}
  777              		.cfi_restore 14
  778              		.cfi_restore 4
@@ -1917,10 +1918,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  806              		.set	.LANCHOR3,. + 0
  809              	_ZL2hw:
  810 0000 00000000 		.space	64
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 33
+
+
  810      00000000 
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 33
-
-
  810      00000000 
  810      00000000 
  810      00000000 
@@ -1977,10 +1978,10 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  855              		.file 33 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\bits\\predefined
  856              		.file 34 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\sys\\_types.h"
  857              		.file 35 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\sys\\reent.h"
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 34
+
+
  858              		.file 36 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\sys\\lock.h"
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 34
-
-
  859              		.file 37 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\math.h"
  860              		.file 38 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\stdlib.h"
  861              		.file 39 "c:\\program files\\daisytoolchain\\arm-none-eabi\\include\\c++\\10.2.1\\math.h"
@@ -2000,38 +2001,38 @@ ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 1
  875              		.file 53 "../../../libDaisy/src/dev/sdram.h"
  876              		.file 54 "<built-in>"
  877              		.file 55 "../../../libDaisy/src/dev/sr_595.h"
-ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s 			page 35
+ARM GAS  C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s 			page 35
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 tone.cpp
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:17     .text._ZN7daisysp10OscillatorD2Ev:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:26     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD2Ev
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:26     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD1Ev
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:43     .text._ZN7daisysp4ToneD2Ev:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:51     .text._ZN7daisysp4ToneD2Ev:00000000 _ZN7daisysp4ToneD2Ev
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:51     .text._ZN7daisysp4ToneD2Ev:00000000 _ZN7daisysp4ToneD1Ev
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:68     .text._ZN5daisy9DaisySeedD2Ev:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:76     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD2Ev
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:76     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD1Ev
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:117    .text._ZL13AudioCallbackPKfPfj:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:124    .text._ZL13AudioCallbackPKfPfj:00000000 _ZL13AudioCallbackPKfPfj
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:256    .text._ZL13AudioCallbackPKfPfj:00000060 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:264    .text.startup.main:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:272    .text.startup.main:00000000 main
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:611    .text.startup.main:000000d8 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:622    .text.startup._GLOBAL__sub_I_main:00000000 $t
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:629    .text.startup._GLOBAL__sub_I_main:00000000 _GLOBAL__sub_I_main
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:788    .text.startup._GLOBAL__sub_I_main:0000003c $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:802    .init_array:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:805    .bss._ZL2hw:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:809    .bss._ZL2hw:00000000 _ZL2hw
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:812    .bss._ZL3flt:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:816    .bss._ZL3flt:00000000 _ZL3flt
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:819    .bss._ZL3lfo:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:823    .bss._ZL3lfo:00000000 _ZL3lfo
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:826    .bss._ZL3osc:00000000 $d
-C:\Users\Miguel\AppData\Local\Temp\ccpUMuyj.s:830    .bss._ZL3osc:00000000 _ZL3osc
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:17     .text._ZN7daisysp10OscillatorD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:26     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:26     .text._ZN7daisysp10OscillatorD2Ev:00000000 _ZN7daisysp10OscillatorD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:43     .text._ZN7daisysp4ToneD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:51     .text._ZN7daisysp4ToneD2Ev:00000000 _ZN7daisysp4ToneD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:51     .text._ZN7daisysp4ToneD2Ev:00000000 _ZN7daisysp4ToneD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:68     .text._ZN5daisy9DaisySeedD2Ev:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:76     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD2Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:76     .text._ZN5daisy9DaisySeedD2Ev:00000000 _ZN5daisy9DaisySeedD1Ev
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:117    .text._ZL13AudioCallbackPKfPfj:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:124    .text._ZL13AudioCallbackPKfPfj:00000000 _ZL13AudioCallbackPKfPfj
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:256    .text._ZL13AudioCallbackPKfPfj:00000060 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:264    .text.startup.main:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:272    .text.startup.main:00000000 main
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:611    .text.startup.main:000000d8 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:622    .text.startup._GLOBAL__sub_I_main:00000000 $t
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:629    .text.startup._GLOBAL__sub_I_main:00000000 _GLOBAL__sub_I_main
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:788    .text.startup._GLOBAL__sub_I_main:0000003c $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:802    .init_array:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:805    .bss._ZL2hw:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:809    .bss._ZL2hw:00000000 _ZL2hw
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:812    .bss._ZL3flt:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:816    .bss._ZL3flt:00000000 _ZL3flt
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:819    .bss._ZL3lfo:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:823    .bss._ZL3lfo:00000000 _ZL3lfo
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:826    .bss._ZL3osc:00000000 $d
+C:\Users\Miguel\AppData\Local\Temp\ccwNO4mN.s:830    .bss._ZL3osc:00000000 _ZL3osc
                            .group:00000000 _ZN7daisysp10OscillatorD5Ev
                            .group:00000000 _ZN7daisysp4ToneD5Ev
                            .group:00000000 _ZN5daisy9DaisySeedD5Ev

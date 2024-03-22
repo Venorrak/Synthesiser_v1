@@ -15,8 +15,11 @@ static Adsr env;
 static Metro tick;
 static Switch3 toggleWaveForm;
 static Switch3 toggleWaveForm2;
+static Switch3 toggleFilter;
 // Declare a DelayLine of MAX_DELAY number of floats.
 static DelayLine<float, MAX_DELAY> del;
+static ATone hpFilter;
+static Tone lpFilter;
 bool gate;
 float sampleRate;
 
@@ -148,72 +151,93 @@ void setSubFreq(float freq)
 
 bool setDelay() 
 {
-    int delay = static_cast<int>(round(convertValue(hw.adc.Get(8), 0.0f, 80.0f)));
+    int delay = static_cast<int>(round(convertValue(hw.adc.Get(8), 0.0f, 75.0f)));
 
-    switch (delay)
+    if (delay >= 0 && delay <= 9)
     {
-        case 0 ... 9:
-            return false;
-        break;
-        
-        case 10 ... 14:
-            del.SetDelay(sampleRate * 0.10f);
-        break;
-
-        case 15 ... 19:
-            del.SetDelay(sampleRate * 0.15f);
-        break;
-        
-        case 20 ... 24:
-            del.SetDelay(sampleRate * 0.20f);
-        break;
-
-        case 25 ... 29:
-            del.SetDelay(sampleRate * 0.25f);
-        break;
-
-        case 30 ... 34:
-            del.SetDelay(sampleRate * 0.30f);
-        break;
-
-        case 35 ... 39:
-            del.SetDelay(sampleRate * 0.35f);
-        break;
-
-        case 40 ... 44:
-            del.SetDelay(sampleRate * 0.40f);
-        break;
-
-        case 45 ... 49:
-            del.SetDelay(sampleRate * 0.45f);
-        break;
-
-        case 50 ... 54:
-            del.SetDelay(sampleRate * 0.50f);
-        break;
-
-        case 55 ... 59:
-            del.SetDelay(sampleRate * 0.55f);
-        break;
-
-        case 60 ... 64:
-            del.SetDelay(sampleRate * 0.60f);
-        break;
-
-        case 65 ... 69:
-            del.SetDelay(sampleRate * 0.65f);
-        break;
-
-        case 70 ... 74:
-            del.SetDelay(sampleRate * 0.70f);
-        break;
-
-        case 75 ... 80:
-            del.SetDelay(sampleRate * 0.75f);
-        break;
+        return false;
+    } 
+    else if (delay >= 10 && delay <= 75)
+    {
+        float multiplier = (delay / 10.0f) * 0.1f;
+        del.SetDelay(sampleRate * multiplier);
     }
-
     return true;
+
+    // switch (delay)
+    // {
+    //     case 0 ... 9:
+    //         return false;
+    //     break;
+        
+    //     case 10 ... 14:
+    //         del.SetDelay(sampleRate * 0.10f);
+    //     break;
+
+    //     case 15 ... 19:
+    //         del.SetDelay(sampleRate * 0.15f);
+    //     break;
+        
+    //     case 20 ... 24:
+    //         del.SetDelay(sampleRate * 0.20f);
+    //     break;
+
+    //     case 25 ... 29:
+    //         del.SetDelay(sampleRate * 0.25f);
+    //     break;
+
+    //     case 30 ... 34:
+    //         del.SetDelay(sampleRate * 0.30f);
+    //     break;
+
+    //     case 35 ... 39:
+    //         del.SetDelay(sampleRate * 0.35f);
+    //     break;
+
+    //     case 40 ... 44:
+    //         del.SetDelay(sampleRate * 0.40f);
+    //     break;
+
+    //     case 45 ... 49:
+    //         del.SetDelay(sampleRate * 0.45f);
+    //     break;
+
+    //     case 50 ... 54:
+    //         del.SetDelay(sampleRate * 0.50f);
+    //     break;
+
+    //     case 55 ... 59:
+    //         del.SetDelay(sampleRate * 0.55f);
+    //     break;
+
+    //     case 60 ... 64:
+    //         del.SetDelay(sampleRate * 0.60f);
+    //     break;
+
+    //     case 65 ... 69:
+    //         del.SetDelay(sampleRate * 0.65f);
+    //     break;
+
+    //     case 70 ... 74:
+    //         del.SetDelay(sampleRate * 0.70f);
+    //     break;
+
+    //     case 75 ... 80:
+    //         del.SetDelay(sampleRate * 0.75f);
+    //     break;
+    // }
+
+    // return true;
+}
+
+void changeFilter() 
+{
+    switch(toggleFilter.Read())
+    {
+        case Switch3::POS_UP: break;
+        case Switch3::POS_CENTER: break;
+        case Switch3::POS_DOWN: break;
+    }
 }
 
 void AudioCallback(AudioHandle::InputBuffer in, 
@@ -310,7 +334,6 @@ int main(void)
 
     hw.adc.Init(adcConfig, 10);
     hw.adc.Start();
-    hw.StartLog();
 
     // Audio Oscillator
     osc1.Init(sampleRate);
@@ -342,6 +365,5 @@ int main(void)
     
     for(;;) 
     {
-        hw.PrintLine("My Float: " FLT_FMT(6), FLT_VAR(6, convertValue(hw.adc.Get(8), 0.0f, 0.75f)));
     }
 }
