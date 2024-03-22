@@ -182,7 +182,7 @@ Une fonctionnalitée est consideré comme fini lorsque tout fonctionne et qu'ell
 
 Le camelCase doit être utilisé pour la nomencalture.
 
-fonctions : En camelCase avec des mots abrégés
+fonctions et variables : En camelCase avec des mots abrégés
 
 commit : Résumer les points imiportant du commit en quelques mots
 
