@@ -135,6 +135,7 @@
 
 	clearGrid(config.rows);
 
+	// check if there is a hash in the url and load the grid
 	if(window.location.hash !== '') {
 		initGrid(window.location.hash);
 	}

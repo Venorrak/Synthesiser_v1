@@ -12,6 +12,7 @@ Démo : https://music-grid.surge.sh
 - [Problèmes courants](#Problèmes)
 - [Utilisation](#Fonctionnalités)
 - [Fonctionnalités](#fonctionnalités)
+- [Développement svelte](#développement)
 - [Licence](#licence)
 
 ## Installation
@@ -103,6 +104,26 @@ npm run build
 surge public my-project.surge.sh
 ```
 
-## Licence
+# Développement
+## Fichiers
+<b>```App.svelte```:</b> Ce fichier est responsable de charger les autres composants et de gérer les événements de l'application en appelant des fonctions.
 
-Le client web de Music Maker est sous licence [MIT License](/music-grid/LICENSE).
+<b>```Cell.svelte```:</b> Ce fichier est responsable de définir le comportement des cellules de la grille musicale ainsi que son style css.
+
+<b>```Controls.svelte```:</b> Ce fichier est responsable d'exécuter les fonctions de contrôle de l'application, telles que la lecture, la pause, le changement de tempo, etc.
+
+<b>```Music.svelte```:</b> Ce fichier est responsable de la lecture des notes de musique et des sons que l'application produit. C'est ici que les notes sont envoyées au serveur pour être jouées par le synthétiseur.
+
+<b>```Row.svelte```:</b> Ce fichier est responsable de jouer une ligne de notes de musique. Il est utilisé par le fichier ```Music.svelte``` pour jouer les notes.
+
+<b>```store.js```:</b> Ce fichier est responsable de stocker les données de l'application, telles que l'état du bouton de son, le tempo, etc. Il est utilisé par différentes parties du client pour mettre à jour et utiliser ces variables. [Documentation - Store](https://svelte.dev/docs/svelte-store)
+
+## Intéraction avec le client
+
+<b>Bouton de son</b>: L'état du bouton est sauvegardé dans le fichier 'store.js'.
+
+<b>Communication</b>: Le client envoie les données au ESP32 à l'aide du protocole http. Un server web attend des données au format afin de les transmettre au synthétiseur.
+
+# Licence
+
+Le client web de Music Maker est basé sur [music-grid de irshadshalu](https://github.com/irshadshalu/music-grid), ayant une licence [MIT License](/music-grid/LICENSE).

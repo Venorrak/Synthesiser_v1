@@ -1,7 +1,6 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import ClipboardJS from "clipboard";
-  //import { scale_keys } from "./Music.svelte";
   import { setSoundEnabled } from "./store.js";
   const dispatch = createEventDispatcher();
 
@@ -11,6 +10,7 @@
   let urlUpdatedRecently = false;
   let scrollY = 0;
 
+  //toggle sound button
   const toggleSound = () => {
     console.log("Toggle sound from Controls.svelte");
     $setSoundEnabled = !$setSoundEnabled;

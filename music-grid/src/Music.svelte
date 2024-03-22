@@ -4,6 +4,7 @@
 
   import { setSoundEnabled } from "./store.js";
 
+  // update sound state
   let isSynthEnabled;
   setSoundEnabled.subscribe((value) => {
     console.log("MUSIC.SVELTE: Sound is now " + value);
@@ -13,7 +14,7 @@
   let synth;
   let recorder;
   let destinationStream;
-
+  // midi notes for classic scale
   const midiNotes = {
     C1: 24,
     D1: 26,
@@ -53,6 +54,7 @@
     C6: 84,
   };
 
+  // scales for the synth
   export const scales = {
     classic: [
       "C1",
@@ -143,31 +145,41 @@
     console.log(notesToPlay);
     console.log(midiNotes);
 
-    if (sendMidiToSynth) {
-      //send midi to 192.168.0.4
-      console.log("sending midi to synth");
-      fetch("http://192.168.0.4", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ midiNotes: midiNotes }),
-      })
-      .then((response) => {
-        if (!response.ok) {
-          alert("Error sending midi to synth");
+    //send midi notes to synth
+    if (sendMidiToSynth && midiNotes.length > 0) {
+      //send midi over wifi to 192.168.0.4
+      async function sendData(notes) {
+        try {
+          const response = await fetch(
+            "192.168.0.4",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(notes),
+            },
+          );
+
+          if (response.ok) {
+            console.log("Data sent successfully");
+          } else {
+            console.error("Failed to send data");
+          }
+        } catch (error) {
+          console.error("Error:", error);
         }
-      })
+      }
     }
 
-    // play notes in browser
+    // play notes sound in browser if enabled
     if (isSynthEnabled) {
       synth.triggerAttackRelease(notesToPlay, "16n");
     }
 
-    // scroll to playing row
+    // get playing row
     const playingRows = document.getElementsByClassName("playing");
-      //console.log(playingRows);
+
     // if there are playing rows, scroll to it
     if (playingRows.length > 0) {
       const playingRow = playingRows[0];
@@ -183,7 +195,7 @@
     if (!synth) {
       await initAudio();
     }
-    if (isSynthEnabled){
+    if (isSynthEnabled) {
       synth.triggerAttackRelease(currentScale[index], "16n");
     }
   };
