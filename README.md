@@ -186,6 +186,6 @@ fonctions et variables : En camelCase avec des mots abrégés
 
 commit : Résumer les points imiportant du commit en quelques mots
 
-branches : 
+branches : Doit être nommée selon le but de la branche.
 
 commentaires : Expliquer le but des fonctions et expliquer les calculs et actions compliquées.
