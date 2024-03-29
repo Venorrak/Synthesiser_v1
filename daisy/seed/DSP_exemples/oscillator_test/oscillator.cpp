@@ -30,6 +30,52 @@ GPIO board2;
 bool gate;
 float sampleRate;
 
+bool isLfoAmp() 
+{
+    switch (toggleLfoValAssigned.Read())
+    {
+    case Switch3::POS_DOWN:
+    hw.SetLed(true);
+        return true;
+        break;
+    
+    default:
+        return false;
+        break;
+    }
+}
+
+bool isLfoFreq() 
+{
+     switch (toggleLfoValAssigned.Read())
+    {
+    case Switch3::POS_UP:
+    hw.SetLed(false);
+        return true;
+        break;
+    
+    default:
+        return false;
+        break;
+    }
+}
+
+bool isLfoCutOff() 
+{
+     switch (toggleLfoValAssigned.Read())
+    {
+    case Switch3::POS_CENTER:
+    hw.SetLed(true);
+
+        return true;
+        break;
+    
+    default:
+        return false;
+        break;
+    }
+}
+
 float convertValue(int value, float newMin, float newMax) {
     int minValue = 0;
     int maxValue = 65534;
@@ -241,6 +287,28 @@ bool setDelay()
     // return true;
 }
 
+void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess) 
+{
+    if (isLfoAmp()) 
+    {
+        ampOsc1 = (( lfoProcess * ampOsc1 ) * 2);
+        ampOsc2 = (( lfoProcess * ampOsc2 ) * 2);
+
+        if (ampOsc1 < 0) 
+        {
+            ampOsc1 = -1 * ampOsc1;
+        }
+        
+         if (ampOsc2 < 0) 
+        {
+            ampOsc2 = -1 * ampOsc2;
+        }
+    }
+    osc1.SetAmp(ampOsc1);
+    osc2.SetAmp(ampOsc2);
+    osc3.SetAmp(ampOsc1);
+}
+
 // function to read the ADC value for the selected knob
 // knobPin is the number of the knob to read (0-7)
 float getBoardKnobValue(int knobPin)
@@ -291,9 +359,19 @@ float getBoardKnobValue(int knobPin)
 	return hw.adc.Get(11);
 }
 
-void changeFilter(float *sig_out) 
+void changeFilter(float *sig_out, float lfoProcess) 
 {
     float cutOffFreq = convertValue(hw.adc.Get(10), 110.0f, 1046.50f);
+
+    if (isLfoCutOff()) 
+    {
+        cutOffFreq = ( (cutOffFreq * lfoProcess) * 2);
+
+        if (cutOffFreq < 0) 
+        {
+            cutOffFreq = -1 * cutOffFreq;
+        }
+    }
 
     switch(toggleFilter.Read())
     {
@@ -332,15 +410,17 @@ void AudioCallback(AudioHandle::InputBuffer in,
         float tickFrequency = convertValue(hw.adc.Get(7), 1.0f, 5.0f); 
 
         //Make sure that frequency is not going below his minimum
-        freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0f);
-        freqOsc2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0f);
-
+        if (isLfoFreq()) 
+        {
+            freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0f);
+            freqOsc2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0f);
+        }
+    
         // LFO mods the oscillator
-        osc1.SetAmp(ampOsc1);
-        osc2.SetAmp(ampOsc2);
-        osc3.SetAmp(ampOsc1);
+        
         changeWaveForm();
         setOscFreq(freqOsc1, freqOsc2);
+        setOscAmp(ampOsc1, ampOsc2, lfo.Process());
         setSubFreq(freqOsc1);
 
         // Update tick frequency
@@ -373,7 +453,7 @@ void AudioCallback(AudioHandle::InputBuffer in,
             sig_out = osc_out + osc2_out + osc3_out;
         }
 
-        changeFilter(&sig_out);
+        changeFilter(&sig_out, lfo.Process());
 
         // A noticeable sync effect can be heard on high frequencies
         OUT_L[i] = sig_out;
@@ -389,7 +469,7 @@ int main(void)
 
     toggleWaveFormOsc1.Init(seed::D29, seed::D30);
     toggleWaveFormOsc2.Init(seed::D14, seed::D13);
-    toggleFilter.Init(seed::D3, seed::D4);
+    toggleFilter.Init(seed::D11, seed::D4);
     toggleWaveFormLfo.Init(seed::D5, seed::D6);
     toggleLfoValAssigned.Init(seed::D7, seed::D8);
     toggleOctaveOsc1.Init(seed::D9, seed::D10);
@@ -416,9 +496,9 @@ int main(void)
     // set up the GPIO pins for the breakout board
 	// S0, S1, S2 on the breakout board
 	// used to select which knob to read
-	board0.Init(daisy::seed::D1, GPIO::Mode::OUTPUT);
-	board1.Init(daisy::seed::D2, GPIO::Mode::OUTPUT);
-	board2.Init(daisy::seed::D3, GPIO::Mode::OUTPUT);
+	board0.Init(daisy::seed::D0, GPIO::Mode::OUTPUT);
+	board1.Init(daisy::seed::D1, GPIO::Mode::OUTPUT);
+	board2.Init(daisy::seed::D2, GPIO::Mode::OUTPUT);
 
     // Audio Oscillator
     osc1.Init(sampleRate);
@@ -454,10 +534,5 @@ int main(void)
     
     for(;;) 
     {
-        board0.Write(false);
-        board1.Write(false);
-        board2.Write(false);
-
-        hw.PrintLine("My Float: " FLT_FMT(6), FLT_VAR(6, hw.adc.Get(11)));
     }
 }

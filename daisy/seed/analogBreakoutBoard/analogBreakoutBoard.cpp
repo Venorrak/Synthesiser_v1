@@ -9,6 +9,8 @@ static Oscillator osc;
 GPIO board0;
 GPIO board1;
 GPIO board2;
+int max = 0;
+int min = 1000000;
 
 // function to read the ADC value for the selected knob
 // knobPin is the number of the knob to read (0-7)
@@ -44,7 +46,7 @@ float getBoardKnobValue(int knobPin)
 			}
 	}
 		
-	return hw.adc.GetFloat(0);
+	return hw.adc.Get(0);
 }
 
 void AudioCallback(AudioHandle::InputBuffer in, AudioHandle::OutputBuffer out, size_t size)
@@ -53,8 +55,9 @@ void AudioCallback(AudioHandle::InputBuffer in, AudioHandle::OutputBuffer out, s
 	for (size_t i = 0; i < size; i+=2)
 	{
 		float knobValue = getBoardKnobValue(0);
-		hw.PrintLine("My Float: " FLT_FMT(6), FLT_VAR(6, knobValue));
-		osc.SetFreq(24.0 + (fclamp(knobValue, 0.0f, 1.0f) * 60) );
+	
+		osc.SetFreq(knobValue);
+		osc.SetAmp(knobValue);
 		sig = osc.Process();
 
 		out[0][i] = sig;
@@ -75,6 +78,7 @@ int main(void)
 	adcConfig.InitSingle(hw.GetPin(15));
 	hw.adc.Init(&adcConfig, 1);
 	hw.adc.Start();
+	hw.StartLog();
 
 	// set up the GPIO pins for the breakout board
 	// S0, S1, S2 on the breakout board
@@ -92,5 +96,18 @@ int main(void)
     osc.SetAmp(0.5);
 
 	hw.StartAudio(AudioCallback);
-	while(1) {}
+	while(1) 
+	{
+		if (max < getBoardKnobValue(7)) 
+		{
+			max = getBoardKnobValue(7);
+			hw.PrintLine("Max: " FLT_FMT(6), FLT_VAR(6, getBoardKnobValue(7)));
+		}
+		else if (min > getBoardKnobValue(7)) 
+		{
+			min = getBoardKnobValue(7);
+			hw.PrintLine("Min: " FLT_FMT(6), FLT_VAR(6, getBoardKnobValue(7)));
+		}
+		System::Delay(1000);
+	}
 }
