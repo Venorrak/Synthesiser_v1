@@ -13,6 +13,7 @@ static DaisySeed hw;
 static Oscillator osc1, osc2, osc3, lfo;
 static Adsr env;
 static Adsr filterEnv;
+static Adsr lfoEnv;
 static Metro tick;
 static Switch3 toggleWaveFormOsc1;
 static Switch3 toggleWaveFormOsc2;
@@ -24,9 +25,6 @@ static Switch3 toggleLfoValAssigned;
 static DelayLine<float, MAX_DELAY> del;
 static ATone hpFilter;
 static Tone lpFilter;
-GPIO board0;
-GPIO board1;
-GPIO board2;
 bool gate;
 float sampleRate;
 
@@ -161,7 +159,7 @@ void setOscFreq(float freqOsc1, float freqOsc2)
 
 float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) 
 {
-    float freq = ((lfoProcess * freqOsc) * 2);
+    float freq = (( (lfoProcess * lfoEnv.Process(gate)) * freqOsc) * 2);
 
     if (freq < 0) 
     {
@@ -291,8 +289,8 @@ void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess)
 {
     if (isLfoAmp()) 
     {
-        ampOsc1 = (( lfoProcess * ampOsc1 ) * 2);
-        ampOsc2 = (( lfoProcess * ampOsc2 ) * 2);
+        ampOsc1 = (( (lfoProcess * lfoEnv.Process(gate)) * ampOsc1 ) * 2);
+        ampOsc2 = (( (lfoProcess * lfoEnv.Process(gate)) * ampOsc2 ) * 2);
 
         if (ampOsc1 < 0) 
         {
@@ -309,63 +307,13 @@ void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess)
     osc3.SetAmp(ampOsc1);
 }
 
-// function to read the ADC value for the selected knob
-// knobPin is the number of the knob to read (0-7)
-float getBoardKnobValue(int knobPin)
-{
-	switch (knobPin)
-	{
-		case 0:
-			board0.Write(false);
-			board1.Write(false);
-			board2.Write(false);
-			break;
-		case 1:
-			board0.Write(true);
-			board1.Write(false);
-			board2.Write(false);
-			break;
-		case 2:
-			board0.Write(false);
-			board1.Write(true);
-			board2.Write(false);
-			break;
-		case 3:
-			board0.Write(true);
-			board1.Write(true);
-			board2.Write(false);
-			break;
-		case 4:
-			board0.Write(false);
-			board1.Write(false);
-			board2.Write(true);
-			break;
-		case 5:
-			board0.Write(true);
-			board1.Write(false);
-			board2.Write(true);
-			break;
-		case 6:
-			board0.Write(false);
-			board1.Write(true);
-			board2.Write(true);
-			break;
-		case 7:
-			board0.Write(true);
-			board1.Write(true);
-			board2.Write(true);
-			break;
-	}
-	return hw.adc.Get(11);
-}
-
 void changeFilter(float *sig_out, float lfoProcess) 
 {
     float cutOffFreq = convertValue(hw.adc.Get(10), 110.0f, 1046.50f);
 
     if (isLfoCutOff()) 
     {
-        cutOffFreq = ( (cutOffFreq * lfoProcess) * 2);
+        cutOffFreq = ( (cutOffFreq * (lfoProcess * lfoEnv.Process(gate))) * 2);
 
         if (cutOffFreq < 0) 
         {
@@ -377,12 +325,12 @@ void changeFilter(float *sig_out, float lfoProcess)
     {
         case Switch3::POS_UP:
             hpFilter.SetFreq(cutOffFreq);
-            *sig_out = hpFilter.Process(*sig_out);
+            *sig_out = hpFilter.Process(*sig_out) * filterEnv.Process(gate);
         break;
         case Switch3::POS_CENTER: break;
         case Switch3::POS_DOWN: 
             lpFilter.SetFreq(cutOffFreq);
-            *sig_out = lpFilter.Process(*sig_out);
+            *sig_out = lpFilter.Process(*sig_out) * filterEnv.Process(gate);
         break;
     }
 }
@@ -431,6 +379,13 @@ void AudioCallback(AudioHandle::InputBuffer in,
         env.SetTime(ADSR_SEG_DECAY, envDecay);
         env.SetSustainLevel(sustain);
 
+        lfoEnv.SetTime(ADSR_SEG_ATTACK, envAttack);
+        lfoEnv.SetTime(ADSR_SEG_DECAY, envDecay);
+        lfoEnv.SetSustainLevel(sustain);
+
+        filterEnv.SetTime(ADSR_SEG_ATTACK, envAttack);
+        filterEnv.SetTime(ADSR_SEG_DECAY, envDecay);
+
         // Use envelope to control the amplitude of the oscillator.
         env_out = env.Process(gate);
         osc_out = osc1.Process() * env_out;
@@ -474,7 +429,7 @@ int main(void)
     toggleLfoValAssigned.Init(seed::D7, seed::D8);
     toggleOctaveOsc1.Init(seed::D9, seed::D10);
 
-    AdcChannelConfig adcConfig[12];
+    AdcChannelConfig adcConfig[11];
 
     adcConfig[0].InitSingle(hw.GetPin(20));
     adcConfig[1].InitSingle(hw.GetPin(17));
@@ -487,18 +442,10 @@ int main(void)
     adcConfig[8].InitSingle(hw.GetPin(15));
     adcConfig[9].InitSingle(hw.GetPin(19));
     adcConfig[10].InitSingle(hw.GetPin(28));
-    adcConfig[11].InitSingle(hw.GetPin(25));
 
     hw.adc.Init(adcConfig, 12);
     hw.adc.Start();
     hw.StartLog();
-
-    // set up the GPIO pins for the breakout board
-	// S0, S1, S2 on the breakout board
-	// used to select which knob to read
-	board0.Init(daisy::seed::D0, GPIO::Mode::OUTPUT);
-	board1.Init(daisy::seed::D1, GPIO::Mode::OUTPUT);
-	board2.Init(daisy::seed::D2, GPIO::Mode::OUTPUT);
 
     // Audio Oscillator
     osc1.Init(sampleRate);
@@ -521,6 +468,15 @@ int main(void)
     env.SetTime(ADSR_SEG_ATTACK, 1.0f);
     env.SetTime(ADSR_SEG_DECAY, 1.0f);
     env.SetSustainLevel(.50);
+
+    lfoEnv.Init(sampleRate);
+    lfoEnv.SetTime(ADSR_SEG_ATTACK, 1.0f);
+    lfoEnv.SetTime(ADSR_SEG_DECAY, 1.0f);
+    lfoEnv.SetSustainLevel(.50);
+
+    filterEnv.Init(sampleRate);
+    filterEnv.SetTime(ADSR_SEG_ATTACK, 1.0f);
+    filterEnv.SetTime(ADSR_SEG_DECAY, 1.0f);
 
     // Set Delay parameters
     del.Init();
