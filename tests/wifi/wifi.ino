@@ -43,10 +43,15 @@ void loop() {
 
             client.println("HTTP/1.1 200 OK");
             client.println("Content-type:text/html");
+            client.println("Access-Control-Allow-Origin : *");
+            client.println("Access-Control-Allow-Methods : GET,PUT,POST,DELETE");
+            client.println("Access-Control-Allow-Headers : Content-Type");
             client.println("Connection: close");
             client.println();
+
             client.println("Hello World!");
             client.println();
+            
             break;
           } else {
             currentLine = "";
