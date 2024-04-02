@@ -2,6 +2,7 @@
 	import Row from './Row.svelte';
 	import Controls from './Controls.svelte';
 	import {initAudio, playRow, startRecording, stopRecording, setScale, scales} from './Music.svelte';
+
 	let config = {
 		playing: false,
 		speed: 175,
@@ -9,7 +10,8 @@
 		scale_key: 'classic',
 	}
 
-	let columns = 29;
+	//app configuration
+	let columns = 36;
 	let grid = [];
 	let gameInterval;
 	let curRow = 0;
@@ -17,6 +19,12 @@
 	let started = false;
 	let downloadLink;
 	let recording = false;
+
+	//app functions
+	const toggleSound = async () => {
+		console.log("Toggle sound from app.svelte");
+		//$isSoundEnabled = !isSoundEnabled;
+	}
 
 	const togglePlaying = async () => {
 		config.playing = !config.playing;
@@ -64,14 +72,13 @@
 		grid[0].isPlaying = false;
 	}
 
+	//initialize the grid
 	const initGrid = (hash) => {
 		config.playing = false;
 		let array = hash.split('&')[0].slice(1).split('-').map(x => parseInt(x, 10));
 		config.rows = array.length - 1;
 		grid = []
 		// add header note
-
-		console.log(document.getElementById('notesContainer'));
 		for (var i = array.length - 2; i >= 0; i--) {
 			let temp = [... Array(columns).fill(false)];
 			for (var j = columns - 1; j >= 0; j--) {
@@ -87,6 +94,7 @@
 		}
 	}
 
+	//change playing speed
 	const changeSpeed = (bpm) => {
 		clearInterval(gameInterval);
 		gameInterval = setInterval(() => {
@@ -127,9 +135,27 @@
 
 	clearGrid(config.rows);
 
+	// check if there is a hash in the url and load the grid
 	if(window.location.hash !== '') {
 		initGrid(window.location.hash);
 	}
+
+	//load the table header, to show notes at the top of the grid
+	document.addEventListener('DOMContentLoaded', () =>{
+		//display notes on the top of the grid
+		let table = document.querySelector('table');
+		let notes = scales[config.scale_key];
+		//add an header note
+		let header = document.createElement('tr');
+		header.appendChild(document.createElement('td'));
+		for (var i = 0; i <= notes.length - 1; i++) {
+			let th = document.createElement('th');
+			th.innerHTML = notes[i];
+			header.appendChild(th);
+		}
+		table.insertBefore(header, table.firstChild);
+	});
+	
 </script>
 <style>
 	table {
@@ -173,6 +199,7 @@
 		on:rowchange={() => resizeGrid(config.rows)}
 		on:scalechange={() => setScale(config.scale_key)}
 		on:download={downloadAudio}
+		on:mute={toggleSound}
 	/>
 	{#if recording}
 		<span class="message">Please wait for the playback to finish</span>
@@ -187,10 +214,8 @@
 	<br/>
 	<div class="footer" align="center">
 		<a href="https://irshadpi.me/best-of-music-grid" target="_blank">Exemples de musiques</a>
-		<!--<br/>
-		<a href="https://svelte.dev" target="_blank">Svelte</a> 
-		| <a href="https://github.com/irshadshalu/music-grid" target="_blank"><i class="fa fa-lg fa-github"></i></a> 
-		| <a href="https://irshadpi.me" target="_blank">irshad</a> -->
+		<br/>
+		<a href="#0-2048-0-144-1072-0-40-530-0-268-24-0-1048-0-24-2072-0-2048-0-1024-0-0-512-18-0-268-24-0-1048-0-24-2072-0-0-2048-144-1072-0-40-530-0-268-24-0-1048-0-24-24-0-0-0-528-40-64-0-136-0-34-68-0-9-18-0-72-656-0-656-40-0-72-0-144-0-0-544-0-0-272-0-0-36-0-0-0-2304-0-0-0-17-0-1058-2084-0-1058-0-1058-1058-&399&classic" target="_blank">Mario</a> 
 	</div>
 	<br/>
 	<br/>

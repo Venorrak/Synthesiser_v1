@@ -6,6 +6,7 @@
 	export let playing = false;
 	export let paused = false;
 
+	//Button to play the row on the side
 	const playThisRow = () => {
 		row.isPlaying = true;
 		playRow(row);

@@ -1,8 +1,7 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import ClipboardJS from "clipboard";
-  import { scale_keys } from "./Music.svelte";
-
+  import { setSoundEnabled } from "./store.js";
   const dispatch = createEventDispatcher();
 
   export let grid;
@@ -10,6 +9,18 @@
 
   let urlUpdatedRecently = false;
   let scrollY = 0;
+
+  //toggle sound button
+  const toggleSound = () => {
+    console.log("Toggle sound from Controls.svelte");
+    $setSoundEnabled = !$setSoundEnabled;
+    const soundBtn = document.getElementById("soundBtn");
+    if ($setSoundEnabled) {
+      soundBtn.innerHTML = '<i class="fa fa-lg fa-volume-up" />';
+    } else {
+      soundBtn.innerHTML = '<i class="fa fa-lg fa-volume-off" />';
+    }
+  };
 
   const encodeGridToUrl = (grid, speed, scale) => {
     let res = "";
@@ -113,6 +124,7 @@
     <a on:click={() => dispatch("download")}
       ><i class="fa fa-lg fa-download" /></a
     >
+    <a on:click={toggleSound} id="soundBtn"><i class="fa fa-lg fa-lg fa-volume-up" /></a>
   </div>
   <br />
 </div>
