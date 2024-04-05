@@ -22,9 +22,9 @@ La communication wifi comprend les fonctionnalités suivantes :
 
 Pour utiliser la communication, suivez ces étapes :
 
-1. Clonez le dépôt : `git clone `
+1. Clonez le dépôt : `git clone https://github.com/Venorrak/Synthesiser_v1.git`
 
-2. Ouvrez le fichier `wifi.ino` dans l'IDE Arduino. 
+2. Ouvrez le dossier `wifi`, puis le fichier `wifi.ino` dans l'IDE Arduino. 
 
 3. Selectionnez la carte 'ESP32-WROOM-DA Module' lorsque vous compilez le code.
 
