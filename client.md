@@ -122,8 +122,8 @@ surge public my-project.surge.sh
 
 <b>Bouton de son</b>: Lorsque le bouton est appuyé, l'état est mise à jours dans le fichier 'store.js'.
 
-<b>Communication</b>: Le client envoie les données au ESP32 à l'aide du protocole http. Un server web attend des données au format afin de les transmettre au synthétiseur.
+<b>Communication</b>: Le client envoie les données au ESP32 à l'aide du protocole http. Un server web attend des données au format JSON afin de les transmettre au synthétiseur.
 
 # Licence
 
-Le client web de Music Maker est basé sur [music-grid de irshadshalu](https://github.com/irshadshalu/music-grid), ayant une licence [MIT License](/music-grid/LICENSE).
+Le client web de Music Maker est basé sur le projet [music-grid de irshadshalu](https://github.com/irshadshalu/music-grid), ayant une licence [MIT License](/music-grid/LICENSE).
