@@ -182,10 +182,12 @@ Une fonctionnalitée est consideré comme fini lorsque tout fonctionne et qu'ell
 
 Le camelCase doit être utilisé pour la nomencalture.
 
-fonctions et variables : En camelCase, pas trop long (mi-long) et les abréviations sont accesptées  
+Fonctions et variables : En camelCase, pas trop long (mi-long) et les abréviations sont acceptées.
 
-commit : Résumer les points imiportant du commit en quelques mots
+Commit : Résumer les points important du commit en quelques mots.
 
-branches : Doit être nommée selon le but de la branche.
+Commentaire du commit : Apporter de la précision au commit si nécessaire.
 
-commentaires : Expliquer le but des fonctions et expliquer les calculs et actions compliquées.
+Branches : Les branches doivent être nommées en fonction de leur objectif spécifique dans le projet.
+
+Commentaires : Expliquer le but des fonctions et expliquer les calculs et actions compliquées.

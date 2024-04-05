@@ -9,13 +9,14 @@
     - [Déboguer](#item-8)
         - [Afficher float](#item-9)
     - [Création d'un projet](#item-10)
+    - [Pin analog](#item-11)
 
 <a id="item-1"></a>
 
 # Prérequis
 - Daisy seed
-- 10 Potentiomètres (Pour le moment)
-- 2 Switch à 3 états 
+- 18 Potentiomètres
+- 7 Switch à 3 états 
 - Visual Studio Code
 
 <a id="item-2"></a>
@@ -39,6 +40,10 @@ En gros, ces fonctionnalitées nous permetterons de modifier le son qui sera pro
 - GetPin(pinNumber) Configurer ou manipuler les broches GPIO (libDaisy)
 - InitSingle(GetPin(pinNumber)) Fonctioner qui provient de la classe AdcChannelConfig qui sert à initializer une seule pin ADC
 - Get(channelNumber) Retourne la valeur du channel associé à une pin qui se trouve entre 0 et 65536 (libDaisy)
+- convertValue(value, min, max) Convertie la value entre le min et le max donné
+- transposeOctave(freq, octaveDifference, midiMin, midiMax) baisse ou augmente d'un octave la frequence de l'oscillateur
+- setFreq(freq) changer la fréquence de l'oscillateur (DaisySP)
+- setAmp(amp) change l'amplitude de l'oscillateur (DaisySP)
 
 <a id="item-5"></a>
 
@@ -68,5 +73,10 @@ Pour le moment, nous avons un filage bien normal, mais nous aimerions comme prod
 
 ## Création d'un projet cpp pour l'environnement daisy
 - Il ne suffit pas d'un simple fichier C++ pour parvenir à envoyer du code sur le Daisy Seed, et on aimerait travailler dans un dossier d'exemple pour notre projet entier. Le créateur de la librairie a créé un [script](https://github.com/electro-smith/DaisyWiki/wiki/How-To-Create-a-New-Project) afin de simplifier la création de ces fichiers, qui sont très complexes : `/helper.py create seed/MyNewProject`.
+
+<a id="item-11"></a>
+
+## Nombre limité de pin analog
+- On s'est rendu compte qu'il allait nous manquer de pin analog, alors nous avons décidé de mettre les potentiomètres qui ne rentraient pas sur le daisy seed sur le ESP32 et il communiquera les informations des potentiomètres par serie.
 
 # Glossaire
