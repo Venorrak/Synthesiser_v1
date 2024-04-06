@@ -70,6 +70,12 @@ int transposeOctave(float freq, int octaveDifference, int midiMin, int midiMax) 
     return midiNote;
 }
 
+void setSubFreq(float freq) {
+    // 21 and 108 represent the lowest and the higher he can reach
+    int midiNote = transposeOctave(freq, 1, 21, 108);
+    osc3.SetFreq(mtof(midiNote));
+}
+
 int readSwitch3(int rPin, int lPin) {
   bool rState = digitalRead(rPin);
   bool lState = digitalRead(lPin);
@@ -134,12 +140,15 @@ void changeWaveForm() {
   switch (readSwitch3(osc1WavePinR, osc1WavePinL)) {
     case UP:
       osc1.SetWaveform(osc1.WAVE_SQUARE);
+      osc3.SetWaveform(osc3.WAVE_SQUARE);
       break;
     case CENTER:
       osc1.SetWaveform(osc1.WAVE_POLYBLEP_SAW);
+      osc3.SetWaveform(osc3.WAVE_POLYBLEP_SAW);
       break;
     case DOWN:
       osc1.SetWaveform(osc1.WAVE_TRI);
+      osc3.SetWaveform(osc3.WAVE_TRI);
       break;
   }
 
@@ -217,6 +226,11 @@ void setup() {
   osc2.SetWaveform(Oscillator::WAVE_SQUARE);
   osc2.SetFreq(100);
   osc2.SetAmp(0.25);
+
+  osc3.Init(sample_rate);
+  osc3.SetWaveform(Oscillator::WAVE_TRI);
+  osc3.SetFreq(100);
+  osc3.SetAmp(0.25);
 
   // Set up metro to pulse every second
   tick.Init(3.0, sample_rate);
