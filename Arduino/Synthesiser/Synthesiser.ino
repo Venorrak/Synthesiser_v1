@@ -34,10 +34,41 @@ int osc1OctavePinL = 8;
 bool rState = false;
 bool lState = false;
 
-static Oscillator osc1, osc2, lfo;
-static Adsr env;
-Metro tick;
+static Oscillator osc1, osc2, osc3, lfo;
+static Adsr env, filterEnv, lfoEnv;
+static Metro tick;
+static ATone hpFilter;
+static Tone lpFilter;
 bool gate;
+
+int ftom(float freq) {
+    // MIDI Value Calculation
+    float midiValue = 12 * std::log2(freq / 440.0) + 69;
+    
+    // Round the MIDI value to the nearest integer
+    int midiNote = static_cast<int>(round(midiValue));
+
+    return midiNote;
+}
+
+// midiMin & midiMax values ​​that determine the maximum that can reach and the minimum that it can reach
+int transposeOctave(float freq, int octaveDifference, int midiMin, int midiMax) {
+    int midiNote = ftom(freq);
+
+    // If octaveDifference = 1 we go down an octave and if it is -1 we go up an octave
+    midiNote = midiNote - (octaveDifference * 12);
+
+    if (midiNote > midiMax) 
+    {
+        midiNote = midiMax;
+    }
+    else if (midiNote < midiMin)
+    {
+        midiNote = midiMin;
+    }
+
+    return midiNote;
+}
 
 int readSwitch3(int rPin, int lPin) {
   bool rState = digitalRead(rPin);
@@ -123,7 +154,6 @@ void changeWaveForm() {
       osc2.SetWaveform(osc2.WAVE_TRI);
       break;
   }
-
 }
 
 void MyCallback(float **in, float **out, size_t size) {
