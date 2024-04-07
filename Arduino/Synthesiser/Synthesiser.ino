@@ -41,6 +41,48 @@ static ATone hpFilter;
 static Tone lpFilter;
 bool gate;
 
+bool isLfoAmp() 
+{
+    switch (readSwitch3(lfoValPinR, lfoValPinL))
+    {
+    case DOWN:
+        return true;
+        break;
+    
+    default:
+        return false;
+        break;
+    }
+}
+
+bool isLfoFreq() 
+{
+     switch (readSwitch3(lfoValPinR, lfoValPinL))
+    {
+    case UP:
+        return true;
+        break;
+    
+    default:
+        return false;
+        break;
+    }
+}
+
+bool isLfoCutOff() 
+{
+     switch (readSwitch3(lfoValPinR, lfoValPinL))
+    {
+    case CENTER:
+        return true;
+        break;
+    
+    default:
+        return false;
+        break;
+    }
+}
+
 int ftom(float freq) {
     // MIDI Value Calculation
     float midiValue = 12 * std::log2(freq / 440.0) + 69;
@@ -68,6 +110,66 @@ int transposeOctave(float freq, int octaveDifference, int midiMin, int midiMax) 
     }
 
     return midiNote;
+}
+
+void setOscFreq(float freqOsc1, float freqOsc2) {
+    int midiNote;
+    // frequence up to 1 octave for second oscillator
+    int tune = static_cast<int>(round(convertValue(analogRead(A4), 0, 1023, 0.0, 12.0f)));
+    switch(readSwitch3(osc1OctavePinR, osc1OctavePinL))
+    {
+        case UP:
+            // 33 and 108 represent the lowest and the higher he can reach
+            midiNote = transposeOctave(freqOsc1, -1, 33, 108);
+            osc1.SetFreq(mtof(midiNote));
+            break;
+        case CENTER:
+            osc1.SetFreq(freqOsc1);
+            break;
+        case DOWN:
+            // 33 and 108 represent the lowest and the higher he can reach
+            midiNote = transposeOctave(freqOsc1, 1, 33, 108); 
+            osc1.SetFreq(mtof(midiNote));
+            break;
+    }
+    
+    switch(readSwitch3(osc2WavePinR, osc2WavePinL))
+    {
+        case UP:
+            // 21 and 96 represent the lowest and the higher he can reach
+            midiNote = transposeOctave(freqOsc2, -1, 21, 96);
+            midiNote += tune;
+            osc2.SetFreq(mtof(midiNote));
+            break;
+        case CENTER:
+            midiNote = ftom(freqOsc2);
+            midiNote += tune;
+            osc2.SetFreq(freqOsc2);
+            break;
+        case DOWN:
+            // 21 and 96 represent the lowest and the higher he can reach
+            midiNote = transposeOctave(freqOsc2, 1, 21, 96);
+            midiNote += tune;
+            osc2.SetFreq(mtof(midiNote));
+            break;
+    }
+}
+
+// make sure that frequence is not below min freq
+float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) {
+    float freq = (( (lfoProcess * lfoEnv.Process(gate)) * freqOsc) * 2);
+
+    if (freq < 0) 
+    {
+        freq = -1 * freq;
+    }
+
+    if (freq < minFreq) 
+    {
+        freq = minFreq;
+    }
+
+    return freq;
 }
 
 void setSubFreq(float freq) {
@@ -165,6 +267,27 @@ void changeWaveForm() {
   }
 }
 
+void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess) {
+    if (isLfoAmp()) 
+    {
+        ampOsc1 = (( (lfoProcess * lfoEnv.Process(gate)) * ampOsc1 ) * 2);
+        ampOsc2 = (( (lfoProcess * lfoEnv.Process(gate)) * ampOsc2 ) * 2);
+
+        if (ampOsc1 < 0) 
+        {
+            ampOsc1 = -1 * ampOsc1;
+        }
+        
+         if (ampOsc2 < 0) 
+        {
+            ampOsc2 = -1 * ampOsc2;
+        }
+    }
+    osc1.SetAmp(ampOsc1);
+    osc2.SetAmp(ampOsc2);
+    osc3.SetAmp(ampOsc1);
+}
+
 void MyCallback(float **in, float **out, size_t size) {
   float osc1_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback;
   for (size_t i = 0; i < size; i++) {
@@ -174,26 +297,40 @@ void MyCallback(float **in, float **out, size_t size) {
       gate = !gate;
     }
     
+    if (isLfoFreq()) 
+    {
+        //Make sure that frequency is not going below his minimum
+        freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0);
+        freqOsc2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0);
+    }
+
     changeWaveForm();
-    osc1.SetAmp(ampOsc1);
-    osc1.SetFreq(freqOsc1);
-    osc2.SetAmp(ampOsc2);
-    osc2.SetFreq(freqOsc2);
+    setOscFreq(freqOsc1, freqOsc2);
+    setOscAmp(ampOsc1, ampOsc2, lfo.Process());
+    setSubFreq(freqOsc1);
 
     // Update tick frequency
-      tick.SetFreq(tickFrequency);
+    tick.SetFreq(tickFrequency);
 
     // Update envelope
     env.SetTime(ADSR_SEG_ATTACK, envAttack);
     env.SetTime(ADSR_SEG_DECAY, envDecay);
     env.SetSustainLevel(sustain);
 
+    lfoEnv.SetTime(ADSR_SEG_ATTACK, envAttack);
+    lfoEnv.SetTime(ADSR_SEG_DECAY, envDecay);
+    lfoEnv.SetSustainLevel(sustain);
+
+    filterEnv.SetTime(ADSR_SEG_ATTACK, envAttack);
+    filterEnv.SetTime(ADSR_SEG_DECAY, envDecay);
+
     // Use envelope to control the amplitude of the oscillator.
     env_out = env.Process(gate);
     osc1_out = osc1.Process() * env_out;
     osc2_out = osc2.Process() * env_out;
+    osc3_out = osc3.Process() * env_out;
 
-    sig_out = osc1_out + osc2_out;
+    sig_out = osc1_out + osc2_out + osc3_out;
 
     for (size_t chn = 0; chn < num_channels; chn++) {
       out[chn][i] = sig_out;
