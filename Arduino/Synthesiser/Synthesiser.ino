@@ -10,6 +10,9 @@
 DaisyHardware hw;
 enum State {UP, CENTER, DOWN};
 
+// Set max delay time to 0.75 of samplerate.
+#define MAX_DELAY static_cast<size_t>(48000 * 0.75f)
+
 size_t num_channels;
 float ampOsc1;
 float ampOsc2;
@@ -19,6 +22,7 @@ float envAttack;
 float envDecay;
 float sustain;
 float tickFrequency;
+static DelayLine<float, MAX_DELAY> del;
 int osc1WavePinR = 27;
 int osc1WavePinL = 26;
 int osc2WavePinR = 1;
@@ -312,6 +316,75 @@ void changeFilter(float *sig_out, float lfoProcess) {
     }
 }
 
+bool setDelay() {
+    int delay = static_cast<int>(round(convertValue(hw.adc.Get(8), 0.0, 80.0)));
+
+    switch (delay)
+    {
+        case 0 ... 9:
+            return false;
+        break;
+        
+        case 10 ... 14:
+            del.SetDelay(sampleRate * 0.10);
+        break;
+
+        case 15 ... 19:
+            del.SetDelay(sampleRate * 0.15);
+        break;
+        
+        case 20 ... 24:
+            del.SetDelay(sampleRate * 0.20);
+        break;
+
+        case 25 ... 29:
+            del.SetDelay(sampleRate * 0.25);
+        break;
+
+        case 30 ... 34:
+            del.SetDelay(sampleRate * 0.30);
+        break;
+
+        case 35 ... 39:
+            del.SetDelay(sampleRate * 0.35);
+        break;
+
+        case 40 ... 44:
+            del.SetDelay(sampleRate * 0.40);
+        break;
+
+        case 45 ... 49:
+            del.SetDelay(sampleRate * 0.45);
+        break;
+
+        case 50 ... 54:
+            del.SetDelay(sampleRate * 0.50);
+        break;
+
+        case 55 ... 59:
+            del.SetDelay(sampleRate * 0.55);
+        break;
+
+        case 60 ... 64:
+            del.SetDelay(sampleRate * 0.60);
+        break;
+
+        case 65 ... 69:
+            del.SetDelay(sampleRate * 0.65);
+        break;
+
+        case 70 ... 74:
+            del.SetDelay(sampleRate * 0.70);
+        break;
+
+        case 75 ... 80:
+            del.SetDelay(sampleRate * 0.75);
+        break;
+    }
+
+    return true;
+}
+
 void MyCallback(float **in, float **out, size_t size) {
   float osc1_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback;
   for (size_t i = 0; i < size; i++) {
@@ -354,7 +427,21 @@ void MyCallback(float **in, float **out, size_t size) {
     osc2_out = osc2.Process() * env_out;
     osc3_out = osc3.Process() * env_out;
 
-    sig_out = osc1_out + osc2_out + osc3_out;
+    del_out = del.Read();
+
+    // Calculate output and feedback
+    sig_out  = del_out + osc_out + osc2_out + osc3_out;
+    feedback = (del_out * 0.75f) + osc_out + osc2_out + osc3_out;
+    
+    // Write to the delay
+    del.Write(feedback);
+    
+    bool isDelay = setDelay();
+
+    if (!isDelay) 
+    {
+        sig_out = osc_out + osc2_out + osc3_out;
+    }
 
     changeFilter(&sig_out, lfo.Process());
 
