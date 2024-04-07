@@ -41,8 +41,7 @@ static ATone hpFilter;
 static Tone lpFilter;
 bool gate;
 
-bool isLfoAmp() 
-{
+bool isLfoAmp() {
     switch (readSwitch3(lfoValPinR, lfoValPinL))
     {
     case DOWN:
@@ -55,8 +54,7 @@ bool isLfoAmp()
     }
 }
 
-bool isLfoFreq() 
-{
+bool isLfoFreq() {
      switch (readSwitch3(lfoValPinR, lfoValPinL))
     {
     case UP:
@@ -69,8 +67,7 @@ bool isLfoFreq()
     }
 }
 
-bool isLfoCutOff() 
-{
+bool isLfoCutOff() {
      switch (readSwitch3(lfoValPinR, lfoValPinL))
     {
     case CENTER:
@@ -288,6 +285,33 @@ void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess) {
     osc3.SetAmp(ampOsc1);
 }
 
+void changeFilter(float *sig_out, float lfoProcess) {
+    float cutOffFreq = convertValue(hw.adc.Get(10), 110.0f, 1046.50f);
+
+    if (isLfoCutOff()) 
+    {
+        cutOffFreq = ( (cutOffFreq * (lfoProcess * lfoEnv.Process(gate))) * 2);
+
+        if (cutOffFreq < 0) 
+        {
+            cutOffFreq = -1 * cutOffFreq;
+        }
+    }
+
+    switch(readSwitch3(filterPinR, filterPinL))
+    {
+        case UP:
+            hpFilter.SetFreq(cutOffFreq);
+            *sig_out = hpFilter.Process(*sig_out) * filterEnv.Process(gate);
+        break;
+        case CENTER: break;
+        case DOWN: 
+            lpFilter.SetFreq(cutOffFreq);
+            *sig_out = lpFilter.Process(*sig_out) * filterEnv.Process(gate);
+        break;
+    }
+}
+
 void MyCallback(float **in, float **out, size_t size) {
   float osc1_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback;
   for (size_t i = 0; i < size; i++) {
@@ -331,6 +355,8 @@ void MyCallback(float **in, float **out, size_t size) {
     osc3_out = osc3.Process() * env_out;
 
     sig_out = osc1_out + osc2_out + osc3_out;
+
+    changeFilter(&sig_out, lfo.Process());
 
     for (size_t chn = 0; chn < num_channels; chn++) {
       out[chn][i] = sig_out;
