@@ -8,10 +8,9 @@
 #include <cmath>
 
 DaisyHardware hw;
-enum State {UP, CENTER, DOWN};
-
-// Set max delay time to 0.75 of samplerate.
-#define MAX_DELAY static_cast<size_t>(48000 * 0.75f)
+enum State { UP,
+             CENTER,
+             DOWN };
 
 size_t num_channels;
 float ampOsc1;
@@ -22,7 +21,6 @@ float envAttack;
 float envDecay;
 float sustain;
 float tickFrequency;
-static DelayLine<float, MAX_DELAY> del;
 int osc1WavePinR = 27;
 int osc1WavePinL = 26;
 int osc2WavePinR = 1;
@@ -44,139 +42,71 @@ static Metro tick;
 static ATone hpFilter;
 static Tone lpFilter;
 bool gate;
+int tune;
+float freq1;
+float freq2;
+unsigned long previousMillis = 0;
 
 bool isLfoAmp() {
-    switch (readSwitch3(lfoValPinR, lfoValPinL))
-    {
+  switch (readSwitch3(lfoValPinR, lfoValPinL)) {
     case DOWN:
-        return true;
-        break;
-    
+      return true;
+      break;
+
     default:
-        return false;
-        break;
-    }
+      return false;
+      break;
+  }
 }
 
 bool isLfoFreq() {
-     switch (readSwitch3(lfoValPinR, lfoValPinL))
-    {
+  switch (readSwitch3(lfoValPinR, lfoValPinL)) {
     case UP:
-        return true;
-        break;
-    
+      return true;
+      break;
+
     default:
-        return false;
-        break;
-    }
+      return false;
+      break;
+  }
 }
 
 bool isLfoCutOff() {
-     switch (readSwitch3(lfoValPinR, lfoValPinL))
-    {
+  switch (readSwitch3(lfoValPinR, lfoValPinL)) {
     case CENTER:
-        return true;
-        break;
-    
+      return true;
+      break;
+
     default:
-        return false;
-        break;
-    }
+      return false;
+      break;
+  }
 }
 
 int ftom(float freq) {
-    // MIDI Value Calculation
-    float midiValue = 12 * std::log2(freq / 440.0) + 69;
-    
-    // Round the MIDI value to the nearest integer
-    int midiNote = static_cast<int>(round(midiValue));
+  // MIDI Value Calculation
+  float midiValue = 12 * std::log2(freq / 440.0) + 69;
 
-    return midiNote;
+  // Round the MIDI value to the nearest integer
+  int midiNote = static_cast<int>(round(midiValue));
+
+  return midiNote;
 }
 
 // midiMin & midiMax values ​​that determine the maximum that can reach and the minimum that it can reach
 int transposeOctave(float freq, int octaveDifference, int midiMin, int midiMax) {
-    int midiNote = ftom(freq);
+  int midiNote = ftom(freq);
 
-    // If octaveDifference = 1 we go down an octave and if it is -1 we go up an octave
-    midiNote = midiNote - (octaveDifference * 12);
+  // If octaveDifference = 1 we go down an octave and if it is -1 we go up an octave
+  midiNote = midiNote - (octaveDifference * 12);
 
-    if (midiNote > midiMax) 
-    {
-        midiNote = midiMax;
-    }
-    else if (midiNote < midiMin)
-    {
-        midiNote = midiMin;
-    }
+  if (midiNote > midiMax) {
+    midiNote = midiMax;
+  } else if (midiNote < midiMin) {
+    midiNote = midiMin;
+  }
 
-    return midiNote;
-}
-
-void setOscFreq(float freqOsc1, float freqOsc2) {
-    int midiNote;
-    // frequence up to 1 octave for second oscillator
-    int tune = static_cast<int>(round(convertValue(analogRead(A4), 0, 1023, 0.0, 12.0f)));
-    switch(readSwitch3(osc1OctavePinR, osc1OctavePinL))
-    {
-        case UP:
-            // 33 and 108 represent the lowest and the higher he can reach
-            midiNote = transposeOctave(freqOsc1, -1, 33, 108);
-            osc1.SetFreq(mtof(midiNote));
-            break;
-        case CENTER:
-            osc1.SetFreq(freqOsc1);
-            break;
-        case DOWN:
-            // 33 and 108 represent the lowest and the higher he can reach
-            midiNote = transposeOctave(freqOsc1, 1, 33, 108); 
-            osc1.SetFreq(mtof(midiNote));
-            break;
-    }
-    
-    switch(readSwitch3(osc2WavePinR, osc2WavePinL))
-    {
-        case UP:
-            // 21 and 96 represent the lowest and the higher he can reach
-            midiNote = transposeOctave(freqOsc2, -1, 21, 96);
-            midiNote += tune;
-            osc2.SetFreq(mtof(midiNote));
-            break;
-        case CENTER:
-            midiNote = ftom(freqOsc2);
-            midiNote += tune;
-            osc2.SetFreq(freqOsc2);
-            break;
-        case DOWN:
-            // 21 and 96 represent the lowest and the higher he can reach
-            midiNote = transposeOctave(freqOsc2, 1, 21, 96);
-            midiNote += tune;
-            osc2.SetFreq(mtof(midiNote));
-            break;
-    }
-}
-
-// make sure that frequence is not below min freq
-float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) {
-    float freq = (( (lfoProcess * lfoEnv.Process(gate)) * freqOsc) * 2);
-
-    if (freq < 0) 
-    {
-        freq = -1 * freq;
-    }
-
-    if (freq < minFreq) 
-    {
-        freq = minFreq;
-    }
-
-    return freq;
-}
-
-void setSubFreq(float freq) {
-    // 21 and 108 represent the lowest and the higher he can reach
-    int midiNote = transposeOctave(freq, 1, 21, 108);
-    osc3.SetFreq(mtof(midiNote));
+  return midiNote;
 }
 
 int readSwitch3(int rPin, int lPin) {
@@ -185,15 +115,13 @@ int readSwitch3(int rPin, int lPin) {
 
   State state;
 
-  if ( (rState == LOW) && (lState == HIGH)) //test for right position
+  if ((rState == LOW) && (lState == HIGH))  //test for right position
   {
     state = UP;
-  }
-  else if ( (rState == HIGH) && (lState == HIGH)) //test for center position
+  } else if ((rState == HIGH) && (lState == HIGH))  //test for center position
   {
     state = CENTER;
-  }
-  else if ( (rState == HIGH) && (lState == LOW))  //test for left position
+  } else if ((rState == HIGH) && (lState == LOW))  //test for left position
   {
     state = DOWN;
   }
@@ -217,22 +145,22 @@ void setupSwitch3() {
 }
 
 void serialPrintTask() {
-    Serial.print("Amp1: ");
-    Serial.println(ampOsc1);
-    Serial.print("freq1: ");
-    Serial.println(freqOsc1);
-    Serial.print("Amp2: ");
-    Serial.println(ampOsc2);
-    Serial.print("freq2: ");
-    Serial.println(freqOsc2);
-    Serial.print("envAttack: ");
-    Serial.println(envAttack);
-    Serial.print("envDecay: ");
-    Serial.println(envDecay);
-    Serial.print("sustain: ");
-    Serial.println(sustain);
-    Serial.print("tickFrequency: ");
-    Serial.println(tickFrequency);
+  Serial.print("Amp1: ");
+  Serial.println(ampOsc1);
+  Serial.print("freq1: ");
+  Serial.println(freqOsc1);
+  Serial.print("Amp2: ");
+  Serial.println(ampOsc2);
+  Serial.print("freq2: ");
+  Serial.println(freqOsc2);
+  Serial.print("envAttack: ");
+  Serial.println(envAttack);
+  Serial.print("envDecay: ");
+  Serial.println(envDecay);
+  Serial.print("sustain: ");
+  Serial.println(sustain);
+  Serial.print("tickFrequency: ");
+  Serial.println(tickFrequency);
 }
 
 float convertValue(int x, float in_min, float in_max, float out_min, float out_max) {
@@ -268,148 +196,123 @@ void changeWaveForm() {
   }
 }
 
+void setSubFreq(float freq) {
+  // 21 and 108 represent the lowest and the higher he can reach
+  int midiNote = transposeOctave(freq, 1, 21, 108);
+  osc3.SetFreq(mtof(midiNote));
+}
+
+void setOscFreq(float freqOsc1, float freqOsc2) {
+  int midiNote;
+  // frequence up to 1 octave for second oscillator
+
+  switch (readSwitch3(osc1OctavePinR, osc1OctavePinL)) {
+    case UP:
+      // 33 and 108 represent the lowest and the higher he can reach
+      midiNote = transposeOctave(freqOsc1, -1, 33, 108);
+      osc1.SetFreq(mtof(midiNote));
+      break;
+    case CENTER:
+      osc1.SetFreq(freqOsc1);
+      break;
+    case DOWN:
+      // 33 and 108 represent the lowest and the higher he can reach
+      midiNote = transposeOctave(freqOsc1, 1, 33, 108);
+      osc1.SetFreq(mtof(midiNote));
+      break;
+  }
+
+  switch (readSwitch3(osc2WavePinR, osc2WavePinL)) {
+    case UP:
+      // 21 and 96 represent the lowest and the higher he can reach
+      midiNote = transposeOctave(freqOsc2, -1, 21, 96);
+      midiNote += tune;
+      osc2.SetFreq(mtof(midiNote));
+      break;
+    case CENTER:
+      midiNote = ftom(freqOsc2);
+      midiNote += tune;
+      osc2.SetFreq(freqOsc2);
+      break;
+    case DOWN:
+      // 21 and 96 represent the lowest and the higher he can reach
+      midiNote = transposeOctave(freqOsc2, 1, 21, 96);
+      midiNote += tune;
+      osc2.SetFreq(mtof(midiNote));
+      break;
+  }
+}
+
 void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess) {
-    if (isLfoAmp()) 
-    {
-        ampOsc1 = (( (lfoProcess * lfoEnv.Process(gate)) * ampOsc1 ) * 2);
-        ampOsc2 = (( (lfoProcess * lfoEnv.Process(gate)) * ampOsc2 ) * 2);
+  if (isLfoAmp()) {
+    ampOsc1 = ((lfoProcess * ampOsc1) * 2);
+    ampOsc2 = ((lfoProcess * ampOsc2) * 2);
 
-        if (ampOsc1 < 0) 
-        {
-            ampOsc1 = -1 * ampOsc1;
-        }
-        
-         if (ampOsc2 < 0) 
-        {
-            ampOsc2 = -1 * ampOsc2;
-        }
+    if (ampOsc1 < 0) {
+      ampOsc1 = -1 * ampOsc1;
     }
-    osc1.SetAmp(ampOsc1);
-    osc2.SetAmp(ampOsc2);
-    osc3.SetAmp(ampOsc1);
+
+    if (ampOsc2 < 0) {
+      ampOsc2 = -1 * ampOsc2;
+    }
+  }
+  osc1.SetAmp(ampOsc1);
+  osc2.SetAmp(ampOsc2);
+  osc3.SetAmp(ampOsc1);
 }
 
-void changeFilter(float *sig_out, float lfoProcess) {
-    float cutOffFreq = convertValue(hw.adc.Get(10), 110.0f, 1046.50f);
-
-    if (isLfoCutOff()) 
-    {
-        cutOffFreq = ( (cutOffFreq * (lfoProcess * lfoEnv.Process(gate))) * 2);
-
-        if (cutOffFreq < 0) 
-        {
-            cutOffFreq = -1 * cutOffFreq;
-        }
-    }
-
-    switch(readSwitch3(filterPinR, filterPinL))
-    {
-        case UP:
-            hpFilter.SetFreq(cutOffFreq);
-            *sig_out = hpFilter.Process(*sig_out) * filterEnv.Process(gate);
-        break;
-        case CENTER: break;
-        case DOWN: 
-            lpFilter.SetFreq(cutOffFreq);
-            *sig_out = lpFilter.Process(*sig_out) * filterEnv.Process(gate);
-        break;
-    }
+void readPotentiometer(unsigned long currentMillis) {
+  if (currentMillis - previousMillis < 200) {
+    return;
+  }
+  previousMillis = currentMillis;
+  ampOsc1 = convertValue(analogRead(A5), 0, 1023, 0.0, 1.0);
+  freqOsc1 = convertValue(analogRead(A2), 0, 1023, 110.0, 2093.0);
+  ampOsc2 = convertValue(analogRead(A6), 0, 1023, 0.0, 1.0);
+  freqOsc2 = convertValue(analogRead(A3), 0, 1023, 55.0, 1046.50);
+  envAttack = convertValue(analogRead(A1), 0, 1023, 1.0, 5.0);
+  envDecay = convertValue(analogRead(A7), 0, 1023, 1.0, 5.0);
+  sustain = convertValue(analogRead(A8), 0, 1023, 0.0, 1.0);
+  tickFrequency = convertValue(analogRead(A9), 0, 1023, 1.0, 5.0);
+  tune = int(convertValue(analogRead(A4), 0, 1023, 0, 12));
 }
 
-bool setDelay() {
-    int delay = static_cast<int>(round(convertValue(hw.adc.Get(8), 0.0, 80.0)));
+// make sure that frequence is not below min freq
+float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) {
+  float freq = ((lfo.Process() * freqOsc) * 2);
 
-    switch (delay)
-    {
-        case 0 ... 9:
-            return false;
-        break;
-        
-        case 10 ... 14:
-            del.SetDelay(sampleRate * 0.10);
-        break;
+  if (freq < 0) {
+    freq = -1 * freq;
+  }
 
-        case 15 ... 19:
-            del.SetDelay(sampleRate * 0.15);
-        break;
-        
-        case 20 ... 24:
-            del.SetDelay(sampleRate * 0.20);
-        break;
+  if (freq < minFreq) {
+    freq = minFreq;
+  }
 
-        case 25 ... 29:
-            del.SetDelay(sampleRate * 0.25);
-        break;
-
-        case 30 ... 34:
-            del.SetDelay(sampleRate * 0.30);
-        break;
-
-        case 35 ... 39:
-            del.SetDelay(sampleRate * 0.35);
-        break;
-
-        case 40 ... 44:
-            del.SetDelay(sampleRate * 0.40);
-        break;
-
-        case 45 ... 49:
-            del.SetDelay(sampleRate * 0.45);
-        break;
-
-        case 50 ... 54:
-            del.SetDelay(sampleRate * 0.50);
-        break;
-
-        case 55 ... 59:
-            del.SetDelay(sampleRate * 0.55);
-        break;
-
-        case 60 ... 64:
-            del.SetDelay(sampleRate * 0.60);
-        break;
-
-        case 65 ... 69:
-            del.SetDelay(sampleRate * 0.65);
-        break;
-
-        case 70 ... 74:
-            del.SetDelay(sampleRate * 0.70);
-        break;
-
-        case 75 ... 80:
-            del.SetDelay(sampleRate * 0.75);
-        break;
-    }
-
-    return true;
+  return freq;
 }
 
 void MyCallback(float **in, float **out, size_t size) {
   float osc1_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback;
   for (size_t i = 0; i < size; i++) {
-    
+
     // When the metro ticks, trigger the envelope to start.
     if (tick.Process()) {
       gate = !gate;
     }
-    
-    if (isLfoFreq()) 
-    {
-        //Make sure that frequency is not going below his minimum
-        freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0);
-        freqOsc2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0);
-    }
 
-    changeWaveForm();
-    setOscFreq(freqOsc1, freqOsc2);
-    setOscAmp(ampOsc1, ampOsc2, lfo.Process());
-    setSubFreq(freqOsc1);
+    // if (isLfoFreq()) {
+    //   freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0);
+    //   freqOsc2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0);
+    // }
+    // freqOsc1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0)
+    // osc1.SetFreq(freqOsc1);
+    // osc2.SetFreq(frequencyCheck(freqOsc2, lfo.Process(), 55.0));
 
     // Update tick frequency
     tick.SetFreq(tickFrequency);
 
-    // Update envelope
+    // // Update envelope
     env.SetTime(ADSR_SEG_ATTACK, envAttack);
     env.SetTime(ADSR_SEG_DECAY, envDecay);
     env.SetSustainLevel(sustain);
@@ -418,36 +321,16 @@ void MyCallback(float **in, float **out, size_t size) {
     lfoEnv.SetTime(ADSR_SEG_DECAY, envDecay);
     lfoEnv.SetSustainLevel(sustain);
 
-    filterEnv.SetTime(ADSR_SEG_ATTACK, envAttack);
-    filterEnv.SetTime(ADSR_SEG_DECAY, envDecay);
-
     // Use envelope to control the amplitude of the oscillator.
     env_out = env.Process(gate);
     osc1_out = osc1.Process() * env_out;
     osc2_out = osc2.Process() * env_out;
     osc3_out = osc3.Process() * env_out;
 
-    del_out = del.Read();
+    sig_out = osc1_out + osc2_out + osc3_out;
 
-    // Calculate output and feedback
-    sig_out  = del_out + osc_out + osc2_out + osc3_out;
-    feedback = (del_out * 0.75f) + osc_out + osc2_out + osc3_out;
-    
-    // Write to the delay
-    del.Write(feedback);
-    
-    bool isDelay = setDelay();
-
-    if (!isDelay) 
-    {
-        sig_out = osc_out + osc2_out + osc3_out;
-    }
-
-    changeFilter(&sig_out, lfo.Process());
-
-    for (size_t chn = 0; chn < num_channels; chn++) {
-      out[chn][i] = sig_out;
-    }
+    OUT_L[i] = sig_out;
+    OUT_R[i] = sig_out;
   }
 }
 
@@ -462,18 +345,18 @@ void setup() {
 
   // set parameters for sine oscillator object
   lfo.Init(sample_rate);
-  lfo.SetWaveform(Oscillator::WAVE_TRI);
-  lfo.SetAmp(1);
-  lfo.SetFreq(.4);
+  lfo.SetWaveform(lfo.WAVE_TRI);
+
+  lfo.SetFreq(0.2);
 
   // set parameters for sine oscillator object
   osc1.Init(sample_rate);
-  osc1.SetWaveform(Oscillator::WAVE_POLYBLEP_SAW);
+  osc1.SetWaveform(Oscillator::WAVE_TRI);
   osc1.SetFreq(100);
   osc1.SetAmp(0.25);
 
   osc2.Init(sample_rate);
-  osc2.SetWaveform(Oscillator::WAVE_SQUARE);
+  osc2.SetWaveform(Oscillator::WAVE_TRI);
   osc2.SetFreq(100);
   osc2.SetAmp(0.25);
 
@@ -491,16 +374,26 @@ void setup() {
   env.SetTime(ADSR_SEG_DECAY, 0.1);
   env.SetSustainLevel(0.25);
 
+  lfoEnv.Init(sample_rate);
+  lfoEnv.SetTime(ADSR_SEG_ATTACK, 0.1);
+  lfoEnv.SetTime(ADSR_SEG_DECAY, 0.1);
+  lfoEnv.SetSustainLevel(0.25);
+
   DAISY.begin(MyCallback);
 }
 
 void loop() {
-  ampOsc1 = convertValue(analogRead(A5), 0, 1023, 0.0, 1.0);
-  freqOsc1 = convertValue(analogRead(A2), 0, 1023, 110.0, 2093.0);
-  ampOsc2 = convertValue(analogRead(A6), 0, 1023, 0.0, 1.0);
-  freqOsc2 = convertValue(analogRead(A3), 0, 1023, 55.0, 1046.50);
-  envAttack = convertValue(analogRead(A1), 0, 1023, 1.0, 5.0);
-  envDecay = convertValue(analogRead(A7), 0, 1023, 1.0, 5.0);
-  sustain = convertValue(analogRead(A8), 0, 1023, 0.0, 1.0);
-  tickFrequency = convertValue(analogRead(A9), 0, 1023, 1.0, 5.0);
+  unsigned long currentMillis = millis();
+  readPotentiometer(currentMillis);
+  if (isLfoFreq()) {
+    freq2 = frequencyCheck(freqOsc2, lfo.Process(), 55.0f);
+    freq1 = frequencyCheck(freqOsc1, lfo.Process(), 110.0f);
+    setOscFreq(freq1, freq2);
+    setSubFreq(freq1);
+  } else {
+    setOscFreq(freqOsc1, freqOsc2);
+    setSubFreq(freqOsc1);
+  }
+  changeWaveForm();
+  setOscAmp(ampOsc1, ampOsc2, lfo.Process());
 }

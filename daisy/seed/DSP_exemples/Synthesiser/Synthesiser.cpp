@@ -427,6 +427,7 @@ int main(void)
     hw.Init();
     hw.SetAudioBlockSize(4);
     sampleRate = hw.AudioSampleRate();
+    hw.StartLog();
 
     toggleWaveFormOsc1.Init(seed::D29, seed::D30);
     toggleWaveFormOsc2.Init(seed::D14, seed::D13);
@@ -496,5 +497,6 @@ int main(void)
     
     for(;;) 
     {
+        hw.PrintLine("My Float: " FLT_FMT(6), FLT_VAR(6, lfo.Process()));
     }
 }
