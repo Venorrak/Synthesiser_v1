@@ -7,6 +7,8 @@
 #include "Arduino.h"
 #include <cmath>
 
+#define MAX_DELAY static_cast<size_t>(48000 * 0.75f)
+
 DaisyHardware hw;
 enum State { UP,
              CENTER,
@@ -42,10 +44,13 @@ static Adsr env, filterEnv, lfoEnv;
 static Metro tick;
 static ATone hpFilter;
 static Tone lpFilter;
+static DelayLine<float, MAX_DELAY> del;
 bool gate;
 int tune;
+int delay_osc;
 float freq1;
 float freq2;
+float sample_rate;
 unsigned long previousMillis = 0;
 
 bool isLfoAmp() {
@@ -275,17 +280,15 @@ void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess) {
 }
 
 void cutOffFrequency() {
-    cutOffFreq = convertValue(analogRead(A6), 0, 1023, 110.0f, 1046.50f);
+  cutOffFreq = convertValue(analogRead(A6), 0, 1023, 110.0f, 1046.50f);
 
-    if (isLfoCutOff()) 
-    {
-        cutOffFreq = ((cutOffFreq * lfo.Process()) * 2);
+  if (isLfoCutOff()) {
+    cutOffFreq = ((cutOffFreq * lfo.Process()) * 2);
 
-        if (cutOffFreq < 0) 
-        {
-            cutOffFreq = -1 * cutOffFreq;
-        }
+    if (cutOffFreq < 0) {
+      cutOffFreq = -1 * cutOffFreq;
     }
+  }
 }
 
 void readPotentiometer(unsigned long currentMillis) {
@@ -303,6 +306,7 @@ void readPotentiometer(unsigned long currentMillis) {
   tickFrequency = convertValue(analogRead(A9), 0, 1023, 1.0, 5.0);
   tune = int(convertValue(analogRead(A4), 0, 1023, 0, 12));
   cutOffFrequency();
+  delay_osc = int(convertValue(analogRead(A0), 0, 1023, 0.0f, 80.0f));
 }
 
 // make sure that frequence is not below min freq
@@ -321,24 +325,90 @@ float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) {
 }
 
 // Update filter with switch 3 positions
-float changeFilter(float sig_out) 
-{
+float changeFilter(float sig_out) {
   float output;
-    switch(readSwitch3(filterPinR, filterPinL))
+  switch (readSwitch3(filterPinR, filterPinL)) {
+    case UP:
+      hpFilter.SetFreq(cutOffFreq);
+      // *sig_out = hpFilter.Process(*sig_out) * filterEnv.Process(gate);
+      output = hpFilter.Process(sig_out);
+      break;
+    case CENTER: output = sig_out; break;
+    case DOWN:
+      lpFilter.SetFreq(cutOffFreq);
+      // *sig_out = lpFilter.Process(*sig_out) * filterEnv.Process(gate);
+      output = lpFilter.Process(sig_out);
+      break;
+  }
+  return output;
+}
+
+bool setDelay() 
+{
+    switch (delay_osc)
     {
-        case UP:
-            hpFilter.SetFreq(cutOffFreq);
-            // *sig_out = hpFilter.Process(*sig_out) * filterEnv.Process(gate);
-            output = hpFilter.Process(sig_out);
+        case 0 ... 9:
+            return false;
         break;
-        case CENTER: output = sig_out; break;
-        case DOWN: 
-            lpFilter.SetFreq(cutOffFreq);
-            // *sig_out = lpFilter.Process(*sig_out) * filterEnv.Process(gate);
-            output = lpFilter.Process(sig_out);
+        
+        case 10 ... 14:
+            del.SetDelay(sample_rate * 0.10f);
+        break;
+
+        case 15 ... 19:
+            del.SetDelay(sample_rate * 0.15f);
+        break;
+        
+        case 20 ... 24:
+            del.SetDelay(sample_rate * 0.20f);
+        break;
+
+        case 25 ... 29:
+            del.SetDelay(sample_rate * 0.25f);
+        break;
+
+        case 30 ... 34:
+            del.SetDelay(sample_rate * 0.30f);
+        break;
+
+        case 35 ... 39:
+            del.SetDelay(sample_rate * 0.35f);
+        break;
+
+        case 40 ... 44:
+            del.SetDelay(sample_rate * 0.40f);
+        break;
+
+        case 45 ... 49:
+            del.SetDelay(sample_rate * 0.45f);
+        break;
+
+        case 50 ... 54:
+            del.SetDelay(sample_rate * 0.50f);
+        break;
+
+        case 55 ... 59:
+            del.SetDelay(sample_rate * 0.55f);
+        break;
+
+        case 60 ... 64:
+            del.SetDelay(sample_rate * 0.60f);
+        break;
+
+        case 65 ... 69:
+            del.SetDelay(sample_rate * 0.65f);
+        break;
+
+        case 70 ... 74:
+            del.SetDelay(sample_rate * 0.70f);
+        break;
+
+        case 75 ... 80:
+            del.SetDelay(sample_rate * 0.75f);
         break;
     }
-    return output;
+
+    return true;
 }
 
 void MyCallback(float **in, float **out, size_t size) {
@@ -376,7 +446,20 @@ void MyCallback(float **in, float **out, size_t size) {
     osc2_out = osc2.Process() * env_out;
     osc3_out = osc3.Process() * env_out;
 
-    sig_out = osc1_out + osc2_out + osc3_out;
+    del_out = del.Read();
+
+    // Calculate output and feedback
+    sig_out = del_out + osc1_out + osc2_out + osc3_out;
+    feedback = (del_out * 0.75f) + osc1_out + osc2_out + osc3_out;
+
+    // Write to the delay
+    del.Write(feedback);
+
+    bool isDelay = setDelay();
+
+    if (!isDelay) {
+      sig_out = osc1_out + osc2_out + osc3_out;
+    }
 
     output = changeFilter(sig_out);
 
@@ -386,8 +469,7 @@ void MyCallback(float **in, float **out, size_t size) {
 }
 
 void setup() {
-  float sample_rate;
-  Serial.begin();
+  // Serial.begin();
   setupSwitch3();
   // Initialize for Daisy pod at 48kHz
   hw = DAISY.init(DAISY_SEED, AUDIO_SR_48K);
@@ -432,6 +514,10 @@ void setup() {
 
   hpFilter.Init(sample_rate);
   lpFilter.Init(sample_rate);
+
+  // Set Delay parameters
+  del.Init();
+  del.SetDelay(sample_rate * 0.50f);
 
   DAISY.begin(MyCallback);
 }
