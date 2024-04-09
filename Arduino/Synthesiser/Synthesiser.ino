@@ -21,6 +21,7 @@ float envAttack;
 float envDecay;
 float sustain;
 float tickFrequency;
+float cutOffFreq;
 int osc1WavePinR = 27;
 int osc1WavePinL = 26;
 int osc2WavePinR = 1;
@@ -194,6 +195,18 @@ void changeWaveForm() {
       osc2.SetWaveform(osc2.WAVE_TRI);
       break;
   }
+
+  switch (readSwitch3(osc2WavePinR, osc2WavePinL)) {
+    case UP:
+      osc2.SetWaveform(osc2.WAVE_SQUARE);
+      break;
+    case CENTER:
+      osc2.SetWaveform(osc2.WAVE_POLYBLEP_SAW);
+      break;
+    case DOWN:
+      osc2.SetWaveform(osc2.WAVE_TRI);
+      break;
+  }
 }
 
 void setSubFreq(float freq) {
@@ -261,6 +274,20 @@ void setOscAmp(float ampOsc1, float ampOsc2, float lfoProcess) {
   osc3.SetAmp(ampOsc1);
 }
 
+void cutOffFrequency() {
+    cutOffFreq = convertValue(analogRead(A6), 0, 1023, 110.0f, 1046.50f);
+
+    if (isLfoCutOff()) 
+    {
+        cutOffFreq = ((cutOffFreq * lfo.Process()) * 2);
+
+        if (cutOffFreq < 0) 
+        {
+            cutOffFreq = -1 * cutOffFreq;
+        }
+    }
+}
+
 void readPotentiometer(unsigned long currentMillis) {
   if (currentMillis - previousMillis < 200) {
     return;
@@ -275,6 +302,7 @@ void readPotentiometer(unsigned long currentMillis) {
   sustain = convertValue(analogRead(A8), 0, 1023, 0.0, 1.0);
   tickFrequency = convertValue(analogRead(A9), 0, 1023, 1.0, 5.0);
   tune = int(convertValue(analogRead(A4), 0, 1023, 0, 12));
+  cutOffFrequency();
 }
 
 // make sure that frequence is not below min freq
@@ -292,8 +320,29 @@ float frequencyCheck(float freqOsc, float lfoProcess, float minFreq) {
   return freq;
 }
 
+// Update filter with switch 3 positions
+float changeFilter(float sig_out) 
+{
+  float output;
+    switch(readSwitch3(filterPinR, filterPinL))
+    {
+        case UP:
+            hpFilter.SetFreq(cutOffFreq);
+            // *sig_out = hpFilter.Process(*sig_out) * filterEnv.Process(gate);
+            output = hpFilter.Process(sig_out);
+        break;
+        case CENTER: output = sig_out; break;
+        case DOWN: 
+            lpFilter.SetFreq(cutOffFreq);
+            // *sig_out = lpFilter.Process(*sig_out) * filterEnv.Process(gate);
+            output = lpFilter.Process(sig_out);
+        break;
+    }
+    return output;
+}
+
 void MyCallback(float **in, float **out, size_t size) {
-  float osc1_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback;
+  float osc1_out, osc2_out, osc3_out, env_out, del_out, sig_out, feedback, output;
   for (size_t i = 0; i < size; i++) {
 
     // When the metro ticks, trigger the envelope to start.
@@ -329,8 +378,10 @@ void MyCallback(float **in, float **out, size_t size) {
 
     sig_out = osc1_out + osc2_out + osc3_out;
 
-    OUT_L[i] = sig_out;
-    OUT_R[i] = sig_out;
+    output = changeFilter(sig_out);
+
+    OUT_L[i] = output;
+    OUT_R[i] = output;
   }
 }
 
@@ -378,6 +429,9 @@ void setup() {
   lfoEnv.SetTime(ADSR_SEG_ATTACK, 0.1);
   lfoEnv.SetTime(ADSR_SEG_DECAY, 0.1);
   lfoEnv.SetSustainLevel(0.25);
+
+  hpFilter.Init(sample_rate);
+  lpFilter.Init(sample_rate);
 
   DAISY.begin(MyCallback);
 }
