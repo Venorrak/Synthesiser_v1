@@ -13,6 +13,8 @@
 - https://learn.sparkfun.com/tutorials/midi-tutorial/all
 - https://www.norwegiancreations.com/2022/07/digital-audio-synthesis-part-2-midi/
 - https://github.com/donnerbono/bitsandbobs/blob/main/DuoPolySynth%20v1/duopolysynth.cpp
+- https://www.songstuff.com/recording/article/midi-message-format/
+- https://fortyseveneffects.github.io/arduino_midi_library/
 
 ## Setup
 - https://www.youtube.com/watch?v=UyQWK8JFTps
