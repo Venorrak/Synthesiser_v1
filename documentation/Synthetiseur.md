@@ -9,7 +9,14 @@
     - [Déboguer](#item-8)
         - [Afficher float](#item-9)
     - [Création d'un projet](#item-10)
-    - [Pin analog](#item-11)
+    - [Refonte du projet en Arduino](#item-11)
+        - [Convertir float en integer](#item-12)
+        - [Fonction dans la loop au lieu que dans l'audio callback](#item-13)
+    - [Pin analog](#item-14)
+    - [Intégration du MIDI](#item-15)
+        - [Comment lire plusieurs notes](#item-16)
+        - [Interpréter les fonctions avec le MIDI](#item-17)
+- [Glossaire](#item-18)
 
 <a id="item-1"></a>
 
@@ -28,22 +35,20 @@ Comme produit finale nous aimerions que le synthétiseur possède les différent
 <a id="item-3"></a>
 
 ## Pourquoi ces fonctionnalitées ?
-En gros, ces fonctionnalitées nous permetterons de modifier le son qui sera produit par le synthétiseur à l'aide de boutons, potentiomètre et des switchs à 3 états
+En gros, ces fonctionnalitées nous permetterons de modifier le son qui sera produit par le [synthétiseur](#synthetiseur) à l'aide de boutons, potentiomètre et des switchs à 3 états
 
 <a id="item-4"></a>
 
 # Librairies utilisées
-- [libDaisy](https://github.com/electro-smith/libDaisy)
-- [DaisySP](https://github.com/electro-smith/DaisySP)
+- [libDaisy](https://github.com/electro-smith/libDaisy) (aciennement utilisée)
+- [DaisySP](https://github.com/electro-smith/DaisySP) (aciennement utilisée)
+- [DaisyDuino](https://github.com/electro-smith/DaisyDuino)
 
 ## Fonction qu'on utilise le plus
-- GetPin(pinNumber) Configurer ou manipuler les broches GPIO (libDaisy)
-- InitSingle(GetPin(pinNumber)) Fonctioner qui provient de la classe AdcChannelConfig qui sert à initializer une seule pin ADC
-- Get(channelNumber) Retourne la valeur du channel associé à une pin qui se trouve entre 0 et 65536 (libDaisy)
 - convertValue(value, min, max) Convertie la value entre le min et le max donné
 - transposeOctave(freq, octaveDifference, midiMin, midiMax) baisse ou augmente d'un octave la frequence de l'oscillateur
-- setFreq(freq) changer la fréquence de l'oscillateur (DaisySP)
-- setAmp(amp) change l'amplitude de l'oscillateur (DaisySP)
+- setFreq(freq) changer la fréquence de l'oscillateur (DaisyDuino)
+- setAmp(amp) change l'amplitude de l'oscillateur (DaisyDuino)
 
 <a id="item-5"></a>
 
@@ -76,7 +81,50 @@ Pour le moment, nous avons un filage bien normal, mais nous aimerions comme prod
 
 <a id="item-11"></a>
 
+## Refonte du projet en Arduino
+- Nous avons opté pour Arduino pour simplifier la communication série avec l'ESP32 et faciliter la communication MIDI. Arduino offre une librairie riche et bien documentée pour le protocole MIDI. Cette transition nous permettra de bénéficier d'une plateforme de développement robuste et bien établie, réduisant ainsi le temps nécessaire pour résoudre les problèmes de communication.
+
+<a id="item-12"></a>
+
+### Convertir des floats en integer
+- En utilisant la bibliothèque en C++, j'utilisais <static_cast int> { expression }, mais en Arduino, pour je ne sais quelle raison, il n'aimait pas la manière dont je procédais et ne me retournait aucun son à cause de cela, et j'ai dû utiliser int(expression) afin de convertir un float en integer pour que le son "revienne".
+
+<a id="item-13"></a>
+
+### Fonction dans la loop au lieu que dans l'audio callback
+Avec la librairie en C++, j'avais toutes mes fonctions pour le son dans l'audio callback, mais certaines on des calculs et en Arduino il n'aime pas du tout avoir des calculs dans l'audio callback ce qui rendait le son différent. Alors, j'ai du refaire la structure du programme, mais au début je ne savais pas que c'était cela le problème et j'ai uniquement remarqué quand j'ai retiré les fonctions avec les calculs.
+
+<a id="item-14"></a>
+
 ## Nombre limité de pin analog
 - On s'est rendu compte qu'il allait nous manquer de pin analog, alors nous avons décidé de mettre les potentiomètres qui ne rentraient pas sur le daisy seed sur le ESP32 et il communiquera les informations des potentiomètres par serie.
 
+<a id="item-15"></a>
+
+## Intégration du [MIDI](#midi)
+
+<a id="item-16"></a>
+
+### Comment lire plusieurs notes
+- Au début, nous avions aucune idée comment on allait lire plusieurs notes au même moment puisque on utilisait un potentiomètre pour contrôler la fréquence. Nous avons décider d'avoir plusieurs oscillateurs afin d'interpréter une note par [oscillateur](#oscillateur).
+
+<a id="item-17"></a>
+
+### Interpréter les fonctions avec le MIDI
+- Comme j'ai dit plus haut, nous utilisions 1 seul potentiomètre pour gérer la fréquence et avec la communication midi on reçoit plusieurs fréquences d'un seul, alors nous avons dû adapter notre programme pour cela.
+
+<a id="item-18"></a>
+
 # Glossaire
+
+<a id="oscillateur"></a>
+
+- Oscillateur : Un oscillateur est un dispositif électronique capable de générer des signaux périodiques, tels que des signaux sinus, carrés ou triangulaires, à une fréquence déterminée.
+
+<a id="midi"></a>
+
+- MIDI : MIDI est un protocole de communication musical standard permettant le contrôle et la transmission de données entre instruments électroniques et ordinateurs.
+
+<a id="synthetiseur"></a>
+
+- Synthetiseur : Un synthétiseur est un instrument électronique capable de produire une variété de sons en utilisant des oscillateurs et des techniques de modulation.
