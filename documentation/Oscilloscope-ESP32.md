@@ -13,10 +13,11 @@
 <a id="item-1"></a>
 
 # Prérequis
-- ESP **-WROOM-32**
+- ESP32 **devkit v1**
 - Arduino IDE
 - Écran OLED (***SSD1309***)
 - 3 boutons
+- 5 potentiomètres
 
 <a id="item-2"></a>
 
@@ -26,6 +27,7 @@ L'ESP32 va prendre en charge plusieurs fonctionnalitées du synthétiseur
 
 - Recevoir les notes provenant du site web à l'aide du module wifi
 - Transformer et transferer les notes au Daisy seed
+- transferer les valeurs des potentiomètres au Daisy seed
 - Affiche sur l'écran la forme du signal audio qui sort du Daisy seed
 - Intéragis avec les boutons qui modifient l'interface de l'écran
 
@@ -40,15 +42,20 @@ L'ESP32 va prendre en charge plusieurs fonctionnalitées du synthétiseur
 
 ## Pinout Final
 
-- 5V -> VCC
+- 5V -> VCC (screen)
 - GND -> GND
-- D1 -> Bouton 1
+- D15 -> Bouton 1
 - D2 -> Bouton 2
-- D3 -> Bouton 3
+- D4 -> Bouton 3
 - D21 -> SDA
 - D22 -> SDK
-- A0 -> audio
+- A0 / D13 -> audio
 - TX -> Rx (daisy seed)
+- D12 -> potentiomètre 1
+- D14 -> potentiomètre 2
+- D27 -> potentiomètre 3
+- D26 -> potentiomètre 4
+- D25 -> potentiomètre 5
 
 <a id="item-5"></a>
 
