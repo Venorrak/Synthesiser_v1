@@ -63,7 +63,6 @@ Oscillator osc1[10];
 Oscillator osc2[10];
 Oscillator osc3[10];
 Oscillator lfo;
-static Adsr env, filterEnv, lfoEnv;
 static Metro tick;
 static ATone hpFilter;
 static Tone lpFilter;
@@ -163,14 +162,15 @@ float getSubFreq(float freq) {
 }
 
 void setOscAmp() {
-  float newAmpOsc1 = ampOsc1 * env_out;
-  float newAmpOsc2 = ampOsc2 * env_out;
-  float newAmpLfo = ampLfo * env_out;
+  float newAmpOsc1 = ampOsc1;
+  float newAmpOsc2 = ampOsc2;
+  float newAmpLfo = ampLfo;
 
   if (isLfoAmp()) {
     newAmpLfo = ampLfo;
     newAmpOsc1 = ((lfo.Process() * ampOsc1) * 2);
     newAmpOsc2 = ((lfo.Process() * ampOsc2) * 2);
+
     if (newAmpOsc1 < 0) {
       newAmpOsc1 = -1 * newAmpOsc1;
     }
@@ -470,21 +470,6 @@ void MyCallback(float **in, float **out, size_t size) {
   float del_out, sig_out, feedback, output;
   for (size_t i = 0; i < size; i++) {
 
-    // When the metro ticks, trigger the envelope to start.
-    if (tick.Process()) {
-      gate = !gate;
-    }
-
-    // Update tick frequency
-    tick.SetFreq(tickFrequency);
-
-    // // Update envelope
-    env.SetTime(ADSR_SEG_ATTACK, envAttack);
-    env.SetTime(ADSR_SEG_DECAY, envDecay);
-    env.SetSustainLevel(sustain);
-
-    env_out = env.Process(gate);
-
     oscillatorsOut();
 
     del_out = del.Read();
@@ -532,14 +517,8 @@ void setup() {
     osc3[i].SetWaveform(Oscillator::WAVE_TRI);
   }
   lfo.Init(sample_rate);
-  tick.Init(1.0, sample_rate);
-  env.Init(sample_rate);
   hpFilter.Init(sample_rate);
   lpFilter.Init(sample_rate);
-
-  env.SetTime(ADSR_SEG_ATTACK, 0.1);
-  env.SetTime(ADSR_SEG_DECAY, 0.1);
-  env.SetSustainLevel(0.25);
 
   lfo.SetFreq(0.2);
   lfo.SetFreq(lfo.WAVE_TRI);

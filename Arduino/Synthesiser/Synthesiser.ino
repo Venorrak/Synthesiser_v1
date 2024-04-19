@@ -23,6 +23,12 @@ enum Wave {
 enum State { UP,
              CENTER,
              DOWN };
+
+enum AppState {
+  PIANO,
+  WEBSITE
+};
+AppState appState = PIANO;
 // -----------------------------------------------------------------------------
 float notes[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 float osc1_out[10];
@@ -30,6 +36,7 @@ float osc2_out[10];
 float osc3_out[10];
 float sample_rate;
 bool gate;
+bool notePlayed = false;
 unsigned long previousMillis = 0;
 float ampOsc1;
 float ampOsc2;
@@ -62,6 +69,7 @@ DaisyHardware hw;
 Oscillator osc1[10];
 Oscillator osc2[10];
 Oscillator osc3[10];
+Adsr tabEnv[10];
 Oscillator lfo;
 static Adsr env, filterEnv, lfoEnv;
 static Metro tick;
@@ -469,19 +477,12 @@ float osc3Out() {
 void MyCallback(float **in, float **out, size_t size) {
   float del_out, sig_out, feedback, output;
   for (size_t i = 0; i < size; i++) {
-
-    // When the metro ticks, trigger the envelope to start.
     if (tick.Process()) {
       gate = !gate;
+      // Serial.println(gate);
+      // notePlayed = true;
     }
-
-    // Update tick frequency
-    tick.SetFreq(tickFrequency);
-
-    // // Update envelope
-    env.SetTime(ADSR_SEG_ATTACK, envAttack);
-    env.SetTime(ADSR_SEG_DECAY, envDecay);
-    env.SetSustainLevel(sustain);
+    // When the metro ticks, trigger the envelope to start.
 
     env_out = env.Process(gate);
 
@@ -530,6 +531,10 @@ void setup() {
     osc3[i].SetFreq(440);
     osc3[i].SetAmp(1);
     osc3[i].SetWaveform(Oscillator::WAVE_TRI);
+    tabEnv[i].Init(sample_rate);
+    tabEnv[i].SetTime(ADSR_SEG_ATTACK, 0.1);
+    tabEnv[i].SetTime(ADSR_SEG_DECAY, 0.1);
+    tabEnv[i].SetSustainLevel(0.25);
   }
   lfo.Init(sample_rate);
   tick.Init(1.0, sample_rate);
@@ -553,68 +558,92 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis();
   readPotentiometer(currentMillis);
-  if (MIDI.read())  // if a MIDI message is received
-  {
-    switch (MIDI.getType())  // Get the type of the message we received
-    {
-        //-------------------------------------------------------//
-        //--------MESSAGE------/-------DATA1-------/----DATA2----//
-        //        Note On      /     Note number   /   Velocity  //
-        //        Note Off     /     Note number   /   Velocity  //
-        //Polyphonic Aftertouch/     Note number   /   pressure  //
-        //     Control change  / Controller number /     Data    //
-        //     Program change  /   Program number  /     ---     //
-        //  Channel Aftertouch /     Pressure      /     ---     //
-        //      Pitch wheel    /        LSB        /     MSB     //
-        //-------------------------------------------------------//
 
-      case midi::ProgramChange:
-        Serial.println("program change");
-        break;
-      case midi::NoteOn:
-        Serial.print("note on : ");
-        Serial.println(MIDI.getData1());
-        // Serial.print("   velocity : ");
-        // Serial.println(MIDI.getData2());
 
-        if (notes[0] == 0) {
-          notes[0] = mtof(MIDI.getData1());
-        } else if (notes[1] == 0) {
-          notes[1] = mtof(MIDI.getData1());
-        } else if (notes[2] == 0) {
-          notes[2] = mtof(MIDI.getData1());
-        } else if (notes[3] == 0) {
-          notes[3] = mtof(MIDI.getData1());
-        } else if (notes[4] == 0) {
-          notes[4] = mtof(MIDI.getData1());
-        } else if (notes[5] == 0) {
-          notes[5] = mtof(MIDI.getData1());
-        } else if (notes[6] == 0) {
-          notes[6] = mtof(MIDI.getData1());
-        } else if (notes[7] == 0) {
-          notes[7] = mtof(MIDI.getData1());
-        } else if (notes[8] == 0) {
-          notes[8] = mtof(MIDI.getData1());
-        } else if (notes[9] == 0) {
-          notes[9] = mtof(MIDI.getData1());
+
+  // Update tick frequency
+  tick.SetFreq(tickFrequency);
+
+  // // Update envelope
+  env.SetTime(ADSR_SEG_ATTACK, envAttack);
+  env.SetTime(ADSR_SEG_DECAY, envDecay);
+  env.SetSustainLevel(sustain);
+
+  
+  Serial.println(env_out);
+
+  switch (appState) {
+    case PIANO:
+      if (MIDI.read())  // if a MIDI message is received
+      {
+        switch (MIDI.getType())  // Get the type of the message we received
+        {
+            //-------------------------------------------------------//
+            //--------MESSAGE------/-------DATA1-------/----DATA2----//
+            //        Note On      /     Note number   /   Velocity  //
+            //        Note Off     /     Note number   /   Velocity  //
+            //Polyphonic Aftertouch/     Note number   /   pressure  //
+            //     Control change  / Controller number /     Data    //
+            //     Program change  /   Program number  /     ---     //
+            //  Channel Aftertouch /     Pressure      /     ---     //
+            //      Pitch wheel    /        LSB        /     MSB     //
+            //-------------------------------------------------------//
+
+          case midi::ProgramChange:
+            Serial.println("program change");
+            break;
+          case midi::NoteOn:
+            Serial.print("note on : ");
+            Serial.println(MIDI.getData1());
+            // Serial.print("   velocity : ");
+            // Serial.println(MIDI.getData2());
+            //gate = 1;
+            // tick.Reset();
+            // notePlayed = false;
+            if (notes[0] == 0) {
+              notes[0] = mtof(MIDI.getData1());
+            } else if (notes[1] == 0) {
+              notes[1] = mtof(MIDI.getData1());
+            } else if (notes[2] == 0) {
+              notes[2] = mtof(MIDI.getData1());
+            } else if (notes[3] == 0) {
+              notes[3] = mtof(MIDI.getData1());
+            } else if (notes[4] == 0) {
+              notes[4] = mtof(MIDI.getData1());
+            } else if (notes[5] == 0) {
+              notes[5] = mtof(MIDI.getData1());
+            } else if (notes[6] == 0) {
+              notes[6] = mtof(MIDI.getData1());
+            } else if (notes[7] == 0) {
+              notes[7] = mtof(MIDI.getData1());
+            } else if (notes[8] == 0) {
+              notes[8] = mtof(MIDI.getData1());
+            } else if (notes[9] == 0) {
+              notes[9] = mtof(MIDI.getData1());
+            }
+            break;
+          case midi::NoteOff:
+            for (int i = 0; i < sizeof(notes); i++) {
+              if (notes[i] == mtof(MIDI.getData1())) {
+                Serial.println("Trouve!");
+                notes[i] = 0;
+              }
+            }
+            break;
         }
-        break;
-      case midi::NoteOff:
-        for (int i = 0; i < sizeof(notes); i++) {
-          if (notes[i] == mtof(MIDI.getData1())) {
-            Serial.println("Trouve!");
-            notes[i] = 0;
-          }
+      }
+      for (int i = 0; i < 10; i++) {
+        if (notes[i] != 0) {
+          setOscFreq(notes[i], i);
         }
-        break;
-    }
+      }
+      setOscAmp();
+      changeWaveForm();
+      lfo.SetFreq(lfoFreq);
+      break;
+
+    case WEBSITE:
+
+      break;
   }
-  for (int i = 0; i < 10; i++) {
-    if (notes[i] != 0) {
-      setOscFreq(notes[i], i);
-    }
-  }
-  setOscAmp();
-  changeWaveForm();
-  lfo.SetFreq(lfoFreq);
 }
