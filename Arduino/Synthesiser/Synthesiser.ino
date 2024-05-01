@@ -45,25 +45,28 @@ float envDecay;
 float sustain;
 float tickFrequency;
 float cutOffFreq;
-int osc1WavePinR = 27;
-int osc1WavePinL = 26;
-int osc2WavePinR = 1;
-int osc2WavePinL = 0;
-int filterPinR = 3;
-int filterPinL = 2;
-int lfoWavePinR = 5;
-int lfoWavePinL = 4;
-int lfoValPinR = 7;
-int lfoValPinL = 6;
-int osc1OctavePinR = 9;
-int osc1OctavePinL = 8;
+int osc1WavePinR = 8;
+int osc1WavePinL = 7;
+int osc2WavePinR = 9;
+int osc2WavePinL = 10;
+int filterPinR = 5;
+int filterPinL = 6;
+int lfoWavePinR = 1;
+int lfoWavePinL = 2;
+int lfoValPinR = 3;
+int lfoValPinL = 4;
+int osc1OctavePinR = 13;
+int osc1OctavePinL = 14;
+int osc2OctavePinR = 11;
+int osc2OctavePinL = 12;
 bool rState = false;
 bool lState = false;
 int tune;
 int delay_osc;
 float env_out;
 float ampLfo;
-float lfoFreq;
+float lfoFreq = 0.2;
+float ampOsc3;
 
 DaisyHardware hw;
 Oscillator osc1[10];
@@ -78,7 +81,7 @@ static Tone lpFilter;
 static DelayLine<float, MAX_DELAY> del;
 
 void cutOffFrequency() {
-  cutOffFreq = convertValue(analogRead(A6), 0, 1023, 0.0f, 2093.0f);
+  cutOffFreq = convertValue(analogRead(A9), 0, 1023, 0.0f, 2093.0f);
 
   if (isLfoCutOff()) {
     cutOffFreq = ((cutOffFreq * lfo.Process()) * 2);
@@ -94,17 +97,17 @@ void readPotentiometer(unsigned long currentMillis) {
     return;
   }
   previousMillis = currentMillis;
-  ampOsc1 = convertValue(analogRead(A5), 0, 1023, 0.0, 1.0);
-  ampOsc2 = convertValue(analogRead(A6), 0, 1023, 0.0, 1.0);
-  envAttack = convertValue(analogRead(A1), 0, 1023, 1.0, 5.0);
-  envDecay = convertValue(analogRead(A7), 0, 1023, 1.0, 5.0);
-  sustain = convertValue(analogRead(A8), 0, 1023, 0.0, 1.0);
-  tickFrequency = convertValue(analogRead(A9), 0, 1023, 1.0, 5.0);
-  tune = int(convertValue(analogRead(A4), 0, 1023, 0, 12));
-  ampLfo = convertValue(analogRead(A2), 0, 1023, 0.0f, 1.0f);
-  lfoFreq = convertValue(analogRead(A3), 0, 1023, 0.0f, 1.0f);
+  ampOsc1 = convertValue(analogRead(A0), 0, 1023, 0.0, 1.0);
+  ampOsc2 = convertValue(analogRead(A1), 0, 1023, 0.0, 1.0);
+  envAttack = convertValue(analogRead(A2), 0, 1023, 1.0, 5.0);
+  envDecay = convertValue(analogRead(A3), 0, 1023, 1.0, 5.0);
+  sustain = convertValue(analogRead(A4), 0, 1023, 0.0, 1.0);
+  tickFrequency = convertValue(analogRead(A5), 0, 1023, 1.0, 5.0);
+  tune = int(convertValue(analogRead(A10), 0, 1023, 0, 12));
+  ampLfo = convertValue(analogRead(A6), 0, 1023, 0.0f, 1.0f);
+  //lfoFreq = convertValue(analogRead(A3), 0, 1023, 0.0f, 1.0f);  ESP32
   cutOffFrequency();
-  delay_osc = int(convertValue(analogRead(A0), 0, 1023, 0.0f, 80.0f));
+  //delay_osc = int(convertValue(analogRead(A0), 0, 1023, 0.0f, 80.0f)); ESP32
 }
 
 bool isLfoAmp() {
@@ -173,12 +176,14 @@ float getSubFreq(float freq) {
 void setOscAmp() {
   float newAmpOsc1 = ampOsc1 * env_out;
   float newAmpOsc2 = ampOsc2 * env_out;
+  float newAmpOsc3 = ampOsc3 * env_out;
   float newAmpLfo = ampLfo * env_out;
 
   if (isLfoAmp()) {
     newAmpLfo = ampLfo;
     newAmpOsc1 = ((lfo.Process() * ampOsc1) * 2);
     newAmpOsc2 = ((lfo.Process() * ampOsc2) * 2);
+    newAmpOsc3 = ((lfo.Process() * ampOsc3) * 2);
     if (newAmpOsc1 < 0) {
       newAmpOsc1 = -1 * newAmpOsc1;
     }
@@ -186,13 +191,17 @@ void setOscAmp() {
     if (newAmpOsc2 < 0) {
       newAmpOsc2 = -1 * newAmpOsc2;
     }
+    
+    if (newAmpOsc3 < 0) {
+      newAmpOsc3 = -1 * newAmpOsc3;
+    }
   }
 
   for (int i = 0; i < 10; i++) {
     if (notes[i] != 0) {
       osc1[i].SetAmp(newAmpOsc1);
       osc2[i].SetAmp(newAmpOsc2);
-      osc3[i].SetAmp(newAmpOsc1);
+      osc3[i].SetAmp(newAmpOsc3);
     }
   }
 }

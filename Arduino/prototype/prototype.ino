@@ -24,7 +24,7 @@ enum State { UP,
              CENTER,
              DOWN };
 // -----------------------------------------------------------------------------
-float notes[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+float notes[10];
 float osc1_out[10];
 float osc2_out[10];
 float osc3_out[10];
@@ -38,25 +38,28 @@ float envDecay;
 float sustain;
 float tickFrequency;
 float cutOffFreq;
-int osc1WavePinR = 27;
-int osc1WavePinL = 26;
-int osc2WavePinR = 1;
-int osc2WavePinL = 0;
-int filterPinR = 3;
-int filterPinL = 2;
-int lfoWavePinR = 5;
-int lfoWavePinL = 4;
-int lfoValPinR = 7;
-int lfoValPinL = 6;
-int osc1OctavePinR = 9;
-int osc1OctavePinL = 8;
+int osc1WavePinR = 7;
+int osc1WavePinL = 6;
+int osc2WavePinR = 9;
+int osc2WavePinL = 8;
+int filterPinR = 5;
+int filterPinL = 6;
+int lfoWavePinR = 1;
+int lfoWavePinL = 2;
+int lfoValPinR = 3;
+int lfoValPinL = 4;
+int osc1OctavePinR = 13;
+int osc1OctavePinL = 12;
+int osc2OctavePinR = 11;
+int osc2OctavePinL = 10;
 bool rState = false;
 bool lState = false;
 int tune;
 int delay_osc;
 float env_out;
 float ampLfo;
-float lfoFreq;
+float lfoFreq = 0.2;
+float ampOsc3;
 
 DaisyHardware hw;
 Oscillator osc1[10];
@@ -69,7 +72,7 @@ static Tone lpFilter;
 static DelayLine<float, MAX_DELAY> del;
 
 void cutOffFrequency() {
-  cutOffFreq = convertValue(analogRead(A6), 0, 1023, 0.0f, 2093.0f);
+  cutOffFreq = convertValue(analogRead(A9), 0, 1023, 0.0f, 2093.0f);
 
   if (isLfoCutOff()) {
     cutOffFreq = ((cutOffFreq * lfo.Process()) * 2);
@@ -85,17 +88,19 @@ void readPotentiometer(unsigned long currentMillis) {
     return;
   }
   previousMillis = currentMillis;
-  ampOsc1 = convertValue(analogRead(A5), 0, 1023, 0.0, 1.0);
-  ampOsc2 = convertValue(analogRead(A6), 0, 1023, 0.0, 1.0);
-  envAttack = convertValue(analogRead(A1), 0, 1023, 1.0, 5.0);
-  envDecay = convertValue(analogRead(A7), 0, 1023, 1.0, 5.0);
-  sustain = convertValue(analogRead(A8), 0, 1023, 0.0, 1.0);
-  tickFrequency = convertValue(analogRead(A9), 0, 1023, 1.0, 5.0);
-  tune = int(convertValue(analogRead(A4), 0, 1023, 0, 12));
-  ampLfo = convertValue(analogRead(A2), 0, 1023, 0.0f, 1.0f);
-  lfoFreq = convertValue(analogRead(A3), 0, 1023, 0.0f, 1.0f);
+  ampOsc1 = convertValue(analogRead(A0), 0, 1023, 0.0, 1.0);
+  ampOsc2 = convertValue(analogRead(A1), 0, 1023, 0.0, 1.0);
+  ampOsc3 = convertValue(analogRead(A11), 0, 1023, 0.0, 1.0);
+  envAttack = convertValue(analogRead(A2), 0, 1023, 1.0, 5.0);
+  envDecay = convertValue(analogRead(A3), 0, 1023, 1.0, 5.0);
+  sustain = convertValue(analogRead(A4), 0, 1023, 0.0, 1.0);
+  tickFrequency = convertValue(analogRead(A5), 0, 1023, 1.0, 5.0);
+  tune = int(convertValue(analogRead(A10), 0, 1023, 0, 12));
+  ampLfo = convertValue(analogRead(A6), 0, 1023, 0.0f, 1.0f);
+  lfoFreq = convertValue(analogRead(A4), 0, 1023, 0.0f, 1.0f);
   cutOffFrequency();
-  delay_osc = int(convertValue(analogRead(A0), 0, 1023, 0.0f, 80.0f));
+  delay_osc = int(convertValue(analogRead(A5), 0, 1023, 0.0f, 80.0f));
+  
 }
 
 bool isLfoAmp() {
@@ -113,7 +118,6 @@ bool isLfoAmp() {
 bool isLfoFreq() {
   switch (readSwitch3(lfoValPinR, lfoValPinL)) {
     case UP:
-      Serial.println("UP LFO OSC");
       return true;
       break;
 
@@ -164,12 +168,14 @@ float getSubFreq(float freq) {
 void setOscAmp() {
   float newAmpOsc1 = ampOsc1;
   float newAmpOsc2 = ampOsc2;
+  float newAmpOsc3 = ampOsc3;
   float newAmpLfo = ampLfo;
 
   if (isLfoAmp()) {
     newAmpLfo = ampLfo;
     newAmpOsc1 = ((lfo.Process() * ampOsc1) * 2);
     newAmpOsc2 = ((lfo.Process() * ampOsc2) * 2);
+    newAmpOsc3 = ((lfo.Process() * ampOsc3) * 2);
 
     if (newAmpOsc1 < 0) {
       newAmpOsc1 = -1 * newAmpOsc1;
@@ -178,13 +184,17 @@ void setOscAmp() {
     if (newAmpOsc2 < 0) {
       newAmpOsc2 = -1 * newAmpOsc2;
     }
+
+    if (newAmpOsc3 < 0) {
+      newAmpOsc3 = -1 * newAmpOsc3;
+    }
   }
 
   for (int i = 0; i < 10; i++) {
     if (notes[i] != 0) {
       osc1[i].SetAmp(newAmpOsc1);
       osc2[i].SetAmp(newAmpOsc2);
-      osc3[i].SetAmp(newAmpOsc1);
+      osc3[i].SetAmp(newAmpOsc3);
     }
   }
 }
@@ -206,6 +216,8 @@ void setupSwitch3() {
   pinMode(lfoValPinL, INPUT_PULLUP);
   pinMode(osc1OctavePinR, INPUT_PULLUP);
   pinMode(osc1OctavePinL, INPUT_PULLUP);
+  pinMode(osc2OctavePinR, INPUT_PULLUP);
+  pinMode(osc2OctavePinL, INPUT_PULLUP);
 }
 
 int readSwitch3(int rPin, int lPin) {
@@ -231,7 +243,7 @@ int readSwitch3(int rPin, int lPin) {
 void changeWaveForm() {
   Wave waveOsc1;
   Wave waveOsc2;
-
+  
   switch (readSwitch3(osc1WavePinR, osc1WavePinL)) {
     case UP:
       waveOsc1 = WAVE_SQUARE;
@@ -243,7 +255,7 @@ void changeWaveForm() {
       waveOsc1 = WAVE_TRI;
       break;
   }
-
+  
   switch (readSwitch3(lfoWavePinR, lfoWavePinL)) {
     case UP:
       lfo.SetWaveform(lfo.WAVE_SQUARE);
@@ -259,6 +271,7 @@ void changeWaveForm() {
   switch (readSwitch3(osc2WavePinR, osc2WavePinL)) {
     case UP:
       waveOsc2 = WAVE_SQUARE;
+      waveOsc1 = WAVE_SIN;
       break;
     case CENTER:
       waveOsc2 = WAVE_POLYBLEP_SAW;
@@ -311,8 +324,8 @@ void setOscFreq(float freq, int index) {
       freqOsc1 = mtof(midiNote);
       break;
   }
-
-  switch (readSwitch3(osc2WavePinR, osc2WavePinL)) {
+  // Ici les switchs doivent etre changes pour ceux de l'octave important R ET L comme c'est sinon regarde en haut
+  switch (readSwitch3(osc2OctavePinR, osc2OctavePinL)) {
     case UP:
       // 21 and 96 represent the lowest and the higher he can reach
       midiNote = transposeOctave(freq, -1);
@@ -493,9 +506,10 @@ void MyCallback(float **in, float **out, size_t size) {
   }
 }
 
+
 void setup() {
   setupSwitch3();
-  Serial.begin(31250);
+  Serial.begin(9600);
   MIDI.begin(MIDI_CHANNEL_OMNI);
   // RX pin is on pin 15
 
@@ -532,6 +546,7 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis();
   readPotentiometer(currentMillis);
+  
   if (MIDI.read())  // if a MIDI message is received
   {
     switch (MIDI.getType())  // Get the type of the message we received
@@ -581,7 +596,6 @@ void loop() {
       case midi::NoteOff:
         for (int i = 0; i < sizeof(notes); i++) {
           if (notes[i] == mtof(MIDI.getData1())) {
-            Serial.println("Trouve!");
             notes[i] = 0;
           }
         }
@@ -596,4 +610,5 @@ void loop() {
   setOscAmp();
   changeWaveForm();
   lfo.SetFreq(lfoFreq);
+  lfo.SetAmp(ampLfo);
 }
